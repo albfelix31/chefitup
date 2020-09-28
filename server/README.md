@@ -76,7 +76,8 @@ Since Flask-MySQLdb might not be compatiable with what you are using.
 Create a .env file outside the server folder.
 
 ### Step 2
-In that .env file, paste the following text:<br/><br/>
+Make sure to change the value of these variables to the credentials of your database!<br/>
+In that .env file, paste the following text:<br/>
 
 
 MYSQL_USER=Your database username<br/>
