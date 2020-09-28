@@ -85,4 +85,3 @@ MYSQL_PASSWORD=Your database password<br/>
 MYSQL_HOST=localhost<br/>
 MYSQL_DB=Your Database name<br/>
 
-s
