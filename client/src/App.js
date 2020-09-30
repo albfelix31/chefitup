@@ -1,7 +1,6 @@
 import  React from 'react';
 import {Container, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import { 
   BrowserRouter as Router, 
   Switch, 
