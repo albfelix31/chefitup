@@ -5,7 +5,7 @@ import {
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import Logo from '../../../assets/logo.png';
 import './EmployeeLogin.css'
 
 export default class Login extends React.Component {
@@ -45,38 +45,45 @@ export default class Login extends React.Component {
 
   render() {
     return (
-     
-        <Container className="container-bg rounded px-5 py-4 mx-4">
-        <h2 className="text-light text-center">Sign in with your ChefItUp account</h2>
-          { this.state.errors.length > 0 ?  
-            this.state.errors.map((error,index) => {
-              return <li key={index} className="text-warning"> {error} </li>
-          })
-          : 
-          <div></div>
-          } 
-          <Form>
-            <Form.Group controlId="formEmail">
-              <Form.Label className="text-light">Email Address:</Form.Label>
-              <Form.Control type="email" placeholder="Enter Email" 
-                onChange={this.handleChange("email")}/>
-            </Form.Group>
-            <Form.Group controlId="formPassword">
-              <Form.Label className="text-light">Password:</Form.Label>
-              <Form.Control type="password" placeholder="Enter Password" 
-                onChange={this.handleChange("password")}/>
-            </Form.Group>
-          </Form>
-          <Button variant="primary" type="submit" size="lg" block
-            onClick={this.handleSubmit}>
-            Sign in
-          </Button>
-          <br/>
-          <p className="text-light">
-            Don't have an account? <Link className="text-primary">Sign Up</Link>
-          </p>  
-          <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
+      
+        <Container className="main-container">
+          <div className="container-logo">
+              <img src={Logo}/>
+              <p className="logo-text">Delivery food that you will love.</p>
+          </div>
+            <div className="container-bg rounded px-5 py-4 mx-4">
+              <h2 className="text-light text-center">Sign in with your ChefItUp account</h2>
+                { this.state.errors.length > 0 ?  
+                  this.state.errors.map((error,index) => {
+                    return <li key={index} className="text-warning"> {error} </li>
+                })
+                : 
+                <div></div>
+                } 
+                <Form>
+                  <Form.Group controlId="formEmail">
+                    <Form.Label className="text-light">Email Address:</Form.Label>
+                    <Form.Control type="email" placeholder="Enter Email" 
+                      onChange={this.handleChange("email")}/>
+                  </Form.Group>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label className="text-light">Password:</Form.Label>
+                    <Form.Control type="password" placeholder="Enter Password" 
+                      onChange={this.handleChange("password")}/>
+                  </Form.Group>
+                </Form>
+                <Button variant="primary" type="submit" size="lg" block
+                  onClick={this.handleSubmit}>
+                  Sign in
+                </Button>
+                <br/>
+                <p className="text-light">
+                  Don't have an account? <Link className="text-primary">Sign Up</Link>
+                </p>  
+                <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
+              </div>
         </Container>
+        
      
     );
   }

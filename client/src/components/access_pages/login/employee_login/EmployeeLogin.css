@@ -1,10 +1,21 @@
-.container-bg{
+.main-container{
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9vh;
+}
+img {
     margin-top: 10vh;
-    margin-left: 100vh !important;
-    height: 600px;
-    width: 500px;
+    margin-left: 15vh;
+    width: 300px;
+    height: 300px;
+}
+.container-bg{
+    width: 400px;
+    height: 550px;
     background-color: #44A822;
 }
+
 .btn {
     border-radius: 200px;
     background-color: #1877F2;
@@ -15,5 +26,12 @@
     font-weight: bold;
 }
 h2 {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+}
+
+.logo-text {
+    margin-top: 5vh;
+    margin-left: 2vh;
+    font-size: 2em;
+    letter-spacing: 0.1em;
 }

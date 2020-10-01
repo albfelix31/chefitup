@@ -30,7 +30,7 @@ export default class ChoosePage extends React.Component {
         
         return (
           <div className="center">
-            <Container className="container-bg rounded px-5 py-4 mx-4">
+            <Container className="rounded px-5 py-4 mx-4">
             <h2 className="text-center">ChefItUp</h2>
             <Button onClick={this.employeeHandler} className="chooseBtn" variant="primary" size="lg" block>
               Log in as a restaurant employee
