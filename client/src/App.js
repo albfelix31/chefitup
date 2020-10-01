@@ -34,6 +34,8 @@ class App extends React.Component {
       case '/employeelogin':
       case '/customerlogin':
         return <NavLogin/>
+      default:
+        return null
     }
     
   }

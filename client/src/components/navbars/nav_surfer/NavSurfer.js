@@ -19,7 +19,7 @@ export default class NavSurfer extends React.Component {
             <Button className="searchBtn" variant="outline-success">Search</Button>
             </Form>
             <Nav className="container-fluid">
-                <Nav.Link className="SignOut ml-auto" href="#home" alignRight>Sign in</Nav.Link>
+                <Nav.Link className="SignOut ml-auto" href="/customerlogin">Sign in</Nav.Link>
             </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Nav.css'
 import './NavEmployee.css'
-import {Navbar, Nav,NavDropdown,FormControl,Button} from 'react-bootstrap';
+import {Navbar, Nav,NavDropdown} from 'react-bootstrap';
 
 
 
@@ -15,7 +15,7 @@ export default class NavEmployee extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="container-fluid">
-                <NavDropdown className="ml-auto navItem" title="Hi, Bob!" id="basic-nav-dropdown dropdown-menu-align-right"  alignRight>
+                <NavDropdown className="ml-auto navItem" title="Hi, Bob!" id="basic-nav-dropdown dropdown-menu-align-right">
                     <NavDropdown.Item href="#action/3.1">Employee</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Customers</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Discussion Forum</NavDropdown.Item>

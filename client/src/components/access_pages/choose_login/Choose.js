@@ -1,7 +1,6 @@
 import React from 'react';
 import './Choose.css'
 import {Button,Container} from 'react-bootstrap';
-import { Redirect } from "react-router-dom";
 
 export default class ChoosePage extends React.Component {
 
