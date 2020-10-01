@@ -72,7 +72,7 @@ export default class Login extends React.Component {
                       onChange={this.handleChange("password")}/>
                   </Form.Group>
                 </Form>
-                <Button variant="primary" type="submit" size="lg" block
+                <Button className="btn-login" variant="primary" type="submit" size="lg" block
                   onClick={this.handleSubmit}>
                   Sign in
                 </Button>
