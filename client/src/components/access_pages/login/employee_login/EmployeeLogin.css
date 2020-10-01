@@ -1,0 +1,19 @@
+.container-bg{
+    margin-top: 10vh;
+    margin-left: 100vh !important;
+    height: 600px;
+    width: 500px;
+    background-color: #44A822;
+}
+.btn {
+    border-radius: 200px;
+    background-color: #1877F2;
+    font-weight:bold;
+}
+.text-primary{
+    color: #1877F2;
+    font-weight: bold;
+}
+h2 {
+    margin-bottom: 60px;
+}
