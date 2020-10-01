@@ -48,7 +48,7 @@ export default class Login extends React.Component {
       
         <Container className="main-container">
           <div className="container-logo">
-              <img src={Logo}/>
+              <img className="logo-img" src={Logo} alt="logo" />
               <p className="logo-text">Delivery food that you will love.</p>
           </div>
             <div className="container-bg rounded px-5 py-4 mx-4">
