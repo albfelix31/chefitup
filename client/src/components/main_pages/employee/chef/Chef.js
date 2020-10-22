@@ -17,6 +17,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import DishPic from "./dish.jpg"
 import Add from "./img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
+import Modal from "react-bootstrap/Modal"
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -58,22 +59,68 @@ export default class Chef extends React.Component {
         this.state = {
           search: "",
           dishes: [],
+          isOpen: false,
+          n: null
         };
       }
  
+    openModal = index => (e) => {
+        e.preventDefault();
+        this.setState({ isOpen: true, n: index })
+    
+    };
+    closeModal = () => {
+        this.setState({ isOpen: false })
+    
+    };
+    
 
-  selectedTextbook = index => (e) => {
+  saveDish = () => {
+    
+    console.log(this.state.n)
+
+    this.setState({ isOpen: false })
+
+  }
+
+  deleteDish = index => (e) => {
     e.preventDefault(); 
-    // Add Backend For When Textbook Is Clicked
 
-    // This is the whole book object you will need all of this 
-    console.log(this.state.textbooks[index])
+    console.log(index)
 
   }
 
   render() {
     return (
     <Container className="container-chef" fluid>
+
+        <Modal show={this.state.isOpen} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Dish</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                <Form.Group controlId="formDisnName">
+                    <Form.Label>Disn Name</Form.Label>
+                    <Form.Control placeholder="Disn Name" />
+                </Form.Group>
+
+                <Form.Group controlId="formDishDescription">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                </Form.Group>
+
+              </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={this.saveDish}>
+              Save
+            </Button>
+            <Button variant="primary" onClick={this.closeModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Row className="row-top">
             <Col>
                 <h1>My Dishes</h1>  
@@ -117,8 +164,8 @@ export default class Chef extends React.Component {
                     <Dropdown.Toggle as={CustomToggle} />
                     <Dropdown.Menu size="sm" title="">
                     <Dropdown.Header>Options</Dropdown.Header>
-                    <Dropdown.Item>Edits</Dropdown.Item>
-                    <Dropdown.Item>Delete</Dropdown.Item>
+                    <Dropdown.Item onClick={this.openModal(index)}>Edits</Dropdown.Item>
+                    <Dropdown.Item onClick={this.deleteDish(index)}>Delete</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>  
                 <Card.Img className="profile-img" src={list.image} />
@@ -134,6 +181,7 @@ export default class Chef extends React.Component {
                   </ListGroup>
                 </Card>
               </Col>
+              
             ))
           }
         </Row>
