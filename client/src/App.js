@@ -10,8 +10,22 @@ import {
 import EmployeeLogin from './components/access_pages/login/employee_login/EmployeeLogin';
 import Surfer from './components/main_pages/surfer/Surfer';
 import CustomerLogin from './components/access_pages/login/customer_login/CustomerLogin';
-import Employee from './components/main_pages/employee/Employee';
-import Customer from './components/main_pages/customer/Customer';
+import Chef from './components/main_pages/employee/chef/Chef';
+import Delivery from './components/main_pages/employee/delivery/Delivery';
+import Manager from './components/main_pages/employee/manager/Manager';
+import WarningEmployee from './components/main_pages/employee/warningsemployee/WarningsEmployee';
+import Discussion from './components/main_pages/discussion/Discussion';
+import Main from './components/main_pages/customer/main/Main';
+import Billing from './components/main_pages/customer/billing/Billing';
+import Cart from './components/main_pages/customer/cart/Cart';
+import Menu from './components/main_pages/customer/menu/Menu';
+import PastOrders from './components/main_pages/customer/pastorders/PastOrders';
+import Payment from './components/main_pages/customer/payment/Payment';
+import Profile from './components/main_pages/customer/profile/Profile';
+import Reservation from './components/main_pages/customer/reservation/Reservation';
+import Review from './components/main_pages/customer/review/Review';
+import Shipping from './components/main_pages/customer/shipping/Shipping';
+import WarningCustomer from './components/main_pages/customer/warningcustomer/WarningsCustomer';
 import ForgotPassowrd from './components/access_pages/forgot_password/ForgotPassword';
 import Choose from './components/access_pages/choose_login/Choose';
 import NavCustomer from './components/navbars/nav_customer/NavCustomer';
@@ -47,12 +61,26 @@ class App extends React.Component {
         <Container fluid>
           <Row className="justify-content-center">
             <Switch>
-              <Route path="/forgotpassword" component={ForgotPassowrd} />
-              <Route path="/surfer" component={Surfer} />
-              <Route path="/customerlogin" component={CustomerLogin} />
-              <Route path="/employeelogin" component={EmployeeLogin} />
-              <Route path="/customer" component={Customer} />
-              <Route path="/employee" component={Employee} />
+              <Route path="/Forgotpassword" component={ForgotPassowrd} />
+              <Route path="/Surfer" component={Surfer} />
+              <Route path="/Customerlogin" component={CustomerLogin} />
+              <Route path="/Employeelogin" component={EmployeeLogin} />
+              <Route path="/Main" component={Main} />
+              <Route path="/Chef" component={Chef} />
+              <Route path="/Billing" component={Billing} />
+              <Route path="/Cart" component={Cart} />
+              <Route path="/Menu" component={Menu} />
+              <Route path="/Delivery" component={Delivery} />
+              <Route path="/PastOrders" component={PastOrders} />
+              <Route path="/Payment" component={Payment} />
+              <Route path="/Profile" component={Profile} />
+              <Route path="/Reservation" component={Reservation} />
+              <Route path="/Review" component={Review} />
+              <Route path="/Shipping" component={Shipping} />
+              <Route path="/WarningCustomer" component={WarningCustomer} />
+              <Route path="/Manager" component={Manager} />
+              <Route path="/Warningsemployee" component={WarningEmployee} />
+              <Route path="/Discussion" component={Discussion} />
               <Route path="/" component={Choose} />
             </Switch>
           </Row>
