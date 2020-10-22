@@ -43,7 +43,7 @@ class App extends React.Component {
         return <NavSurfer />
       case '/customer':
         return <NavCustomer/>
-      case '/employee':
+      case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
