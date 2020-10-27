@@ -1,9 +1,9 @@
 import  React from 'react';
 import {Container, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { 
-  BrowserRouter as Router, 
-  Switch, 
+import {
+  BrowserRouter as Router,
+  Switch,
   Route,
   withRouter
 } from 'react-router-dom';
@@ -32,7 +32,7 @@ import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
 import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
-
+import Footer from './components/Footer/Footer';
 
 class App extends React.Component {
 
@@ -51,7 +51,7 @@ class App extends React.Component {
       default:
         return null
     }
-    
+
   }
 
   render() {
@@ -85,6 +85,7 @@ class App extends React.Component {
             </Switch>
           </Row>
         </Container>
+        <Footer />
       </Router>
     );
   }
