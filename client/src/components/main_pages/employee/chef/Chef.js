@@ -180,8 +180,7 @@ export default class Chef extends React.Component {
                     </ListGroupItem>
                   </ListGroup>
                 </Card>
-              </Col>
-              
+              </Col>  
             ))
           }
         </Row>
