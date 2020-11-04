@@ -18,6 +18,7 @@ import Discussion from './components/main_pages/discussion/Discussion';
 import Main from './components/main_pages/customer/main/Main';
 import Billing from './components/main_pages/customer/billing/Billing';
 import Cart from './components/main_pages/customer/cart/Cart';
+import Checkout from './components/main_pages/customer/checkout/Checkout';
 import Menu from './components/main_pages/customer/menu/Menu';
 import PastOrders from './components/main_pages/customer/pastorders/PastOrders';
 import Payment from './components/main_pages/customer/payment/Payment';
@@ -69,6 +70,7 @@ class App extends React.Component {
               <Route path="/Chef" component={Chef} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
+              <Route path="/Checkout" component={Checkout} />
               <Route path="/Menu" component={Menu} />
               <Route path="/Delivery" component={Delivery} />
               <Route path="/PastOrders" component={PastOrders} />
@@ -91,3 +93,4 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
+
