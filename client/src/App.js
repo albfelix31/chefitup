@@ -8,6 +8,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import EmployeeLogin from './components/access_pages/login/employee_login/EmployeeLogin';
+import Register from './components/access_pages/register/Register';
 import Surfer from './components/main_pages/surfer/Surfer';
 import CustomerLogin from './components/access_pages/login/customer_login/CustomerLogin';
 import Chef from './components/main_pages/employee/chef/Chef';
@@ -43,11 +44,15 @@ class App extends React.Component {
       case '/surfer':
         return <NavSurfer />
       case '/customer':
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
         return <NavCustomer/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
+      case '/register':
         return <NavLogin/>
       default:
         return null
@@ -58,7 +63,9 @@ class App extends React.Component {
   displayFooter = (path) => {
     switch(path.toLowerCase()) {
       case '/customer':
-        return <Footer />
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
       case '/surfer':
         return <Footer />
       default:
@@ -87,6 +94,7 @@ class App extends React.Component {
               <Route path="/PastOrders" component={PastOrders} />
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
+              <Route path="/Register" component={Register} />
               <Route path="/Reservation" component={Reservation} />
               <Route path="/Review" component={Review} />
               <Route path="/Shipping" component={Shipping} />

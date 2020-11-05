@@ -1,7 +1,10 @@
-.dish {
+.dish-surfer {
   height: 200px;
   width: 200px;
   margin: 0;
+  margin-top: 10%;
+  color:black !important;
+  border-color: black;
 }
 
 .popularDishes, .highestRatedDishes {
@@ -12,11 +15,15 @@
 .link, .link:hover {
   margin-left:0.5em;
   color: #009821;
+  cursor: pointer;
 }
 
 .registerPrompt {
   text-align: center;
+  
 }
+
+
 
 .popDishHeader, .highRatedDishHeader {
   margin-left: 3em;

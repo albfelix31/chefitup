@@ -19,19 +19,19 @@ export default class Surfer extends React.Component {
         <h4 className="popDishHeader"> Top 3 Most Popular Dishes </h4>
         <Row className="popularDishes">
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
 
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
 
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
@@ -39,19 +39,19 @@ export default class Surfer extends React.Component {
         <h4 className="highRatedDishHeader"> Top 3 Highest Rated Dishes </h4>
         <Row className="highestRatedDishes">
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
 
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
 
           <Col>
-            <Image className="dish" src={Dish} />
+            <Image className="dish-surfer" src={Dish} />
             <h5> Dish Name </h5>
             <p> Chef Name </p>
           </Col>
@@ -59,9 +59,9 @@ export default class Surfer extends React.Component {
         <div className="registerPrompt">
           <h4>
             Want to see more?
-            <Link to="Register" className="link">
+            <a className="link" onClick={() => {window.location.href="/Register"}}>
                 Join Us!
-            </Link>
+            </a>
           </h4>
         </div>
       </Container>
