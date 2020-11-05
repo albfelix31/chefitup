@@ -7,7 +7,7 @@
   width: 100%;
   color: white !important;
   text-align: left;
-  position: relative;
+  position: absolute;
 }
 
 .footer-box {
