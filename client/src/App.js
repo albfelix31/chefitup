@@ -1,13 +1,14 @@
 import  React from 'react';
 import {Container, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { 
-  BrowserRouter as Router, 
-  Switch, 
+import {
+  BrowserRouter as Router,
+  Switch,
   Route,
   withRouter
 } from 'react-router-dom';
 import EmployeeLogin from './components/access_pages/login/employee_login/EmployeeLogin';
+import Register from './components/access_pages/register/Register';
 import Surfer from './components/main_pages/surfer/Surfer';
 import CustomerLogin from './components/access_pages/login/customer_login/CustomerLogin';
 import Chef from './components/main_pages/employee/chef/Chef';
@@ -33,7 +34,7 @@ import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
 import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
-
+import Footer from './components/Footer/Footer';
 
 class App extends React.Component {
 
@@ -43,16 +44,33 @@ class App extends React.Component {
       case '/surfer':
         return <NavSurfer />
       case '/customer':
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
         return <NavCustomer/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
+      case '/register':
         return <NavLogin/>
       default:
         return null
     }
-    
+
+  }
+
+  displayFooter = (path) => {
+    switch(path.toLowerCase()) {
+      case '/customer':
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
+      case '/surfer':
+        return <Footer />
+      default:
+        return null
+    }
   }
 
   render() {
@@ -66,7 +84,7 @@ class App extends React.Component {
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
               <Route path="/Employeelogin" component={EmployeeLogin} />
-              <Route path="/Main" component={Main} />
+              <Route path="/Customer" component={Main} />
               <Route path="/Chef" component={Chef} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
@@ -76,6 +94,7 @@ class App extends React.Component {
               <Route path="/PastOrders" component={PastOrders} />
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
+              <Route path="/Register" component={Register} />
               <Route path="/Reservation" component={Reservation} />
               <Route path="/Review" component={Review} />
               <Route path="/Shipping" component={Shipping} />
@@ -87,10 +106,10 @@ class App extends React.Component {
             </Switch>
           </Row>
         </Container>
+        {this.displayFooter(this.props.location.pathname)}
       </Router>
     );
   }
 }
 
 export default withRouter(App);
-
