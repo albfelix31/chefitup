@@ -57,9 +57,9 @@ class App extends React.Component {
 
   displayFooter = (path) => {
     switch(path.toLowerCase()) {
-      case '/main':
-        return <Footer />
       case '/customer':
+        return <Footer />
+      case '/surfer':
         return <Footer />
       default:
         return null
