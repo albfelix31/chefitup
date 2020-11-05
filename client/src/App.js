@@ -55,6 +55,17 @@ class App extends React.Component {
 
   }
 
+  displayFooter = (path) => {
+    switch(path.toLowerCase()) {
+      case '/main':
+        return <Footer />
+      case '/customer':
+        return <Footer />
+      default:
+        return null
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -66,7 +77,7 @@ class App extends React.Component {
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
               <Route path="/Employeelogin" component={EmployeeLogin} />
-              <Route path="/Main" component={Main} />
+              <Route path="/Customer" component={Main} />
               <Route path="/Chef" component={Chef} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
@@ -87,11 +98,10 @@ class App extends React.Component {
             </Switch>
           </Row>
         </Container>
-        <Footer />
+        {this.displayFooter(this.props.location.pathname)}
       </Router>
     );
   }
 }
 
 export default withRouter(App);
-

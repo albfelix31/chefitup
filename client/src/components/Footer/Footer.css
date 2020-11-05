@@ -2,10 +2,16 @@
   margin-top: 1rem;
   padding: 1rem;
   background-color: #009821;
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   color: white !important;
-  text-align: center;
+  text-align: left;
+}
+
+.footer-box {
+  border: 1px solid white;
+  padding-top: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
