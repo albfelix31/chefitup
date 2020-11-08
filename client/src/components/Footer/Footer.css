@@ -1,4 +1,4 @@
-.footer{
+.footer {
   margin-top: 1rem;
   padding: 1rem;
   background-color: #009821;
@@ -7,7 +7,7 @@
   width: 100%;
   color: white !important;
   text-align: left;
-  position: absolute;
+  position: fixed;
 }
 
 .footer-box {

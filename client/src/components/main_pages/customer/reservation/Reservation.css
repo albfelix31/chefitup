@@ -6,6 +6,9 @@
   margin-top: 10%;
   margin-bottom: 15%;
 }
+.btn-reservation:hover {
+  font-weight: bold;
+}
 .container-reservation {
   margin-left: 10%;
   margin-right: 50%;

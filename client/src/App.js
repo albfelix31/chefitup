@@ -48,6 +48,14 @@ class App extends React.Component {
       case '/shipping':
       case '/reservation':
         return <NavCustomer/>
+      case '/payment':
+        return <NavCustomer/>
+      case '/shipping':
+        return <NavCustomer/>
+      case '/checkout':
+        return <NavCustomer/>
+      case '/profile':
+          return <NavCustomer/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
@@ -66,6 +74,8 @@ class App extends React.Component {
       case '/checkout':
       case '/shipping':
       case '/reservation':
+      case '/payment':
+      case '/profile':
       case '/surfer':
         return <Footer />
       default:

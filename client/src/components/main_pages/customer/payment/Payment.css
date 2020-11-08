@@ -6,14 +6,17 @@
   margin-top: 10%;
   margin-bottom: 15%;
 }
-.container-payment {
-  margin-left: 10%;
-  margin-right: 50%;
+.btn-payment:hover {
+  font-weight: bold;
 }
 .header {
   margin-top: 10%;
   margin-bottom: 10%;
   text-align: center;
+}
+.container-payment {
+  margin-left: 10%;
+  margin-right: 50%;
 }
 .formBox {
   margin-bottom: 5%;
