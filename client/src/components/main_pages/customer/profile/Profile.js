@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import './Profile.css'
 
-import {Container, Row, Col, Form, Button, Modal, Image, InputGroup} from 'react-bootstrap'
+import {Container, Form, Button, Modal, Image} from 'react-bootstrap'
 import Edit from "./edit.svg"
 
 
