@@ -2,23 +2,26 @@
   background-color: #1877f2;
   color: white;
   border-radius: 100px;
-  width: 100%;
+  width: 20%;
+  margin-left: 80%;
   margin-top: 10%;
-  margin-bottom: 15%;
+  margin-bottom: 10%;
 }
 .btn-dispute:hover {
   font-weight: bold;
 }
-.header-warning {
+.header-dispute {
   margin-top: 5%;
   margin-bottom: 2%;
   text-align: left;
 }
-.container-warning {
+.container-dispute {
   margin-left: 5%;
   margin-right: 5%;
 }
-.warningBox {
-  margin-top: 2%;
+.explanationBox {
+  margin-top: 5%;
   margin-bottom: 5%;
+  width: 100%;
+  border: 2px solid black;
 }

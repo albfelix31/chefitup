@@ -1,0 +1,49 @@
+.container-profile {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.header-profile {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+.btn-profile {
+  background-color: #1877f2;
+  color: white;
+  border-radius: 100px;
+  width: 20%;
+  margin-left: 80%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.btn-edit-modal {
+  background-color: #1877f2;
+  color: white;
+  border-radius: 100px;
+  width: 48%;
+}
+.btn-edit-modal:hover {
+  font-weight: bold;
+}
+hr {
+  padding: 0px;
+  margin: 0px;
+}
+.btn-edit:hover {
+  font-weight: bold;
+}
+.btn-profile:hover {
+  font-weight: bold;
+}
+.btn-edit {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: auto;
+  float: right;
+  justify-content: center;
+}
+.edit-sign {
+  height: 1em;
+  width: 1em;
+  float: left;
+}

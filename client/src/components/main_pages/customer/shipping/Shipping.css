@@ -7,6 +7,9 @@
   margin-bottom: 15%;
   margin-left: 80%;
 }
+.btn-shipping:hover {
+  font-weight: bold;
+}
 .container-shipping {
   margin-left: 0%;
   margin-right: 0%;

@@ -3,6 +3,9 @@
   margin-bottom: 10%;
   text-align: center;
 }
+.btn-checkout:hover {
+  font-weight: bold;
+}
 .container-checkout {
   margin-left: 10%;
   margin-right: 10%;
