@@ -28,6 +28,7 @@ import Reservation from './components/main_pages/customer/reservation/Reservatio
 import Review from './components/main_pages/customer/review/Review';
 import Shipping from './components/main_pages/customer/shipping/Shipping';
 import WarningCustomer from './components/main_pages/customer/warningcustomer/WarningsCustomer';
+import DisputeCustomer from './components/main_pages/customer/disputecustomer/DisputeCustomer';
 import ForgotPassowrd from './components/access_pages/forgot_password/ForgotPassword';
 import Choose from './components/access_pages/choose_login/Choose';
 import NavCustomer from './components/navbars/nav_customer/NavCustomer';
@@ -55,7 +56,11 @@ class App extends React.Component {
       case '/checkout':
         return <NavCustomer/>
       case '/profile':
-          return <NavCustomer/>
+        return <NavCustomer/>
+      case '/warningcustomer':
+        return <NavCustomer/>
+      case '/disputecustomer':
+        return <NavCustomer/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
@@ -76,6 +81,8 @@ class App extends React.Component {
       case '/reservation':
       case '/payment':
       case '/profile':
+      case '/warningcustomer':
+      case '/disputecustomer':
       case '/surfer':
         return <Footer />
       default:
@@ -109,6 +116,7 @@ class App extends React.Component {
               <Route path="/Review" component={Review} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
+              <Route path="/DisputeCustomer" component={DisputeCustomer} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
