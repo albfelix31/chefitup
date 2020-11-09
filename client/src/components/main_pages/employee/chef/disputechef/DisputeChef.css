@@ -1,0 +1,27 @@
+.btn-dispute {
+  background-color: #1877f2;
+  color: white;
+  border-radius: 100px;
+  width: 20%;
+  margin-left: 80%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.btn-dispute:hover {
+  font-weight: bold;
+}
+.header-dispute {
+  margin-top: 5%;
+  margin-bottom: 2%;
+  text-align: left;
+}
+.container-dispute {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.explanationBox {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 100%;
+  border: 2px solid black;
+}

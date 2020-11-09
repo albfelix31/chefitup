@@ -1,0 +1,24 @@
+.btn-warning-chef {
+  background-color: #1877f2;
+  color: white;
+  border-radius: 100px;
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 15%;
+}
+.btn-warning-chef:hover {
+  font-weight: bold;
+}
+.header-warning {
+  margin-top: 5%;
+  margin-bottom: 2%;
+  text-align: left;
+}
+.container-warning {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.warningBox {
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
