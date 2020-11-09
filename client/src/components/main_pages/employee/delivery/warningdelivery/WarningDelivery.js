@@ -29,7 +29,7 @@ const WarningDelivery =()=> {
             <strong>Comments: </strong>{warning.comments}<br/>
           </Col>
           <Col xs="3">
-            <Button className="btn-warning-delivery" variant="primary" href='./DisputeCustomer'>
+            <Button className="btn-warning-delivery" variant="primary" href='./DisputeDelivery'>
                 Dispute
             </Button>
           </Col>
