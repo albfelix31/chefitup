@@ -1,9 +1,9 @@
 import React,{useState}  from 'react';
-import './DisputeCustomer.css'
+import './DisputeDelivery.css'
 
 import {Container, Col, Form, Button} from 'react-bootstrap'
 
-const DisputeCustomer =()=> {
+const DisputeDelivery =()=> {
     //Should come from warning props
     const data={orderNo:'09080706'}
     const [dispute,setDispute] = useState({explanation:''})
@@ -35,4 +35,4 @@ return (
     </Container>  
     );
 }
-export default DisputeCustomer
+export default DisputeDelivery

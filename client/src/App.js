@@ -28,7 +28,11 @@ import Reservation from './components/main_pages/customer/reservation/Reservatio
 import ReviewCustomer from './components/main_pages/customer/reviewcustomer/ReviewCustomer';
 import Shipping from './components/main_pages/customer/shipping/Shipping';
 import WarningCustomer from './components/main_pages/customer/warningcustomer/WarningsCustomer';
+import WarningChef from './components/main_pages/employee/chef/warningchef/WarningChef';
+import WarningDelivery from './components/main_pages/employee/delivery/warningdelivery/WarningDelivery';
 import DisputeCustomer from './components/main_pages/customer/disputecustomer/DisputeCustomer';
+import DisputeChef from './components/main_pages/employee/chef/disputechef/DisputeChef';
+import DisputeDelivery from './components/main_pages/employee/delivery/disputedelivery/DisputeDelivery';
 import ForgotPassowrd from './components/access_pages/forgot_password/ForgotPassword';
 import Choose from './components/access_pages/choose_login/Choose';
 import NavCustomer from './components/navbars/nav_customer/NavCustomer';
@@ -59,8 +63,16 @@ class App extends React.Component {
         return <NavCustomer/>
       case '/warningcustomer':
         return <NavCustomer/>
+      case '/warningchef':
+        return <NavEmployee/>
+      case '/warningdelivery':
+        return <NavEmployee/>
       case '/disputecustomer':
         return <NavCustomer/>
+      case '/disputechef':
+        return <NavEmployee/>
+      case '/disputedelivery':
+        return <NavEmployee/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
@@ -116,7 +128,11 @@ class App extends React.Component {
               <Route path="/ReviewCustomer" component={ReviewCustomer} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
+              <Route path="/WarningChef" component={WarningChef} />
+              <Route path="/WarningDelivery" component={WarningDelivery} />
               <Route path="/DisputeCustomer" component={DisputeCustomer} />
+              <Route path="/DisputeChef" component={DisputeChef} />
+              <Route path="/DisputeDelivery" component={DisputeDelivery} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
