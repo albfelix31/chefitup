@@ -86,9 +86,7 @@ export default class CustomerLogin extends React.Component {
                   Sign in
                 </Button>
                 <br/>
-                <p className="text-light">
-                  Don't have an account? <Link to="SignUp" className="text-primary">Sign Up</Link>
-                </p>  
+             
                 <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
               </div>
               </div>
