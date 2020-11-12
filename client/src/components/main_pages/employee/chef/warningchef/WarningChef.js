@@ -1,9 +1,9 @@
 import React,{useState}  from 'react';
-import './WarningsCustomer.css'
+import './WarningChef.css'
 
 import {Container, Row, Col, Button} from 'react-bootstrap'
 
-const WarningsCustomer =()=> {
+const WarningChef =()=> {
 
   const disputeData = [
     {orderNo:'09080706',reason:'Rude Behavior',complainant:'Delivery Driver',comments:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
@@ -29,7 +29,7 @@ const WarningsCustomer =()=> {
             <strong>Comments: </strong>{warning.comments}<br/>
           </Col>
           <Col xs="3">
-            <Button className="btn-warning-customer" variant="primary" href='./DisputeCustomer'>
+            <Button className="btn-warning-chef" variant="primary" href='./DisputeChef'>
                 Dispute
             </Button>
           </Col>
@@ -38,4 +38,4 @@ const WarningsCustomer =()=> {
     </Container>  
   );
 }
-export default WarningsCustomer
+export default WarningChef

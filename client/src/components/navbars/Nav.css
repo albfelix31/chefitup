@@ -33,7 +33,7 @@
     width: 30%;
 }
 .searchBar {
-    width: 60% !important;
+    width: 300px !important;
     border-radius: 100px;
     border-color: black;
 }

@@ -1,38 +1,49 @@
 import  React from 'react';
 import {Container, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { 
-  BrowserRouter as Router, 
-  Switch, 
+import {
+  BrowserRouter as Router,
+  Switch,
   Route,
   withRouter
 } from 'react-router-dom';
 import EmployeeLogin from './components/access_pages/login/employee_login/EmployeeLogin';
+import Register from './components/access_pages/register/Register';
 import Surfer from './components/main_pages/surfer/Surfer';
 import CustomerLogin from './components/access_pages/login/customer_login/CustomerLogin';
-import Chef from './components/main_pages/employee/chef/Chef';
-import Delivery from './components/main_pages/employee/delivery/Delivery';
+import Chef from './components/main_pages/employee/chef/chefdashboard/Chef';
+import DeliveryAvailable from './components/main_pages/employee/delivery/availableorder/AvailableOrder';
 import Manager from './components/main_pages/employee/manager/Manager';
 import WarningEmployee from './components/main_pages/employee/warningsemployee/WarningsEmployee';
 import Discussion from './components/main_pages/discussion/Discussion';
 import Main from './components/main_pages/customer/main/Main';
 import Billing from './components/main_pages/customer/billing/Billing';
 import Cart from './components/main_pages/customer/cart/Cart';
+import Checkout from './components/main_pages/customer/checkout/Checkout';
 import Menu from './components/main_pages/customer/menu/Menu';
 import PastOrders from './components/main_pages/customer/pastorders/PastOrders';
 import Payment from './components/main_pages/customer/payment/Payment';
 import Profile from './components/main_pages/customer/profile/Profile';
 import Reservation from './components/main_pages/customer/reservation/Reservation';
-import Review from './components/main_pages/customer/review/Review';
+import ReviewCustomer from './components/main_pages/customer/reviewcustomer/ReviewCustomer';
 import Shipping from './components/main_pages/customer/shipping/Shipping';
 import WarningCustomer from './components/main_pages/customer/warningcustomer/WarningsCustomer';
+import WarningChef from './components/main_pages/employee/chef/warningchef/WarningChef';
+import WarningDelivery from './components/main_pages/employee/delivery/warningdelivery/WarningDelivery';
+import DisputeCustomer from './components/main_pages/customer/disputecustomer/DisputeCustomer';
+import DisputeChef from './components/main_pages/employee/chef/disputechef/DisputeChef';
+import DisputeDelivery from './components/main_pages/employee/delivery/disputedelivery/DisputeDelivery';
 import ForgotPassowrd from './components/access_pages/forgot_password/ForgotPassword';
 import Choose from './components/access_pages/choose_login/Choose';
 import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
 import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
+
 import SignUp from './components/access_pages/sign_up/SignUp';
+
+
+import Footer from './components/Footer/Footer';
 
 
 class App extends React.Component {
@@ -43,16 +54,57 @@ class App extends React.Component {
       case '/surfer':
         return <NavSurfer />
       case '/customer':
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
         return <NavCustomer/>
+      case '/payment':
+        return <NavCustomer/>
+      case '/shipping':
+        return <NavCustomer/>
+      case '/checkout':
+        return <NavCustomer/>
+      case '/profile':
+        return <NavCustomer/>
+      case '/warningcustomer':
+        return <NavCustomer/>
+      case '/warningchef':
+        return <NavEmployee/>
+      case '/warningdelivery':
+        return <NavEmployee/>
+      case '/disputecustomer':
+        return <NavCustomer/>
+      case '/disputechef':
+        return <NavEmployee/>
+      case '/disputedelivery':
+        return <NavEmployee/>
       case '/chef':
         return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
+      case '/register':
         return <NavLogin/>
       default:
         return null
     }
-    
+
+  }
+
+  displayFooter = (path) => {
+    switch(path.toLowerCase()) {
+      case '/customer':
+      case '/checkout':
+      case '/shipping':
+      case '/reservation':
+      case '/payment':
+      case '/profile':
+      case '/warningcustomer':
+      case '/disputecustomer':
+      case '/surfer':
+        return <Footer />
+      default:
+        return null
+    }
   }
 
   render() {
@@ -66,19 +118,26 @@ class App extends React.Component {
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
               <Route path="/Employeelogin" component={EmployeeLogin} />
-              <Route path="/Main" component={Main} />
+              <Route path="/Customer" component={Main} />
               <Route path="/Chef" component={Chef} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
+              <Route path="/Checkout" component={Checkout} />
               <Route path="/Menu" component={Menu} />
-              <Route path="/Delivery" component={Delivery} />
+              <Route path="/DeliveryAvailable" component={DeliveryAvailable} />
               <Route path="/PastOrders" component={PastOrders} />
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
+              <Route path="/Register" component={Register} />
               <Route path="/Reservation" component={Reservation} />
-              <Route path="/Review" component={Review} />
+              <Route path="/ReviewCustomer" component={ReviewCustomer} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
+              <Route path="/WarningChef" component={WarningChef} />
+              <Route path="/WarningDelivery" component={WarningDelivery} />
+              <Route path="/DisputeCustomer" component={DisputeCustomer} />
+              <Route path="/DisputeChef" component={DisputeChef} />
+              <Route path="/DisputeDelivery" component={DisputeDelivery} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
@@ -88,6 +147,7 @@ class App extends React.Component {
             </Switch>
           </Row>
         </Container>
+        {this.displayFooter(this.props.location.pathname)}
       </Router>
     );
   }

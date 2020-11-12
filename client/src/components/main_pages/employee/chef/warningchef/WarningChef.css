@@ -1,4 +1,4 @@
-.btn-warning-customer {
+.btn-warning-chef {
   background-color: #1877f2;
   color: white;
   border-radius: 100px;
@@ -6,7 +6,7 @@
   margin-top: 10%;
   margin-bottom: 15%;
 }
-.btn-warning-customer:hover {
+.btn-warning-chef:hover {
   font-weight: bold;
 }
 .header-warning {

@@ -159,7 +159,7 @@ export default class Chef extends React.Component {
             this.state.dishes.map((list, index) => (
                 
               <Col key={index} sm="6" md="4" lg="3" className="book-selection">           
-                <Card className="text-center dish">
+                <Card className="text-center dish-chef">
                 <Dropdown className="threedots-container">
                     <Dropdown.Toggle as={CustomToggle} />
                     <Dropdown.Menu size="sm" title="">
@@ -180,8 +180,7 @@ export default class Chef extends React.Component {
                     </ListGroupItem>
                   </ListGroup>
                 </Card>
-              </Col>
-              
+              </Col>  
             ))
           }
         </Row>
