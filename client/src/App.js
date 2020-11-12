@@ -39,7 +39,12 @@ import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
 import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
+
+import SignUp from './components/access_pages/sign_up/SignUp';
+
+
 import Footer from './components/Footer/Footer';
+
 
 class App extends React.Component {
 
@@ -136,6 +141,8 @@ class App extends React.Component {
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
+              <Route path="/SignUp" component={SignUp} />
+
               <Route path="/" component={Choose} />
             </Switch>
           </Row>

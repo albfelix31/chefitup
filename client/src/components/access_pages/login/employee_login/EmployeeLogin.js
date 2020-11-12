@@ -45,13 +45,22 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      
+     
+      <div>
+         <div id="title"><h1>EMPLOYEE LOGIN</h1></div> 
         <Container className="main-container">
+       
+
           <div className="container-logo">
+
+            <div className="inner-container">
               <img className="logo-img" src={Logo} alt="logo" />
-              <p className="logo-text">Delivery food that you will love.</p>
+              <p className="logo-text">Delivery food that you will love</p></div>
+              
           </div>
-            <div className="container-bg rounded px-5 py-4 mx-4">
+            <div className="container-bg rounded ">
+
+              <div className="login-form">
               <h2 className="text-light text-center">Sign in with your ChefItUp account</h2>
                 { this.state.errors.length > 0 ?  
                   this.state.errors.map((error,index) => {
@@ -62,7 +71,7 @@ export default class Login extends React.Component {
                 } 
                 <Form>
                   <Form.Group controlId="formEmail">
-                    <Form.Label className="text-light">Email Address:</Form.Label>
+                    <Form.Label className="text-light">Employee Email Address:</Form.Label>
                     <Form.Control type="email" placeholder="Enter Email" 
                       onChange={this.handleChange("email")}/>
                   </Form.Group>
@@ -78,11 +87,13 @@ export default class Login extends React.Component {
                 </Button>
                 <br/>
                 <p className="text-light">
-                  Don't have an account? <Link className="text-primary">Sign Up</Link>
+                  Don't have an account? <Link to="SignUp" className="text-primary">Sign Up</Link>
                 </p>  
                 <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
               </div>
+              </div>
         </Container>
+        </div>
         
      
     );
