@@ -1,0 +1,34 @@
+.headerMenu {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+.container-menu {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.row-menu {
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.dish {
+  margin-top: 0%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  color: black !important;
+  border-color: black;
+  text-align: center;
+  border: 1px solid black;
+}
+.dish-menu {
+  justify-content: center;
+}
+.dish-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
