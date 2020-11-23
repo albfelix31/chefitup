@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Menu.css'
 
-import {Container, Row, Col, Form, Button,Modal,Image,ButtonGroup} from 'react-bootstrap'
+import {Container, Row, Col, Button,Modal,Image} from 'react-bootstrap'
 
 import DishPic from "./dish.jpg"
 import Minus from "./minus.svg"
@@ -10,15 +10,15 @@ import Plus from "./plus.svg"
 const Menu = () =>{
 
   const dishes = [
-    {dishID:'2',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
-    {dishID:'1',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
-    {dishID:'3',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic},
-    {dishID:'4',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic},
-    {dishID:'5',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
-    {dishID:'6',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic},
-    {dishID:'7',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'4',image: DishPic},
-    {dishID:'8',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'5',image: DishPic},
-    {dishID:'9',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
+    {dishID:'2',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
+    {dishID:'1',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
+    {dishID:'3',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic},
+    {dishID:'4',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic},
+    {dishID:'5',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
+    {dishID:'6',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic},
+    {dishID:'7',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'4',image: DishPic},
+    {dishID:'8',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'5',image: DishPic},
+    {dishID:'9',dishName:'Cheese Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
     {dishID:'10',dishName:'Nuggets',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
     {dishID:'11',dishName:'Nuggets',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'4',image: DishPic},
     {dishID:'12',dishName:'Nuggets',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'5',image: DishPic},
@@ -26,10 +26,10 @@ const Menu = () =>{
     {dishID:'14',dishName:'Nuggets',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
     {dishID:'15',dishName:'Nuggets',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic},
     {dishID:'16',dishName:'Cheese Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic},
-    {dishID:'17',dishName:'Chesee Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
-    {dishID:'18',dishName:'Chesee Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
-    {dishID:'19',dishName:'Chesee Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'4',image: DishPic},
-    {dishID:'20',dishName:'Chesee Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic},
+    {dishID:'17',dishName:'Cheese Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
+    {dishID:'18',dishName:'Cheese Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
+    {dishID:'19',dishName:'Cheese Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'4',image: DishPic},
+    {dishID:'20',dishName:'Cheese Cake',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'2.99',category:'dessert',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic},
     {dishID:'21',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
     {dishID:'22',dishName:'Fanta',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'4',image: DishPic},
     {dishID:'23',dishName:'Pepsi',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'4',image: DishPic},
