@@ -1,6 +1,9 @@
-import React from 'react';
-import './CurrentOrder.css'
 
+import './CurrentOrder.css'
+import 'react-rater/lib/react-rater.css'
+
+
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,9 +16,9 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Logo1 from "../availableorder/img/logo1.png"
+import Rater from 'react-rater'
 
 
-import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -36,6 +39,21 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 export default class CurrentOrder extends React.Component {
 
 
+
+  
+  openModal = (e) => {
+    e.preventDefault();
+    this.setState({ isOpenOrder: true })
+
+  };
+
+
+
+  closeModal = () => {
+    this.setState({ isOpenOrder: false, takingOrder: false })
+
+  };
+
   componentDidMount() {
 
 
@@ -43,12 +61,16 @@ export default class CurrentOrder extends React.Component {
       currentOrder: { name: "Cristian Yer", price: "80$", address: "ABC W 123th", image: Logo1, restaurant: "Chik Fil B" }
     });
   }
+
+
+
+
   constructor(props) {
     super(props);
     this.state = {
       search: "",
       currentOrder: {},
-     
+      isOpenOrder: false
 
 
     };
@@ -64,6 +86,48 @@ export default class CurrentOrder extends React.Component {
   render() {
     return (
       <Container className="container-chef" fluid>
+
+
+{/* Complete order Modal  */}
+<Modal show={this.state.isOpenOrder} onHide={this.closeModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Leave feedback</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group controlId="formDisnName">
+                    <Form.Label>Customer Name: </Form.Label>
+                    {/* ADD CUSTOMER NAME FROM API CALL  */}
+                    <Form.Control readOnly placeholder="Cristian C" />
+                   <div id="stars"> Rating:  <Rater total={5}  /></div>
+                  </Form.Group>
+
+
+                 
+                  <Form.Group controlId="formDishDescription">
+                    <Form.Label>Expand feedback</Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+
+
+              {/* On click, submit rating to the api  */}
+                <Button variant="primary" onClick={this.closeModal}>
+                  Submit feedback
+            </Button>
+
+  {/* On click, dont submit anything  */}
+            <Button variant="primary" onClick={this.closeModal}>
+                  Skip
+            </Button>
+              </Modal.Footer>
+            </Modal>
+
+
+
      
      <Row className="row-top">
               <Col>
@@ -80,7 +144,7 @@ export default class CurrentOrder extends React.Component {
                     <Card className="text-center dish-chef">
 
                   
-
+                  {/* IDisplay total price from API  */}
                         <h1 id='price'>{this.state.currentOrder.price}</h1>
 
                       
@@ -105,6 +169,7 @@ export default class CurrentOrder extends React.Component {
                   <Form.Group controlId="formDishDescription">
                     <Form.Label><h2>Items</h2></Form.Label>
 
+                  {/*Display items from the order api looping through them all  */}
                     <div className="list-items">
                     {['sm', 'md', 'lg', 'xl'].map((breakpoint, idx) => (
                       <ListGroup  horizontal={breakpoint} className="my-2" key={idx}>
@@ -117,7 +182,7 @@ export default class CurrentOrder extends React.Component {
                   </Form.Group>
 
                 </Form>
-                <Button id="complete-button" variant="primary" onClick={this.closeModal}>
+                <Button id="complete-button" variant="primary" onClick={this.openModal}>
                   Complete order
             </Button>
                     </Card>
@@ -125,12 +190,7 @@ export default class CurrentOrder extends React.Component {
                     
                   </Col>
                 
-              
-              
-             
-                
 
-            
             </Row>
       </Container>
     );

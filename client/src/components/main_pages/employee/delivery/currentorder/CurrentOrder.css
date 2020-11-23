@@ -49,3 +49,28 @@ margin: 20px auto;
 
     margin-top: 0px;
 }
+
+.current-order-box{
+
+    margin-bottom: 30px;
+}
+
+.stars{
+
+
+    font-size: 40px !important;
+}
+
+.react-rater{
+
+    font-size: 45px;
+}
+.react-rater-star.is-active{
+
+    color: #DAA520 !important;
+}
+
+.react-rater-star.will-be-active{
+
+    color:#F0E68C !important;
+}

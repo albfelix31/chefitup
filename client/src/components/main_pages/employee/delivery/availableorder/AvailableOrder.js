@@ -98,6 +98,10 @@ export default class AvailableOrder extends React.Component {
   render() {
     return (
       <Container className="container-chef" fluid>
+
+
+
+        {/* Take order Modal  */}
         <Modal show={this.state.takingOrder} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>Order taken! </Modal.Title>
@@ -108,6 +112,11 @@ export default class AvailableOrder extends React.Component {
                   Close
             </Button>
               </Modal.Footer>
+
+
+
+
+
         </Modal>
 
 
