@@ -44,15 +44,7 @@ export default class CustomerLogin extends React.Component {
 
 
 
-    signIn = () => {
-      this.setState({ redirect: true,pathname: '/DeliveryHome' })
-      this.renderRedirect();
-    }
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            window.location.href = this.state.pathname
-        }}
-
+   
 
   render() {
     return (

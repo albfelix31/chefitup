@@ -81,3 +81,22 @@
 .list-group-item{
     padding-top:0px;
 }
+
+.row-resize{
+
+    margin-top:50px;
+    border: 1px solid black;
+    padding: 40px 20px ;
+}
+
+.book-selection{
+
+
+    margin-bottom: 20px;
+}
+
+.modal-content{
+
+
+    margin-top: 50%;
+}

@@ -17,7 +17,7 @@ export default class NavDelivery extends React.Component {
           <Nav className="container-fluid">
 
             <NavDropdown className="ml-auto navItem" title="Hi, Bob" id="basic-nav-dropdown dropdown-menu-align-right" alignRight>
-                <NavDropdown.Item >Available Orders</NavDropdown.Item>
+                <NavDropdown.Item href="/deliveryhome">Available Orders</NavDropdown.Item>
                 <NavDropdown.Item href="/currentorder">Current Order</NavDropdown.Item>
                 <NavDropdown.Item href="/pastordersdelivery">Past orders</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.4">Account</NavDropdown.Item>

@@ -9,6 +9,18 @@ import Logo from '../../../assets/logo.png';
 import './EmployeeLogin.css'
 
 export default class Login extends React.Component {
+
+//  IF Account is delivery, use this login 
+  signIn = () => {
+    this.setState({ redirect: true,pathname: '/DeliveryHome' })
+    this.renderRedirect();
+  }
+  renderRedirect = () => {
+      if (this.state.redirect) {
+          window.location.href = this.state.pathname
+      }}
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +94,7 @@ export default class Login extends React.Component {
                   </Form.Group>
                 </Form>
                 <Button className="btn-login" variant="primary" type="submit" size="lg" block
-                  onClick={this.handleSubmit}>
+                  onClick={this.handleSubmit, this.signIn()}>
                   Sign in
                 </Button>
                 <br/>
