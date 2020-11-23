@@ -66,6 +66,8 @@ class App extends React.Component {
         return <NavCustomer/>
       case '/profile':
         return <NavCustomer/>
+      case '/menu':
+        return <NavCustomer/>
       case '/warningcustomer':
         return <NavCustomer/>
       case '/warningchef':
@@ -98,6 +100,7 @@ class App extends React.Component {
       case '/reservation':
       case '/payment':
       case '/profile':
+      case '/menu':
       case '/warningcustomer':
       case '/disputecustomer':
       case '/surfer':
