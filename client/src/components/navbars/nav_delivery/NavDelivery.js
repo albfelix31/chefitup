@@ -22,7 +22,7 @@ export default class NavDelivery extends React.Component {
                 <NavDropdown.Item href="/pastordersdelivery">Past orders</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.4">Account</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.6">Help</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.6">Warnings </NavDropdown.Item>
+                <NavDropdown.Item href="/Warningsemployee">Warnings </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item className="navSignOut" href="#action/3.6">Sign out</NavDropdown.Item>
             </NavDropdown>

@@ -8,19 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Logo from '../../../assets/logo.png';
 import './EmployeeLogin.css'
 
-export default class Login extends React.Component {
-
-//  IF Account is delivery, use this login 
-  signIn = () => {
-    this.setState({ redirect: true,pathname: '/DeliveryHome' })
-    this.renderRedirect();
-  }
-  renderRedirect = () => {
-      if (this.state.redirect) {
-          window.location.href = this.state.pathname
-      }}
-
-
+export default class EmployeeLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,8 +40,20 @@ export default class Login extends React.Component {
     if(errors.length === 0) {
       // Insert Backend Here.
       
+    }};
+
+
+    renderRedirect = () => {
+      if (this.state.redirect) {
+          window.location.href = this.state.pathname
+      }
+  }
+    signIn = () => {
+      this.setState({ redirect: true,pathname: '/DeliveryHome' })
+      this.renderRedirect();
     }
-  };
+
+   
 
   render() {
     return (
@@ -83,7 +83,7 @@ export default class Login extends React.Component {
                 } 
                 <Form>
                   <Form.Group controlId="formEmail">
-                    <Form.Label className="text-light">Employee Email Address:</Form.Label>
+                    <Form.Label className="text-light">Customer Email Address:</Form.Label>
                     <Form.Control type="email" placeholder="Enter Email" 
                       onChange={this.handleChange("email")}/>
                   </Form.Group>
@@ -94,13 +94,11 @@ export default class Login extends React.Component {
                   </Form.Group>
                 </Form>
                 <Button className="btn-login" variant="primary" type="submit" size="lg" block
-                  onClick={this.handleSubmit, this.signIn()}>
+                  onClick={this.handleSubmit,this.signIn}>
                   Sign in
                 </Button>
                 <br/>
-                <p className="text-light">
-                  Don't have an account? <Link to="SignUp" className="text-primary">Sign Up</Link>
-                </p>  
+             
                 <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
               </div>
               </div>
