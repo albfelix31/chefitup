@@ -43,144 +43,179 @@ export default class AvailableOrder extends React.Component {
   componentDidMount() {
     // Insert Backend Call For Textbooks When Nothing is on Search
 
-this.setState({
-    dishes: [
-      {name: "Cristian Yer",price:"80$", address: "ABC W 123th", image: Logo1,restaurant: "Chik Fil B"},
-      {name: "Eddie Felix2",price:"35$", address: "BCA W 200th", image: Logo2, restaurant: "BurDonalds"},
-      {name: "Albert Cuevas", price:"40$",address: "BJHE E 250th", image: Logo3,restaurant: "Donald King"},
-      {name: "Nahin Ozuna", price:"70$",address: "Bronx,NY", image: Logo4,restaurant: "GyuKaru"},
-      {name: "Jane Doe", price:"100$",address: "El final W 160", image: Logo5,restaurant: "KDC"}
-     
-    ]
+    this.setState({
+      dishes: [
+        { name: "Cristian Yer", price: "80$", address: "ABC W 123th", image: Logo1, restaurant: "Chik Fil B" },
+        { name: "Eddie Felix2", price: "35$", address: "BCA W 200th", image: Logo2, restaurant: "BurDonalds" },
+        { name: "Albert Cuevas", price: "40$", address: "BJHE E 250th", image: Logo3, restaurant: "Donald King" },
+        { name: "Nahin Ozuna", price: "70$", address: "Bronx,NY", image: Logo4, restaurant: "GyuKaru" },
+        { name: "Jane Doe", price: "100$", address: "El final W 160", image: Logo5, restaurant: "KDC" }
 
-    
-  });
+      ]
+
+
+    });
   }
   constructor(props) {
     super(props);
     this.state = {
       search: "",
       dishes: [],
-      isOpen: false,
+      isOpenOrder: false,
+      takingOrder: false,
       n: null,
-      
-      
+
+
     };
   }
- 
-  openModal = index => (e) => {
+
+
+
+
+  openModalDetails = index => (e) => {
     e.preventDefault();
-    this.setState({ isOpen: true, n: index })
+    this.setState({ isOpenOrder: true, n: index })
 
-};
-closeModal = () => {
-    this.setState({ isOpen: false })
+  };
 
-};
+  openModalDetails = index => (e) => {
+    e.preventDefault();
+    this.setState({ takingOrder: true, n: index })
+
+  };
+
+
+  closeModalDetails = index => (e) => {
+    e.preventDefault();
+    this.setState({ takingOrder: true, n: index })
+
+  };
+
+
+  closeModal = () => {
+    this.setState({ isOpenOrder: false, takingOrder: false })
+
+  };
 
 
 
- 
+
 
   render() {
     return (
-    <Container className="container-chef" fluid>
+      <Container className="container-chef" fluid>
 
-
-{/* Details Modal  */}
-        <Modal show={this.state.isOpen} onHide={this.closeModal}>
+        <Modal show={this.state.takingOrder} onHide={this.closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Order details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <Form>
-                <Form.Group controlId="formDisnName">
-    <Form.Label>Restaurant Name: {this.state.dishes[0]}</Form.Label>
-                    <Form.Control readOnly  /> 
-                </Form.Group>
+            <Modal.Title>Order taken! </Modal.Title>
+            </Modal.Header>
+              <Modal.Footer>
 
-                <Form.Group controlId="formDishDescription">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-
-              </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={this.saveDish}>
-              Save
+                <Button variant="primary" onClick={this.closeModal}>
+                  Close
             </Button>
-            <Button variant="primary" onClick={this.closeModal}>
-              Close
-            </Button>
-          </Modal.Footer>
+              </Modal.Footer>
         </Modal>
 
 
 
 
 
-        <Row className="row-top">
-            <Col>
-                <h1>Available orders</h1>  
-            </Col>
-            
-        </Row>
-        <Form>
-            <Form.Row>
+            {/* Details Modal  */}
+            <Modal show={this.state.isOpenOrder} onHide={this.closeModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Order details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group controlId="formDisnName">
+                    <Form.Label>Restaurant Name: </Form.Label>
+                    <Form.Control readOnly placeholder="RESTAURANT NAME" />
+                  </Form.Group>
+
+                  <Form.Group controlId="formDishDescription">
+                    <Form.Label>Description</Form.Label>
+
+                    {['sm', 'md', 'lg', 'xl'].map((breakpoint, idx) => (
+                      <ListGroup horizontal={breakpoint} className="my-2" key={idx}>
+                        <ListGroup.Item>Quantity: 2</ListGroup.Item>
+                        <ListGroup.Item>Name: Eggs</ListGroup.Item>
+                        <ListGroup.Item>Price: 10$</ListGroup.Item>
+                      </ListGroup>
+                    ))}
+                  </Form.Group>
+
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+
+                <Button variant="primary" onClick={this.closeModal}>
+                  Close
+            </Button>
+              </Modal.Footer>
+            </Modal>
+
+            <Row className="row-top">
+              <Col>
+                <h1>Available orders</h1>
+              </Col>
+
+            </Row>
+            <Form>
+              <Form.Row>
                 <Col>
-                <Form.Control placeholder="Order ID" />
+                  <Form.Control placeholder="Order ID" />
                 </Col>
                 <Col>
-                <Form.Control placeholder="Order Name" />
+                  <Form.Control placeholder="Order Name" />
                 </Col>
-               
+
                 <Col>
-                    <Button className="btn-search"variant="primary">Search</Button>
+                  <Button className="btn-search" variant="primary">Search</Button>
                 </Col>
-            </Form.Row>
-        </Form>
-        <Row className="row-resize">
-          { 
-            this.state.dishes.map((list, index) => (
-                
-              <Col key={index} sm="6" md="4" lg="3" className="book-selection">           
-                <Card className="text-center dish-chef">
+              </Form.Row>
+            </Form>
+            <Row className="row-resize">
+              {
+                this.state.dishes.map((list, index) => (
 
-                  <div className="top-part">
-                 
-                  <h1 id='price'>{list.price}</h1>
-                  
-                  <Dropdown className="threedots-container">
-                    <Dropdown.Toggle as={CustomToggle} />
-                    <Dropdown.Menu size="sm" title="">
-                    <Dropdown.Header onClick={this.openModal(index)}>✔️Take order</Dropdown.Header>
-                    <Dropdown.Header>🖊️ Details</Dropdown.Header>
-                    
-                    </Dropdown.Menu>
-                </Dropdown>  
+                  <Col key={index} sm="6" md="4" lg="3" className="book-selection">
+                    <Card className="text-center dish-chef">
+
+                      <div className="top-part">
+
+                        <h1 id='price'>{list.price}</h1>
+
+                        <Dropdown className="threedots-container">
+                          <Dropdown.Toggle as={CustomToggle} />
+                          <Dropdown.Menu size="sm" title="">
+                            <Dropdown.Header >✔️Take order</Dropdown.Header>
+                            <Dropdown.Header onClick={this.openModalDetails(index)}>🖊️ Details</Dropdown.Header>
+
+                          </Dropdown.Menu>
+                        </Dropdown>
 
 
 
-                  </div>
-         
-               
-                <Card.Img className="profile-img" src={list.image} />
-                  <ListGroup className="list-group-flush">
-                    <ListGroupItem>
-                      <Card.Title>
-                        {list.name}
-                      </Card.Title>
-                      <Card.Text>
-                        {list.address}
-                      </Card.Text>
-                    </ListGroupItem>
-                  </ListGroup>
-                </Card>
-              </Col>  
-            ))
-          }
-        </Row>
+                      </div>
+
+
+                      <Card.Img className="profile-img" src={list.image} />
+                      <ListGroup className="list-group-flush">
+                        <ListGroupItem>
+                          <Card.Title>
+                            {list.name}
+                          </Card.Title>
+                          <Card.Text>
+                            {list.address}
+                          </Card.Text>
+                        </ListGroupItem>
+                      </ListGroup>
+                    </Card>
+                  </Col>
+                ))
+              }
+            </Row>
       </Container>
     );
  }
