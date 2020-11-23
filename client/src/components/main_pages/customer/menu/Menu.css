@@ -1,0 +1,85 @@
+.headerMenu {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+.header-category {
+  margin-bottom: 2%;
+  margin-left: 0%;
+}
+.container-menu {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.row-modal {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.dish {
+  margin-top: 0%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  color: black !important;
+  border-color: black;
+  text-align: center;
+  border: 1px solid black;
+}
+.dish-menu {
+  justify-content: center;
+}
+.dish-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+.modalImage {
+  width: 100%;
+}
+.modalheader {
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+.quantity {
+  /* padding-top: 20px;
+  margin-right: 60px; */
+}
+.quantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484d;
+  font-weight: 300;
+}
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #e1e8ee;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.minus-btn img {
+  margin-bottom: 3px;
+}
+.plus-btn img {
+  margin-bottom: 2px;
+}
+button:focus,
+input:focus {
+  outline: 0;
+}
+.btn-cart-modal {
+  background-color: #1877f2;
+  color: white;
+  border-radius: 100px;
+  width: 100%;
+}
+.btn-cart-modal:hover {
+  font-weight: bold;
+}

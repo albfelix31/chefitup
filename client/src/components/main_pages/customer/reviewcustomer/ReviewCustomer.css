@@ -1,0 +1,14 @@
+.headerReview {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: left;
+}
+.dish {
+  margin-top: 0%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  color: black !important;
+  border-color: black;
+  text-align: center;
+  border: 1px solid black;
+}
