@@ -10,11 +10,9 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Image from 'react-bootstrap/Image';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
+
 import Logo1 from "../availableorder/img/logo1.png"
 import Rater from 'react-rater'
 
@@ -95,7 +93,7 @@ export default class CurrentOrder extends React.Component {
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                  <Form.Group controlId="formDisnName">
+                  <Form.Group controlId="employeeGivenRating">
                     <Form.Label>Customer Name: </Form.Label>
                     {/* ADD CUSTOMER NAME FROM API CALL  */}
                     <Form.Control readOnly placeholder="Cristian C" />
@@ -104,7 +102,7 @@ export default class CurrentOrder extends React.Component {
 
 
                  
-                  <Form.Group controlId="formDishDescription">
+                  <Form.Group controlId="employeeGivenFeedback">
                     <Form.Label>Expand feedback</Form.Label>
                     <Form.Control as="textarea" rows={3} />
                   </Form.Group>

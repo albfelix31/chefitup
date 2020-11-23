@@ -10,27 +10,10 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Image from 'react-bootstrap/Image';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
 
-
-import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
 
-const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-  <a
-    className="threedots-a"
-    href=""
-    ref={ref}
-    onClick={e => {
-      e.preventDefault();
-      onClick(e);
-    }}
-  >
-    {children}
-    <span className="threedots" />
-  </a>
-));
+
 
 export default class WarningsEmployee extends React.Component {
 
@@ -39,7 +22,11 @@ export default class WarningsEmployee extends React.Component {
 
 
     this.setState({
-     
+      warningList: [
+        {orderID: 103404, reason: "Rude behavior", complaintantName: "Yeller",comments:"Hate this dude"},
+        {orderID: 255543, reason: "Smelly", complaintantName: "Complint",comments:"Smelly person"}
+    
+    ]
 
 
     });
@@ -47,8 +34,9 @@ export default class WarningsEmployee extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
-     
+      isOpen: false,
+    warningList: [],
+    customerName: ""
      
 
 
@@ -58,24 +46,24 @@ export default class WarningsEmployee extends React.Component {
 
 
 
-  openModalDetails = index => (e) => {
+ 
+  openModal = (e, name) => {
     e.preventDefault();
-    this.setState({ isOpenOrder: true, n: index })
-
-  };
-
-  openModalTakingOrder = index => (e) => {
-    e.preventDefault();
-    this.setState({ takingOrder: true, n: index })
+    this.setState({ isOpen: true })
 
   };
 
 
 
   closeModal = () => {
-    this.setState({ isOpenOrder: false, takingOrder: false })
+    this.setState({ isOpen: false })
 
   };
+
+  getCustomerName= (e,name) => {
+    
+        this.setState({custonerName: name});
+  }
 
 
 
@@ -86,52 +74,63 @@ export default class WarningsEmployee extends React.Component {
       <Container className="container-chef" fluid>
 
 
+<Modal show={this.state.isOpen} onHide={this.closeModal}>
+              <Modal.Header closeButton>
+    <Modal.Title>Dispute - Order ID: {this.state.warningList.orderID}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group controlId="employeeGivenRating">
+    <Form.Label>Customer Name: </Form.Label>
+                    {/* ADD CUSTOMER NAME FROM API CALL  */}
+                    <Form.Control readOnly placeholder="Rude A. Jole " />
+                  
+                  </Form.Group>
 
-        {/* Take order Modal  */}
-        <Modal show={this.state.takingOrder} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Order taken! </Modal.Title>
-            </Modal.Header>
+
+                 
+                  <Form.Group controlId="employeeGivenFeedback">
+                   
+                    <Form.Control as="textarea" rows={3} placeholder="Explain why the warning should be revoked and provide adequate information." />
+                  </Form.Group>
+
+                </Form>
+              </Modal.Body>
               <Modal.Footer>
 
+
+              {/* On click, submit dispute to the api  */}
                 <Button variant="primary" onClick={this.closeModal}>
-                  Close
+                 Confirm
             </Button>
+
               </Modal.Footer>
-
-
-
-
-
-        </Modal>
-
-
-
-
-
+            </Modal>
 
             <Row className="row-top">
               <Col>
                 <h1>Warnings </h1>
               </Col>
-
             </Row>
-            <Form>
-              <Form.Row>
-                <Col>
-                  <Form.Control placeholder="Order ID" />
-                </Col>
-                <Col>
-                  <Form.Control placeholder="Order Name" />
-                </Col>
-
-                <Col>
-                  <Button className="btn-search" variant="primary">Search</Button>
-                </Col>
-              </Form.Row>
-            </Form>
+           
+            {/* Make a for loop to create several objects with information from api */}
             <Row className="row-resize">
-             
+{
+
+            this.state.warningList.map((list, index) => (
+
+              <div  className="warnings-list">
+              <Button className="button-dispute" variant="primary" onClick={this.openModal}> Dispute</Button>
+                <h2 className="order-id">Order ID:  {list.orderID}</h2>
+                <h4 className="reason">Reason: {list.reason}</h4>
+                <h4 className="reason">Complainant: {list.complaintantName}</h4>
+                <h4 className="reason">Comments: {list.comments}</h4>
+              </div>
+   
+
+) )
+
+}
             </Row>
       </Container>
     );

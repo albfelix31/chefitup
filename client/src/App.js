@@ -77,7 +77,8 @@ class App extends React.Component {
           return <NavDelivery/>
       case '/currentorder':
         return <NavDelivery/>
-      case '/warningdelivery':
+      case '/warningsemployee':
+        return <NavEmployee/>
       case'/pastordersdelivery':
       return <NavDelivery/>
       case '/disputecustomer':
