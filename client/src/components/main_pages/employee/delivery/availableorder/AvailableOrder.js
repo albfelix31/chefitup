@@ -41,12 +41,12 @@ export default class AvailableOrder extends React.Component {
 
 
   componentDidMount() {
-    // Insert Backend Call For Textbooks When Nothing is on Search
+
 
     this.setState({
       dishes: [
         { name: "Cristian Yer", price: "80$", address: "ABC W 123th", image: Logo1, restaurant: "Chik Fil B" },
-        { name: "Eddie Felix2", price: "35$", address: "BCA W 200th", image: Logo2, restaurant: "BurDonalds" },
+        { name: "Eddie Felix", price: "35$", address: "BCA W 200th", image: Logo2, restaurant: "BurDonalds" },
         { name: "Albert Cuevas", price: "40$", address: "BJHE E 250th", image: Logo3, restaurant: "Donald King" },
         { name: "Nahin Ozuna", price: "70$", address: "Bronx,NY", image: Logo4, restaurant: "GyuKaru" },
         { name: "Jane Doe", price: "100$", address: "El final W 160", image: Logo5, restaurant: "KDC" }
@@ -78,18 +78,12 @@ export default class AvailableOrder extends React.Component {
 
   };
 
-  openModalDetails = index => (e) => {
+  openModalTakingOrder = index => (e) => {
     e.preventDefault();
     this.setState({ takingOrder: true, n: index })
 
   };
 
-
-  closeModalDetails = index => (e) => {
-    e.preventDefault();
-    this.setState({ takingOrder: true, n: index })
-
-  };
 
 
   closeModal = () => {
@@ -104,7 +98,6 @@ export default class AvailableOrder extends React.Component {
   render() {
     return (
       <Container className="container-chef" fluid>
-
         <Modal show={this.state.takingOrder} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>Order taken! </Modal.Title>
@@ -189,7 +182,7 @@ export default class AvailableOrder extends React.Component {
                         <Dropdown className="threedots-container">
                           <Dropdown.Toggle as={CustomToggle} />
                           <Dropdown.Menu size="sm" title="">
-                            <Dropdown.Header >✔️Take order</Dropdown.Header>
+                            <Dropdown.Header onClick={this.openModalTakingOrder(index)}>✔️Take order</Dropdown.Header>
                             <Dropdown.Header onClick={this.openModalDetails(index)}>🖊️ Details</Dropdown.Header>
 
                           </Dropdown.Menu>

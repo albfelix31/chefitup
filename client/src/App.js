@@ -22,6 +22,7 @@ import Cart from './components/main_pages/customer/cart/Cart';
 import Checkout from './components/main_pages/customer/checkout/Checkout';
 import Menu from './components/main_pages/customer/menu/Menu';
 import PastOrders from './components/main_pages/customer/pastorders/PastOrders';
+
 import Payment from './components/main_pages/customer/payment/Payment';
 import Profile from './components/main_pages/customer/profile/Profile';
 import Reservation from './components/main_pages/customer/reservation/Reservation';
@@ -41,10 +42,10 @@ import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
 import DeliveryHome from './components/main_pages/employee/delivery/availableorder/AvailableOrder';
 import SignUp from './components/access_pages/sign_up/SignUp';
-
+import NavDelivery from './components/navbars/nav_delivery/NavDelivery';
 
 import Footer from './components/Footer/Footer';
-
+import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrder';
 
 class App extends React.Component {
 
@@ -71,7 +72,7 @@ class App extends React.Component {
       case '/warningchef':
         return <NavEmployee/>
       case '/deliveryhome':
-          return <NavEmployee/>
+          return <NavDelivery/>
       case '/warningdelivery':
         return <NavEmployee/>
       case '/disputecustomer':
@@ -128,6 +129,7 @@ class App extends React.Component {
               <Route path="/Menu" component={Menu} />
               <Route path="/DeliveryAvailable" component={DeliveryAvailable} />
               <Route path="/PastOrders" component={PastOrders} />
+              <Route path="/PastOrdersDelivery" component={PastOrdersDelivery} />
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
               <Route path="/Register" component={Register} />
