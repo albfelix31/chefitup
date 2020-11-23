@@ -39,7 +39,7 @@ import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
 import NavEmployee from './components/navbars/nav_employee/NavEmployee';
 import NavLogin from './components/navbars/nav_login/NavLogin';
-
+import DeliveryHome from './components/main_pages/employee/delivery/availableorder/AvailableOrder';
 import SignUp from './components/access_pages/sign_up/SignUp';
 
 
@@ -70,6 +70,8 @@ class App extends React.Component {
         return <NavCustomer/>
       case '/warningchef':
         return <NavEmployee/>
+      case '/deliveryhome':
+          return <NavEmployee/>
       case '/warningdelivery':
         return <NavEmployee/>
       case '/disputecustomer':
@@ -142,6 +144,7 @@ class App extends React.Component {
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
               <Route path="/SignUp" component={SignUp} />
+              <Route path="/DeliveryHome" component={DeliveryHome}/>
 
               <Route path="/" component={Choose} />
             </Switch>

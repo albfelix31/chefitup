@@ -40,8 +40,19 @@ export default class CustomerLogin extends React.Component {
     if(errors.length === 0) {
       // Insert Backend Here.
       
+    }};
+
+
+
+    signIn = () => {
+      this.setState({ redirect: true,pathname: '/DeliveryHome' })
+      this.renderRedirect();
     }
-  };
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            window.location.href = this.state.pathname
+        }}
+
 
   render() {
     return (
@@ -82,7 +93,7 @@ export default class CustomerLogin extends React.Component {
                   </Form.Group>
                 </Form>
                 <Button className="btn-login" variant="primary" type="submit" size="lg" block
-                  onClick={this.handleSubmit}>
+                  onClick={this.handleSubmit,this.signIn}>
                   Sign in
                 </Button>
                 <br/>
