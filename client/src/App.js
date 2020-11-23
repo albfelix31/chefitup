@@ -43,9 +43,11 @@ import NavLogin from './components/navbars/nav_login/NavLogin';
 import DeliveryHome from './components/main_pages/employee/delivery/availableorder/AvailableOrder';
 import SignUp from './components/access_pages/sign_up/SignUp';
 import NavDelivery from './components/navbars/nav_delivery/NavDelivery';
+import CurrentOrder from './components/main_pages/employee/delivery/currentorder/CurrentOrder';
 
 import Footer from './components/Footer/Footer';
-import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrder';
+import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrderDelivery';
+
 
 class App extends React.Component {
 
@@ -73,8 +75,11 @@ class App extends React.Component {
         return <NavEmployee/>
       case '/deliveryhome':
           return <NavDelivery/>
+      case '/currentorder':
+        return <NavDelivery/>
       case '/warningdelivery':
-        return <NavEmployee/>
+      case'/pastordersdelivery':
+      return <NavDelivery/>
       case '/disputecustomer':
         return <NavCustomer/>
       case '/disputechef':
@@ -147,6 +152,7 @@ class App extends React.Component {
               <Route path="/Discussion" component={Discussion} />
               <Route path="/SignUp" component={SignUp} />
               <Route path="/DeliveryHome" component={DeliveryHome}/>
+              <Route path="/CurrentOrder" component={CurrentOrder}/>
 
               <Route path="/" component={Choose} />
             </Switch>

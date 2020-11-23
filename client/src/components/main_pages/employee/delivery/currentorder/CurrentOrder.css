@@ -1,0 +1,51 @@
+.main-div{
+
+
+    border:1px solid;
+    margin: auto;
+}
+
+.profile-img{
+border: 1px solid black;
+
+}
+
+.current-order-box{
+
+    margin: auto;
+}
+
+.order-details{
+    border: 1px solid black;
+    margin: 20px;
+}
+
+#price{
+    display: inline-block;
+    
+    position: relative;
+    margin: 0px 20px;
+    text-align: left;
+}
+.list-items{
+
+  margin: auto;
+  display: inline-block;
+}
+
+label{
+
+    display: inherit;
+}
+
+#complete-button{
+
+width: 30%;
+margin: 20px auto;
+
+}
+
+.dish-chef{
+
+    margin-top: 0px;
+}

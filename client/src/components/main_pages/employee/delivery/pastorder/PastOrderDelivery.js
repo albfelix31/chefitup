@@ -1,5 +1,5 @@
 import React from 'react';
-import './PastOrder.css'
+import './PastOrderDelivery.css'
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -78,11 +78,7 @@ export default class AvailableOrder extends React.Component {
 
   };
 
-  openModalTakingOrder = index => (e) => {
-    e.preventDefault();
-    this.setState({ takingOrder: true, n: index })
 
-  };
 
 
 
@@ -98,21 +94,7 @@ export default class AvailableOrder extends React.Component {
   render() {
     return (
       <Container className="container-chef" fluid>
-        <Modal show={this.state.takingOrder} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Order taken! </Modal.Title>
-            </Modal.Header>
-              <Modal.Footer>
-
-                <Button variant="primary" onClick={this.closeModal}>
-                  Close
-            </Button>
-              </Modal.Footer>
-        </Modal>
-
-
-
-
+     
 
             {/* Details Modal  */}
             <Modal show={this.state.isOpenOrder} onHide={this.closeModal}>
@@ -150,7 +132,7 @@ export default class AvailableOrder extends React.Component {
 
             <Row className="row-top">
               <Col>
-                <h1>Available orders</h1>
+                <h1>Past orders</h1>
               </Col>
 
             </Row>
@@ -182,7 +164,7 @@ export default class AvailableOrder extends React.Component {
                         <Dropdown className="threedots-container">
                           <Dropdown.Toggle as={CustomToggle} />
                           <Dropdown.Menu size="sm" title="">
-                            <Dropdown.Header onClick={this.openModalTakingOrder(index)}>✔️Take order</Dropdown.Header>
+                          
                             <Dropdown.Header onClick={this.openModalDetails(index)}>🖊️ Details</Dropdown.Header>
 
                           </Dropdown.Menu>
