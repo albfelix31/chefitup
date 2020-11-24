@@ -91,6 +91,8 @@ class App extends React.Component {
         return <NavEmployee/>
       case '/chef':
         return <NavEmployee/>
+        case '/manager':
+        return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
       case '/register':
