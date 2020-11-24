@@ -2,10 +2,34 @@ import React from 'react';
 import '../Nav.css'
 import './NavEmployee.css'
 import {Navbar, Nav,NavDropdown} from 'react-bootstrap';
+import jwt_decode from "jwt-decode";
+import Cookies from 'universal-cookie';
+
 
 
 
 export default class NavEmployee extends React.Component {
+
+  componentDidMount() {
+    const cookies = new Cookies();
+    if(cookies.get('token')){
+      this.setState({ username: jwt_decode(cookies.get('token')).username});
+    }
+  }
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: undefined,
+    };
+  }
+  
+  signOut = (e) => {
+    e.preventDefault();
+    const cookies = new Cookies();
+    cookies.remove('token');
+    window.location.href='/CustomerLogin';
+  }
 
   render(){ 
       
@@ -22,7 +46,7 @@ export default class NavEmployee extends React.Component {
                     <NavDropdown.Item href="#action/3.4">Account</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.5">Help</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item className="navSignOut" href="#action/3.6">Sign out</NavDropdown.Item>
+                    <NavDropdown.Item className="navSignOut" href="#action/3.6" onClick={this.signOut}>Sign out</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
         </Navbar.Collapse>

@@ -15,7 +15,7 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import DishPic from "./dish.jpg"
-import Add from "./img/add.png"
+import Add from "../../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
 
@@ -108,6 +108,16 @@ export default class Chef extends React.Component {
                 <Form.Group controlId="formDishDescription">
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={3} />
+                </Form.Group>
+
+                <Form.Group controlId="formDishIngredients">
+                    <Form.Label>Ingredients</Form.Label>
+                    <Form.Control placeholder="Disn Name" />
+                </Form.Group>
+
+                <Form.Group controlId="formDishKeyWords">
+                    <Form.Label>Key Words</Form.Label>
+                    <Form.Control placeholder="Disn Name" />
                 </Form.Group>
 
               </Form>
