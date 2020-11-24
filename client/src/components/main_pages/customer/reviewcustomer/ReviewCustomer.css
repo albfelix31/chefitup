@@ -1,0 +1,23 @@
+.headerReview {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: left;
+}
+.dish {
+  margin-top: 0%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  color: black !important;
+  border-color: black;
+  text-align: center;
+  border: 1px solid black;
+}
+.dish-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
