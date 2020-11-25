@@ -29,7 +29,6 @@ const Cart = () => {
     }
     const [cart,setCart]= useState(dishesInCart)
     const [recentCart,setRecentCart]=useState(recentlyViewedItems)
-    const [currentDish,setCurrentDish]=useState('')
     const [totalPrice, setTotalPrice] = useState(sum)
 
     const handleQuantity = (index,dish) => (e) => {
