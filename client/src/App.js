@@ -63,6 +63,8 @@ class App extends React.Component {
         return <NavCustomer/>
       case '/payment':
         return <NavCustomer/>
+      case '/cart':
+        return <NavCustomer/>
       case '/shipping':
         return <NavCustomer/>
       case '/checkout':
