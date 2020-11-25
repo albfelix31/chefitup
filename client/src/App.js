@@ -97,6 +97,8 @@ class App extends React.Component {
         return <NavEmployee/>
       case '/employeelogin':
       case '/customerlogin':
+      case '/pastorders':
+        return <NavCustomer/>
       case '/register':
         return <NavLogin/>
       default:
@@ -116,6 +118,8 @@ class App extends React.Component {
       case '/menu':
       case '/warningcustomer':
       case '/disputecustomer':
+      case '/pastorders':
+        return <Footer />
       case '/cart':
         return <Footer />
       case '/surfer':
