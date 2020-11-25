@@ -59,6 +59,8 @@ class App extends React.Component {
       case '/customer':
       case '/checkout':
       case '/shipping':
+      case '/reviewcustomer':
+        return <NavCustomer/>
       case '/reservation':
         return <NavCustomer/>
       case '/payment':
@@ -118,6 +120,8 @@ class App extends React.Component {
       case '/menu':
       case '/warningcustomer':
       case '/disputecustomer':
+      case '/reviewcustomer':
+        return <Footer/>
       case '/pastorders':
         return <Footer />
       case '/cart':

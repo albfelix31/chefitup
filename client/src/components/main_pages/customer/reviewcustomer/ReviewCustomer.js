@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ReviewCustomer.css'
 
-import {Container, Row, Col,Image} from 'react-bootstrap'
+import {Container, Row, Col,Image, FormControl, Button} from 'react-bootstrap'
 
 import DishPic from "./dish.jpg"
 
@@ -15,21 +15,41 @@ const ReviewCustomer = () => {
   ]
 
   const [dishData,setDishData] = useState(dishes);
-  
+
   return (
     <Container>
-    <h1 className="headerReview">Review Page</h1>
-    <Row>
-      { 
-        dishData.map((dish, index) => ( 
-          <Col key={index} sm="4" md="4" lg="2" className="dish"> 
+    <h1 className="headerReview">Feedback</h1>
+    <p className="rate-your-order-tag"> Rate your order </p>
+    <p className="feedback-prompt-tag">How would you rate the food out of 5 stars?</p>
+    <Row className="items-to-rate-row">
+      {
+        dishData.map((dish, index) => (
+          <Col key={index} sm="4" md="4" lg="2" className="dish">
             <Image className="dish-img" src={dish.image}/>
             <h4>{dish.dishName}</h4>
-            <p>Chef - {dish.chefName}</p>   
+            <p>Chef - {dish.chefName}</p>
           </Col>
         ))
       }
   </Row>
+
+  <Row className="feedback-input-container">
+    <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>
+    <div className="feedback-driver-tag-container">
+      <p className="feedback-driver-name-tag"> Driver's Name: </p>
+      <p className="feedback-driver-name"> Albert Felix </p>
+    </div>
+    <div className="feedback-type-tag-container">
+      <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
+      <select class="custom-select form-control" id="feedback-type-input" required>
+        <option value="">Choose</option>
+        <option value="complaint">Complaint</option>
+        <option value="compliment">Compliment</option>
+      </select>
+    </div>
+    <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
+  </Row>
+  <Button className="feedback-enter-submit-btn"> Confirm </Button>
   </Container>
   );
 }
