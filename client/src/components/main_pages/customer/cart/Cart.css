@@ -14,7 +14,7 @@
   cursor:pointer;
   overflow: hidden;
   outline:none;
-  width: 20px;
+  width: 25px;
   height: 25px;
   padding: 0;
   color: black;
@@ -22,9 +22,7 @@
 
 .quantity-input-container {
   margin-left: 20px;
-  border-radius: 20px;
   width: 90px;
-  background-color: #F3F3F3;
 }
 
 .quantity-container {
@@ -41,7 +39,7 @@
    overflow: hidden;
    outline:none;
    color: black;
-   text-align: right;
+   text-align: center;
    padding-top: 2px;
  }
 
@@ -144,4 +142,28 @@
 
 .rvi-dish-name, .rvi-chef-name {
   margin: 0;
+}
+
+.quantity-cart {
+  width: 85px;
+  height: 30px;
+
+  display: flex;
+  background-color: #F3F3F3;
+}
+
+.quantity-container {
+  /* background-color: green; */
+}
+
+.quantity-input-container {
+  background-color: #F3F3F3;
+  border-radius: 20px;
+}
+
+.quantity-cart {
+  background-color: #F3F3F3;
+  padding-left: 8px;
+  padding-right: 4px;
+  border-radius: 20px;
 }
