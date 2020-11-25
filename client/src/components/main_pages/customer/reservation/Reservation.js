@@ -7,7 +7,7 @@ const Reservation = () => {
 
   const [reservation,setReservation] = useState({fullName:'',phoneNumber:'',date:'',time:'',guest:''});
   const [reservationData,setReservationData] = useState([])
-  
+
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -34,7 +34,7 @@ const Reservation = () => {
           <Form.Control type="text" className="formBox" placeholder="Phone Number" name="phoneNumber" value={reservation.PhoneNumber} onChange={handleChange}/>
         </Form.Group>
 
-        <Row>
+        <div className="reservation-date-time-container">
           <Form.Group as={Col} controlId="formDate" >
             <Form.Control type="text" className="formBox" placeholder="Date" name="date" value={reservation.date} onChange={handleChange}/>
           </Form.Group>
@@ -42,7 +42,7 @@ const Reservation = () => {
           <Form.Group as={Col} controlId="formTime" >
             <Form.Control type="text" className="formBox" placeholder="Time" name="time" value={reservation.Time} onChange={handleChange}/>
           </Form.Group>
-        </Row>
+        </div>
 
         <Form.Group as={Col} controlId="formGuest" >
           <Form.Control type="text" className="formBox" placeholder="Guest" name="guest" value={reservation.guest} onChange={handleChange}/>

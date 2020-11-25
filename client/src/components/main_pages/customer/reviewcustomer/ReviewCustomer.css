@@ -26,9 +26,10 @@
 .feedback-input-container {
   display: block;
   width: 400px;
+  margin-top: 20px;
 }
 
-.feedback-driver-tag-container, .feedback-type-tag-container {
+.feedback-driver-tag-container, .feedback-type-tag-container, .feedback-chef-tag-container {
   display: flex;
   justify-content: space-between;
 }
@@ -44,7 +45,7 @@
   font-size: 20px;
 }
 
-.feedback-driver-name-tag, .feedback-driver-name, .feedback-type-tag {
+.feedback-driver-name-tag, .feedback-driver-name, .feedback-chef-name-tag, .feedback-chef-name, .feedback-type-tag {
   font-weight: bold;
 }
 

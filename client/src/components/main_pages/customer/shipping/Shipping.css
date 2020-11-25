@@ -33,3 +33,10 @@
   border: 2px solid black;
   text-align: center;
 }
+.shipping-fullname-container, .state-zipcode-container {
+  display: flex;
+}
+.same-billing-address-container {
+  display: flex;
+  justify-content: center;
+}

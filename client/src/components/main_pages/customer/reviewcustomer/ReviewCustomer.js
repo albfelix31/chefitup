@@ -50,7 +50,24 @@ const ReviewCustomer = () => {
     </div>
     <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
   </Row>
-  <Button className="feedback-enter-submit-btn"> Confirm </Button>
+
+  <Row className="feedback-input-container">
+    <p className="feedback-prompt-tag">How would you rate the chef's cooking?</p>
+    <div className="feedback-chef-tag-container">
+      <p className="feedback-chef-name-tag"> Driver's Name: </p>
+      <p className="feedback-chef-name"> Cristian Cuevas </p>
+    </div>
+    <div className="feedback-type-tag-container">
+      <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
+      <select class="custom-select form-control" id="feedback-type-input" required>
+        <option value="">Choose</option>
+        <option value="complaint">Complaint</option>
+        <option value="compliment">Compliment</option>
+      </select>
+    </div>
+    <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
+  </Row>
+  <Button className="feedback-enter-submit-btn" href="./Menu"> Confirm </Button>
   </Container>
   );
 }
