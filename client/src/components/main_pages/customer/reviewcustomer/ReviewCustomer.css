@@ -2,6 +2,7 @@
   margin-top: 2%;
   margin-bottom: 2%;
   text-align: left;
+  margin-bottom: 0;
 }
 .dish {
   margin-top: 0%;
@@ -20,4 +21,55 @@
   margin-right: auto;
   margin-bottom: 10%;
   margin-top: 10%;
+}
+
+.feedback-input-container {
+  display: block;
+  width: 400px;
+}
+
+.feedback-driver-tag-container, .feedback-type-tag-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rate-your-order-tag {
+  margin-top: 5px;
+  font-size: 24px;
+  font-weight: 250
+}
+
+.feedback-prompt-tag {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.feedback-driver-name-tag, .feedback-driver-name, .feedback-type-tag {
+  font-weight: bold;
+}
+
+#feedback-type-input {
+  width: 200px;
+  margin-top: -5px;
+}
+
+.feedback-enter-submit-btn {
+  border-radius: 20px;
+  font-weight: bold;
+  width: 150px;
+  float: right;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.feedback-description {
+  margin-top: 20px;
+}
+
+.items-to-rate-row {
+  margin-left: 10px;
+}
+
+.feedback-input-container {
+  margin-left: -4px;
 }

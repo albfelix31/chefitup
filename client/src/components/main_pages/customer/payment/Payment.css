@@ -6,20 +6,28 @@
   margin-top: 10%;
   margin-bottom: 15%;
 }
+
 .btn-payment:hover {
   font-weight: bold;
 }
-.header {
+
+.header-payment {
   margin-top: 10%;
   margin-bottom: 10%;
-  text-align: center;
+  font-weight: bold;
 }
+
 .container-payment {
   margin-left: 10%;
   margin-right: 50%;
 }
-.formBox {
+
+.form-container-payment {
   margin-bottom: 5%;
   border: 2px solid black;
   text-align: center;
+}
+
+.payment-form-expiration-date-div {
+  display: flex;
 }
