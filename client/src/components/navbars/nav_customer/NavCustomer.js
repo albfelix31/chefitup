@@ -9,7 +9,7 @@ export default class NavCustomer extends React.Component {
 
       return (
         <Navbar className="navBackground" expand="lg">
-        <Navbar.Brand className="navBrand" href="/">ChefItUp</Navbar.Brand>
+        <Navbar.Brand className="navBrand" href="/Menu">ChefItUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="container-fluid">
@@ -23,9 +23,9 @@ export default class NavCustomer extends React.Component {
                 <NavDropdown.Item href="./Discussion">Discussion Forum</NavDropdown.Item>
                 <NavDropdown.Item href="./Profile">Account</NavDropdown.Item>
                 <NavDropdown.Item href="#">Help</NavDropdown.Item>
-                <NavDropdown.Item href="./WarningsCustomer">Warnings</NavDropdown.Item>
+                <NavDropdown.Item href="./WarningCustomer">Warnings</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item className="navSignOut" href="#action/3.6">Sign out</NavDropdown.Item>
+                <NavDropdown.Item className="navSignOut" href="./Choose">Sign out</NavDropdown.Item>
             </NavDropdown>
             </Nav>
 

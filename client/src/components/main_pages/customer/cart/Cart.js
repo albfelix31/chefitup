@@ -20,27 +20,65 @@ const Cart = () => {
         {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish},
         {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish}
     ]
+    const sum =()=>{
+      let total = 0;
+      for (let i = 0; i <cart.length; i++) {
+        total = total + parseFloat(cart[i].price) * cart[i].quantity;
+      }
+      return total;
+    }
+    const [cart,setCart]= useState(dishesInCart)
+    const [recentCart,setRecentCart]=useState(recentlyViewedItems)
+    const [totalPrice, setTotalPrice] = useState(sum)
 
-    const [quantity,setQuantity]=useState(1)
+    const handleQuantity = (index,dish) => (e) => {
+      const name = e.target.name
+      const basePrice = parseFloat(dish.price)/dish.quantity
+      if(name==="increase" && (dish.quantity<20)){
 
-    const [dishInCartData,setDishInCartData] = useState(dishesInCart);
+         const newQuantity = dish.quantity+1
+         const newPrice = ''+(basePrice*(newQuantity))
+         const newTotal = totalPrice + basePrice
 
-    const [price, setPrice] = useState(90)
-    const [delivery, setDelivery] = useState(15)
+        setTotalPrice(newTotal)
 
-    const increaseValue = (e) => {
-        const newValue = e.quantity
-        // setDishInCartData({quantity: e.quantity+1})
-    };
+        let newArr = cart.map((item, i) => {
+          if (index == i) {
+            return { ...item,price:newPrice,quantity:newQuantity};
+          } else {
+            return item;
+          }
+        });
+        
+        setCart(newArr);
+      }
+      else if(name==="decrease" && (dish.quantity>1)){
+        const newQuantity = dish.quantity-1
+        const newPrice =  ''+(basePrice*(newQuantity))
+        const newTotal = totalPrice - basePrice
+
+        setTotalPrice(newTotal)
+
+        let newArr = cart.map((item, i) => {
+          if (index == i) {
+            return { ...item,price:newPrice,quantity:newQuantity};
+          } else {
+            return item;
+          }
+        });
+
+        setCart(newArr);
+      }
+    }
 
     return (
       <Container>
         <Row className="first-row">
           <Col xs={7}>
-            <h2> My Order ({dishesInCart.length} Items)</h2>
+            <h2> My Order ({cart.length} Items)</h2>
 
                 {
-                    dishInCartData.map((dish, index) => (
+                    cart.map((dish, index) => (
                         <Row>
                             <Image className="dish-cart m-2" src={dish.image} />
                             <div className="m-4">
@@ -52,13 +90,13 @@ const Cart = () => {
                               <label className="qty-label">Qty</label>
                               <div className="quantity-input-container">
                                   <div class="quantity-cart">
-                                      <Button className="cart-item-qty-change-btn" onClick={()=>{if(quantity>1) setQuantity(quantity-1)}}>-</Button>
+                                      <Button className="cart-item-qty-change-btn" name="decrease" onClick={handleQuantity(index,dish)}>-</Button>
                                       <input className="quantity-input" type="text" name="name" value={dish.quantity}/>
-                                      <Button className="cart-item-qty-change-btn" onClick={increaseValue(dish)}>+</Button>
+                                      <Button className="cart-item-qty-change-btn" name="increase" onClick={handleQuantity(index,dish)}>+</Button>
                                   </div>
                               </div>
                             </div>
-                            <p className="price-tag m-4">Price: {'\u0024'}{(parseFloat(dish.price) * quantity).toFixed(2)}</p>
+                            <p className="price-tag m-4">Price: {'\u0024'}{parseFloat(dish.price).toFixed(2)}</p>
                             <div>
                             </div>
                         </Row>
@@ -76,20 +114,20 @@ const Cart = () => {
               </div>
               <div className="total-amount-tags">
                 <p>Subtotal</p>
-                <p>{'\u0024'}{price.toFixed(2)}</p>
+                <p>{'\u0024'}{totalPrice.toFixed(2)}</p>
               </div>
               <div className="total-amount-tags">
                 <p>Estimated Delivery</p>
-                <p>{'\u0024'}{delivery.toFixed(2)}</p>
+                <p>{'\u0024'}{6}</p>
               </div>
               <div className="total-amount-tags">
                 <p className="order-total-tagline">Estimated Order Total</p>
-                <p className="order-total-amount">{'\u0024'}{(price + delivery).toFixed(2)}</p>
+                <p className="order-total-amount">{'\u0024'}{(totalPrice+6).toFixed(2)}</p>
               </div>
               <hr className="line-break"/>
               <p className="vip-discount-tagline p-3">You have qualified for VIP discount</p>
             </div>
-            <Button className="checkout-button"> Take me to checkout </Button>
+            <Button className="checkout-button" href="./checkout"> Take me to checkout </Button>
           </Col>
         </Row>
 
@@ -98,7 +136,7 @@ const Cart = () => {
           <div className="recently-viewed-items">
 
           {
-              recentlyViewedItems.map((dish, index) => (
+              recentCart.map((dish, index) => (
                   <div>
                     <Image className="rvi-image" src={dish.image} />
                     <p className="rvi-dish-name"> {dish.dishName} </p>
@@ -108,6 +146,7 @@ const Cart = () => {
           }
           </div>
         </Row>
+
       </Container>
     );
 }
