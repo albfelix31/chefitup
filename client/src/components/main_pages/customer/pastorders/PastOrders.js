@@ -33,12 +33,13 @@ const PastOrders = () => {
                   </Col>
                 ))
               }
-              <hr className="haa"/>
+              <Button className="review-order-btn" href="./ReviewCustomer"> Review Order </Button>
+              <hr className="separate-line"/>
             </Row>
           </Row>
       ))
     }
-    <Button className="past-orders-go-back-btn"> Go Back </Button>
+    <Button className="past-orders-go-back-btn" href="./Menu"> Go Back </Button>
     </Container>
   );
 }

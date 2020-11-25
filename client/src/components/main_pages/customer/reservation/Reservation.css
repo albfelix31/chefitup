@@ -23,3 +23,6 @@
   margin-bottom: 5%;
   border: 2px solid black;
 }
+.reservation-date-time-container {
+  display: flex;
+}
