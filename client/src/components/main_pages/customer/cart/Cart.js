@@ -1,73 +1,69 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Row, Col, Button, Image, FormControl} from 'react-bootstrap'
 import './Cart.css'
 import Dish from '../../../../public/FoodSample.jpg';
+import Minus from "../menu/minus.svg"
+import Plus from "../menu/plus.svg"
 
-export default class Cart extends React.Component {
+const Cart = () => {
 
+    const dishesInCart = [
+        {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish, quantity: 7},
+        {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish, quantity: 5},
+        {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish, quantity: 3},
+        {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish, quantity: 2}
+    ]
 
-  render() {
+    const recentlyViewedItems = [
+        {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish},
+        {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish},
+        {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish},
+        {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish}
+    ]
+
+    const [quantity,setQuantity]=useState(1)
+
+    const [dishInCartData,setDishInCartData] = useState(dishesInCart);
+
+    const [price, setPrice] = useState(90)
+    const [delivery, setDelivery] = useState(15)
+
+    const increaseValue = (e) => {
+        const newValue = e.quantity
+        // setDishInCartData({quantity: e.quantity+1})
+    };
+
     return (
       <Container>
         <Row className="first-row">
           <Col xs={7}>
-            <h2> My Order (3 Items)</h2>
+            <h2> My Order ({dishesInCart.length} Items)</h2>
 
-            <Row>
-              <Image className="dish-cart m-2" src={Dish} />
-              <div className="m-4">
-                <h5> Dish Name </h5>
-                <h5> Chef Name </h5>
-              </div>
-              <div className="quantity-container m-4">
-                <label for="quantity" className="qty-label">Qty</label>
-                <div className="quantity-input-container">
-                  <Button className="cart-item-qty-change-btn" onclick="handleClick()">-</Button>
-                  <input className="quantity-input" type="number" min="0" max="10" default="2"/>
-                  <Button className="cart-item-qty-change-btn" onclick="increment()">+</Button>
-                </div>
-              </div>
-              <p className="price-tag m-4"> Price: $3.00 </p>
-              <div>
-              </div>
-            </Row>
-            <Row>
-              <Image className="dish-cart m-2" src={Dish} />
-              <div className="m-4">
-                <h5> Dish Name </h5>
-                <h5> Chef Name </h5>
-              </div>
-              <div className="quantity-container m-4">
-                <label for="quantity" className="qty-label">Qty</label>
-                <div className="quantity-input-container">
-                  <Button className="cart-item-qty-change-btn" onclick="handleClick()">-</Button>
-                  <input className="quantity-input" type="number" min="0" max="10" default="2"/>
-                  <Button className="cart-item-qty-change-btn" onclick="increment()">+</Button>
-                </div>
-              </div>
-              <p className="price-tag m-4"> Price: $3.00 </p>
-              <div>
-              </div>
-            </Row>
+                {
+                    dishInCartData.map((dish, index) => (
+                        <Row>
+                            <Image className="dish-cart m-2" src={dish.image} />
+                            <div className="m-4">
+                              <h5> {dish.dishName} </h5>
+                              <h5> {dish.chefName} </h5>
+                            </div>
 
-            <Row>
-              <Image className="dish-cart m-2" src={Dish} />
-              <div className="m-4">
-                <h5> Dish Name </h5>
-                <h5> Chef Name </h5>
-              </div>
-              <div className="quantity-container m-4">
-                <label for="quantity" className="qty-label">Qty</label>
-                <div className="quantity-input-container">
-                  <Button className="cart-item-qty-change-btn" onclick="handleClick()">-</Button>
-                  <input className="quantity-input" type="number" min="0" max="10" default="2"/>
-                  <Button className="cart-item-qty-change-btn" onclick="increment()">+</Button>
-                </div>
-              </div>
-              <p className="price-tag m-4"> Price: $3.00 </p>
-              <div>
-              </div>
-            </Row>
+                            <div className="quantity-container m-4">
+                              <label className="qty-label">Qty</label>
+                              <div className="quantity-input-container">
+                                  <div class="quantity-cart">
+                                      <Button className="cart-item-qty-change-btn" onClick={()=>{if(quantity>1) setQuantity(quantity-1)}}>-</Button>
+                                      <input className="quantity-input" type="text" name="name" value={dish.quantity}/>
+                                      <Button className="cart-item-qty-change-btn" onClick={increaseValue(dish)}>+</Button>
+                                  </div>
+                              </div>
+                            </div>
+                            <p className="price-tag m-4">Price: {'\u0024'}{(parseFloat(dish.price) * quantity).toFixed(2)}</p>
+                            <div>
+                            </div>
+                        </Row>
+                    ))
+                }
           </Col>
 
           <Col>
@@ -80,15 +76,15 @@ export default class Cart extends React.Component {
               </div>
               <div className="total-amount-tags">
                 <p>Subtotal</p>
-                <p>$175.97</p>
+                <p>{'\u0024'}{price.toFixed(2)}</p>
               </div>
               <div className="total-amount-tags">
-                <p>Estimated Shipping</p>
-                <p>-</p>
+                <p>Estimated Delivery</p>
+                <p>{'\u0024'}{delivery.toFixed(2)}</p>
               </div>
               <div className="total-amount-tags">
                 <p className="order-total-tagline">Estimated Order Total</p>
-                <p className="order-total-amount">$180.97</p>
+                <p className="order-total-amount">{'\u0024'}{(price + delivery).toFixed(2)}</p>
               </div>
               <hr className="line-break"/>
               <p className="vip-discount-tagline p-3">You have qualified for VIP discount</p>
@@ -100,24 +96,20 @@ export default class Cart extends React.Component {
         <Row className="second-row">
           <h4> Recently Viewed Items </h4>
           <div className="recently-viewed-items">
-            <div>
-              <Image className="rvi-image" src={Dish} />
-              <p className="rvi-dish-name"> Dish Name </p>
-              <p className="rvi-chef-name"> Chef Name </p>
-            </div>
-            <div>
-              <Image className="rvi-image" src={Dish} />
-              <p className="rvi-dish-name"> Dish Name </p>
-              <p className="rvi-chef-name"> Chef Name </p>
-            </div>
-            <div>
-              <Image className="rvi-image" src={Dish} />
-              <p className="rvi-dish-name"> Dish Name </p>
-              <p className="rvi-chef-name"> Chef Name </p>
-            </div>
+
+          {
+              recentlyViewedItems.map((dish, index) => (
+                  <div>
+                    <Image className="rvi-image" src={dish.image} />
+                    <p className="rvi-dish-name"> {dish.dishName} </p>
+                    <p className="rvi-chef-name"> {dish.chefName} </p>
+                  </div>
+              ))
+          }
           </div>
         </Row>
       </Container>
     );
-  }
 }
+
+export default Cart

@@ -105,6 +105,8 @@ class App extends React.Component {
       case '/menu':
       case '/warningcustomer':
       case '/disputecustomer':
+      case '/cart':
+        return <Footer />
       case '/surfer':
         return <Footer />
       default:

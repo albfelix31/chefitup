@@ -33,7 +33,7 @@ const Menu = () =>{
     {dishID:'21',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'5',image: DishPic},
     {dishID:'22',dishName:'Fanta',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'4',image: DishPic},
     {dishID:'23',dishName:'Pepsi',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'4',image: DishPic},
-    {dishID:'24',dishName:'Ginger-Ale',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic} 
+    {dishID:'24',dishName:'Ginger-Ale',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'1.99',category:'drink',subcategory:'',chefID:'4',chefName:"Albert Felix",rating:'4',image: DishPic}
   ]
   //From past orders database
   const topDishes=[
@@ -60,20 +60,20 @@ const Menu = () =>{
     setOpenDish({...openDish,dishID:dishID,image:image,name:name,price:price,ingredient:ingredient})
     setIsOpen(true)
   };
-   const closeModal = () => {
+  const closeModal = () => {
      setIsOpen(false)
      setOpenDish({dishID:'',image:'',name:'',price:'',ingredient:''})
      setQuantity(1)
-   };
+  };
   const addCart = () => {
-     setCart(cart => [...cart,{dishID:openDish.dishID,quantity:quantity}]) 
+     setCart(cart => [...cart,{dishID:openDish.dishID,quantity:quantity}])
      setIsOpen(false)
      setOpenDish({dishID:'',image:'',name:'',price:'',ingredient:''})
      setQuantity(1)
   }
 
   return (
-    
+
       <Container className="container-menu" fluid>
         <Modal show={isOpen} onHide={closeModal}>
           <Modal.Header closeButton>
@@ -98,7 +98,7 @@ const Menu = () =>{
                   </button>
                 </div>
               </Col>
-            </Row>  
+            </Row>
             <Button className="btn-cart-modal" variant="primary" onClick={addCart}>
               Add to Cart
             </Button>
@@ -109,14 +109,14 @@ const Menu = () =>{
           <Col xs="12">
             <h3 className="header-category">Dishes You May Like</h3>
           </Col>
-            { 
-            topDishData.map((dish, index) => ( 
-                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}> 
+            {
+            topDishData.map((dish, index) => (
+                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}>
                   <Image className="dish-img" src={dish.image}/>
                   <h4>{dish.dishName}</h4>
-                  <p>Chef - {dish.chefName}</p>  
+                  <p>Chef - {dish.chefName}</p>
                 </Col>
-                
+
               ))
             }
         </Row>
@@ -124,14 +124,14 @@ const Menu = () =>{
           <Col xs="12">
             <h3 className="header-category">Appetizer</h3>
           </Col>
-            { 
-              dishData.filter(dish => dish.category.includes("appetizer") ).map((dish, index) => ( 
-                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}> 
+            {
+              dishData.filter(dish => dish.category.includes("appetizer") ).map((dish, index) => (
+                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}>
                   <Image className="dish-img" src={dish.image}/>
                   <h4>{dish.dishName}</h4>
-                  <p>Chef - {dish.chefName}</p>  
+                  <p>Chef - {dish.chefName}</p>
                 </Col>
-                
+
               ))
             }
         </Row>
@@ -139,12 +139,12 @@ const Menu = () =>{
           <Col xs="12">
             <h3 className="header-category">Main Menu</h3>
           </Col>
-            { 
-              dishData.filter(dish => dish.category.includes("main") ).map((dish, index) => ( 
-                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}> 
+            {
+              dishData.filter(dish => dish.category.includes("main") ).map((dish, index) => (
+                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}>
                   <Image className="dish-img" src={dish.image}/>
                   <h4>{dish.dishName}</h4>
-                  <p>Chef - {dish.chefName}</p>   
+                  <p>Chef - {dish.chefName}</p>
                 </Col>
               ))
             }
@@ -153,12 +153,12 @@ const Menu = () =>{
           <Col xs="12">
             <h3 className="header-category">Dessert</h3>
           </Col>
-            { 
-              dishData.filter(dish => dish.category.includes("dessert") ).map((dish, index) => ( 
-                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}> 
+            {
+              dishData.filter(dish => dish.category.includes("dessert") ).map((dish, index) => (
+                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}>
                   <Image className="dish-img" src={dish.image}/>
                   <h4>{dish.dishName}</h4>
-                  <p>Chef - {dish.chefName}</p>   
+                  <p>Chef - {dish.chefName}</p>
                 </Col>
               ))
             }
@@ -167,19 +167,19 @@ const Menu = () =>{
           <Col xs="12">
             <h3 className="header-category">Drinks</h3>
           </Col>
-            { 
-              dishData.filter(dish => dish.category.includes("drink") ).map((dish, index) => ( 
-                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}> 
+            {
+              dishData.filter(dish => dish.category.includes("drink") ).map((dish, index) => (
+                <Col key={index} sm="4" md="4" lg="2" className="dish" onClick={openModal(dish)}>
                   <Image className="dish-img" src={dish.image}/>
                   <h4>{dish.dishName}</h4>
-                  <p>Chef - {dish.chefName}</p>   
+                  <p>Chef - {dish.chefName}</p>
                 </Col>
               ))
             }
         </Row>
       </Container>
-    
+
   );
-} 
- 
+}
+
 export default Menu
