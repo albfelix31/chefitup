@@ -23,7 +23,7 @@ const Cart = () => {
     const sum =()=>{
       let total = 0;
       for (let i = 0; i <cart.length; i++) {
-        total = total + parseFloat(cart[i].price) * cart[i].quantity;
+        total = total + parseFloat(cart[i].price).toFixed(2) * cart[i].quantity;
       }
       return total;
     }
@@ -33,18 +33,14 @@ const Cart = () => {
 
     const handleQuantity = (index,dish) => (e) => {
       const name = e.target.name
-      const basePrice = parseFloat(dish.price)/dish.quantity
       if(name==="increase" && (dish.quantity<20)){
-
-         const newQuantity = dish.quantity+1
-         const newPrice = ''+(basePrice*(newQuantity))
-         const newTotal = totalPrice + basePrice
-
+        const newQuantity = dish.quantity+1
+        const newTotal = parseFloat(totalPrice) + parseFloat(dish.price)
         setTotalPrice(newTotal)
 
         let newArr = cart.map((item, i) => {
           if (index == i) {
-            return { ...item,price:newPrice,quantity:newQuantity};
+            return { ...item,quantity:newQuantity};
           } else {
             return item;
           }
@@ -54,14 +50,12 @@ const Cart = () => {
       }
       else if(name==="decrease" && (dish.quantity>1)){
         const newQuantity = dish.quantity-1
-        const newPrice =  ''+(basePrice*(newQuantity))
-        const newTotal = totalPrice - basePrice
-
+        const newTotal = parseFloat(totalPrice) - parseFloat(dish.price)
         setTotalPrice(newTotal)
 
         let newArr = cart.map((item, i) => {
           if (index == i) {
-            return { ...item,price:newPrice,quantity:newQuantity};
+            return { ...item,quantity:newQuantity};
           } else {
             return item;
           }
@@ -96,7 +90,7 @@ const Cart = () => {
                                   </div>
                               </div>
                             </div>
-                            <p className="price-tag m-4">Price: {'\u0024'}{parseFloat(dish.price).toFixed(2)}</p>
+                            <p className="price-tag m-4">Price: {'\u0024'}{(parseFloat(dish.price) * dish.quantity).toFixed(2)}</p>
                             <div>
                             </div>
                         </Row>
@@ -114,7 +108,7 @@ const Cart = () => {
               </div>
               <div className="total-amount-tags">
                 <p>Subtotal</p>
-                <p>{'\u0024'}{totalPrice.toFixed(2)}</p>
+                <p>{'\u0024'}{parseFloat(totalPrice).toFixed(2)}</p>
               </div>
               <div className="total-amount-tags">
                 <p>Estimated Delivery</p>
@@ -122,7 +116,7 @@ const Cart = () => {
               </div>
               <div className="total-amount-tags">
                 <p className="order-total-tagline">Estimated Order Total</p>
-                <p className="order-total-amount">{'\u0024'}{(totalPrice+6).toFixed(2)}</p>
+                <p className="order-total-amount">{'\u0024'}{parseFloat(totalPrice+6).toFixed(2)}</p>
               </div>
               <hr className="line-break"/>
               <p className="vip-discount-tagline p-3">You have qualified for VIP discount</p>
