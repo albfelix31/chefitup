@@ -13,4 +13,14 @@ CREATE TABLE User(
     registrationDate DATETIME NOT NULL
 );
 
-
+CREATE TABLE CustomerProfile(
+    profileId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    payment VARCHAR(255) NOT NULL,
+    balance VARCHAR(255) NOT NULL,
+    subscribe BOOLEAN DEFAULT 0,
+    approve VARCHAR(255) NOT NULL,
+    userId INT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES User(userId)
+);

@@ -1,6 +1,7 @@
 from hashlib import md5
 from io import SEEK_CUR
 
+from server.models import customer_profile_model
 from server.models import user_model
 
 from flask import (
@@ -32,9 +33,12 @@ def login():
         user = user_model.UserModel()
         user.setUser(username)
         app = current_app._get_current_object()    
-
+        customerProfile = customer_profile_model.CustomerProfileModel(user.getUserId())    
         if user.getUserName() is None or user.getPassword() != md5(password.encode('utf-8')).hexdigest():
             error = 'Invalid username or password or not correct.'
+
+        if customerProfile.getApprove() == "0":
+            error = 'Account not approve yet!'
 
         if req['type'] == 'c':
             path = '/Menu'
@@ -89,7 +93,7 @@ def forgot_password():
 
     return json.dumps({'userExist': False, 'error': 'User does not exist'})
 
-'''
+
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     error = None
@@ -101,8 +105,7 @@ def register():
         
 
         user = user_model.UserModel()
-        userBalance = balance_model.BalanceModel()
-        userProfile = profile_model.ProfileModel()
+        customerProfile = customer_profile_model.CustomerProfileModel()
 
         if user.isExist("userName", username):
             error = 'Username already taken'
@@ -112,10 +115,10 @@ def register():
             user.setUserName(username)
             user.setEmail(email)
             user.setPassword(password)
+            user.setType(req['type'])
             user.insertUser()
             user.setUser(username)
-            userBalance.initBalance(user.getUserId(),'USD')
-            userProfile.initProfile(user.getUserId())
+            customerProfile.initProfile(user.getUserId(),req['name'])
             return json.dumps({'registered': True})
 
     return json.dumps({'registered': False, 'error': error})
@@ -130,5 +133,3 @@ def getUserName():
     req = request.json
     user = user_model.UserModel(req['userId'])
     return json.dumps({'username': user.getUserName()})
-
-'''

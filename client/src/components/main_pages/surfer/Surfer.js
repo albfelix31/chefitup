@@ -59,7 +59,7 @@ export default class Surfer extends React.Component {
         <div className="registerPrompt">
           <h4>
             Want to see more?
-            <a className="link" onClick={() => {window.location.href="/Register"}}>
+            <a className="link" onClick={() => {window.location.href="/SignUp"}}>
                 Join Us!
             </a>
           </h4>

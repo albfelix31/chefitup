@@ -19,5 +19,21 @@ export default class API {
     }
   }
 
+  async register(data){
+    const response = await fetch('/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const response_1 = await response.json();
+    if (response_1['registered']) {
+      window.location.href = '/Login';
+    } else {
+      return response_1['error'];
+    }
+  }
+
 }
 

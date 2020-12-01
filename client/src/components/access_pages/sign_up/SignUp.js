@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './SignUp.css'
+import api from '../../API/api'
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -12,8 +13,9 @@ export default class SignUp extends React.Component {
             name: "",
             email: "",
             confirmedPassword: "",
-            userName: "",
+            username: "",
             password: "",
+            type: "c",
             errors: [],
         };
     }
@@ -65,7 +67,13 @@ export default class SignUp extends React.Component {
         }
         if (errors.length === 0) {
             // Insert Backend Here.
-
+            const data = this.state
+            const API = new api();
+            API.register(data).then(error => {
+              this.setState(({errors}) => ({
+                errors: errors.concat(error)
+              }));
+            })
         }
     };
 
@@ -101,7 +109,7 @@ export default class SignUp extends React.Component {
                             <Form.Group controlId="formUsername">
                                 <Form.Label className="text-light">Username:</Form.Label>
                                 <Form.Control type="" placeholder="Enter username"
-                                    onChange={this.handleChange("userName")} />
+                                    onChange={this.handleChange("username")} />
                             </Form.Group>
                             <Form.Group controlId="formPassword">
                                 <Form.Label className="text-light">Password:</Form.Label>

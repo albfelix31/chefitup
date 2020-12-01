@@ -8,7 +8,6 @@ import {
   withRouter
 } from 'react-router-dom';
 import EmployeeLogin from './components/access_pages/login/employee_login/EmployeeLogin';
-import Register from './components/access_pages/register/Register';
 import Surfer from './components/main_pages/surfer/Surfer';
 import CustomerLogin from './components/access_pages/login/customer_login/CustomerLogin';
 import Chef from './components/main_pages/employee/chef/chefdashboard/Chef';
@@ -100,8 +99,7 @@ class App extends React.Component {
       case '/employeelogin':
       case '/customerlogin':
       case '/pastorders':
-        return <NavLogin/>
-      case '/register':
+      case '/signup':
         return <NavLogin/>
       default:
         return null
@@ -155,7 +153,6 @@ class App extends React.Component {
               <Route path="/PastOrdersDelivery" component={PastOrdersDelivery} />
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
-              <Route path="/Register" component={Register} />
               <Route path="/Reservation" component={Reservation} />
               <Route path="/ReviewCustomer" component={ReviewCustomer} />
               <Route path="/Shipping" component={Shipping} />
