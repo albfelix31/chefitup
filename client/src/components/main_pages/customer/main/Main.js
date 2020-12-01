@@ -31,6 +31,7 @@ export default class Main extends React.Component {
           restaurant: "McBurger",
           rating: 5,
         },
+        
       ],
       highestDishes: [
         {
