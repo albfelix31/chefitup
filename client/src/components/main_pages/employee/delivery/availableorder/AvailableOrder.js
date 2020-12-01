@@ -137,7 +137,7 @@ export default class AvailableOrder extends React.Component {
 
                   <Form.Group controlId="formDishDescription">
                     <Form.Label>Description</Form.Label>
-
+                    {/* This would later be a map of the API call */}
                     {['sm', 'md', 'lg', 'xl'].map((breakpoint, idx) => (
                       <ListGroup horizontal={breakpoint} className="my-2" key={idx}>
                         <ListGroup.Item>Quantity: 2</ListGroup.Item>

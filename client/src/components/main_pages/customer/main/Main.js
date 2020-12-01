@@ -1,61 +1,119 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image'
-import {
-  Link
-} from 'react-router-dom'
-import Dish from '../../../../public/FoodSample.jpg';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import { Link } from "react-router-dom";
+import Dish from "../../../../public/FoodSample.jpg";
 
-import './Main.css'
+import "./Main.css";
 
 export default class Main extends React.Component {
-
+  componentDidMount() {
+    //This would later be changed for the API call with the dishes, we would also add the image to the API i think, that should be small fix in the future
+    this.setState({
+      popularDishes: [
+        {
+          dishName: "Patatas",
+          chefName: "El mejor",
+          restaurant: "Chick fil a",
+          rating: 4,
+        },
+        {
+          dishName: "Potatoes",
+          chefName: "Dick Cheney",
+          restaurant: "MVP",
+          rating: 3,
+        },
+        {
+          dishName: "Eggs",
+          chefName: "Dick Cheney",
+          restaurant: "McBurger",
+          rating: 5,
+        },
+      ],
+      highestDishes: [
+        {
+          dishName: "Ketchup",
+          chefName: "El mejor",
+          restaurant: "Chick fil a",
+          rating: 4,
+        },
+        {
+          dishName: "Mayonnaise",
+          chefName: "Mac",
+          restaurant: "MVP",
+          rating: 3,
+        },
+        {
+          dishName: "Eacon",
+          chefName: "Tintin",
+          restaurant: "McBurger",
+          rating: 5,
+        },
+      ],
+    });
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
+      popularDishes: [],
+      highestDishes: [],
+    };
+  }
 
   render() {
     return (
       <Container fluid>
-        <h4 className="popDishHeader"> Top 3 Most Popular Dishes </h4>
-        <Row className="popularDishes">
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
+        <div className="each-row">
+          <h4 className="popDishHeader"> Top 3 Most Popular Dishes </h4>
+          <Row className="row-resize ">
+            {this.state.popularDishes.map((list, index) => (
+              <div>
+                <Col>
+                  <div className="individual-dish">
+                    <Image className="dish-surfer" src={Dish} />
 
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
+                    <div className="dish-info">
+                      <h5>{list.dishName} </h5>
+                      <p> {list.chefName} </p>
 
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
-        </Row>
-        <h4 className="highRatedDishHeader"> Top 3 Highest Rated Dishes </h4>
-        <Row className="highestRatedDishes">
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
+                      {/* This needs to be changed for the library with rating stars */}
+                      <p> {list.rating} </p>
+                      <p> {list.restaurant} </p>
+                    </div>
+                  </div>
+                </Col>
+              </div>
+            ))}
+          </Row>
+        </div>
 
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
+        <div className="each-row">
+          <h4 className="popDishHeader"> Top 3 Highest Rated Dishes </h4>
 
-          <Col>
-            <Image className="dish-surfer" src={Dish} />
-            <h5> Dish Name </h5>
-            <p> Chef Name </p>
-          </Col>
-        </Row>
+          <Row className="row-resize ">
+            {this.state.highestDishes.map((list, index) => (
+              <div>
+                <Col>
+                  <div className="individual-dish">
+                    <Image className="dish-surfer" src={Dish} />
+
+                    <div className="dish-info">
+                      <h5>{list.dishName} </h5>
+                      <p> {list.chefName} </p>
+
+                      {/* This needs to be changed for the library with rating stars */}
+                      <p> {list.rating} </p>
+                      <p> {list.restaurant} </p>
+                    </div>
+                  </div>
+                </Col>
+              </div>
+            ))}
+          </Row>
+        </div>
       </Container>
     );
   }
