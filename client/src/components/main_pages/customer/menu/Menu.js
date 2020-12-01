@@ -89,11 +89,11 @@ const Menu = () =>{
               </Col>
               <Col xs="4">
                 <div class="quantity">
-                  <button class="plus-btn quantity-btn" type="button" name="button" onClick={()=>{if(quantity<20) setQuantity(quantity+1)}}>
+                  <button className="plus-btn quantity-btn" type="button" name="button" onClick={()=>{if(quantity<20) setQuantity(quantity+1)}}>
                     <img src={Plus} alt="" />
                   </button>
                   <input type="text" name="name" value={quantity}/>
-                  <button class="minus-btn quantity-btn" type="button" name="button" onClick={()=>{if(quantity>1) setQuantity(quantity-1)}}>
+                  <button className="minus-btn quantity-btn" type="button" name="button" onClick={()=>{if(quantity>1) setQuantity(quantity-1)}}>
                     <img src={Minus} alt="" />
                   </button>
                 </div>

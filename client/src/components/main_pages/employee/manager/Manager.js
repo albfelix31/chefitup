@@ -61,7 +61,6 @@ export default class Manager extends React.Component {
     openModal = index => (e) => {
         e.preventDefault();
         this.setState({ isOpen: true, n: index })
-
     };
     closeModal = () => {
         this.setState({ isOpen: false })
@@ -70,9 +69,9 @@ export default class Manager extends React.Component {
 
 
     saveEmployee = () => {
-
+    
+    
     console.log(this.state.n)
-
     this.setState({ isOpen: false })
 
     }
@@ -90,7 +89,7 @@ export default class Manager extends React.Component {
 
       <Modal show={this.state.isOpen} onHide={this.closeModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Employee</Modal.Title>
+          <Modal.Title>{this.state.n == 'add' ? "Add Employee" : "Edit Employee"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Form>
@@ -172,7 +171,7 @@ export default class Manager extends React.Component {
           </Col>
           <Col>
             <div className="btn-container">
-              <Button className="btn-employee" variant="primary"><Image className="add-sign" src={Add}/>Add Employee</Button>
+              <Button className="btn-employee" onClick={this.openModal("add")} variant="primary"><Image className="add-sign" src={Add}/>Add Employee</Button>
               <Button className="btn-employee" variant="primary">
                 Total <Badge variant="light">5</Badge>
               </Button>

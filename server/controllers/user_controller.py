@@ -57,36 +57,7 @@ def login():
 
     return json.dumps({'authenticated': False, 'error': error})
 
-'''
-@bp.route('/register', methods=['GET', 'POST'])
-def register():
-    error = None
-    if request.method == 'POST':
-        req = request.json
-        username = req['username']
-        email = req['email']
-        password = req['password']
-        
 
-        user = user_model.UserModel()
-        userBalance = balance_model.BalanceModel()
-        userProfile = profile_model.ProfileModel()
-
-        if user.isExist("userName", username):
-            error = 'Username already taken'
-        elif user.isExist("email", email):
-            error = 'Email already used'
-        if error is None:
-            user.setUserName(username)
-            user.setEmail(email)
-            user.setPassword(password)
-            user.insertUser()
-            user.setUser(username)
-            userBalance.initBalance(user.getUserId(),'USD')
-            userProfile.initProfile(user.getUserId())
-            return json.dumps({'registered': True})
-
-    return json.dumps({'registered': False, 'error': error})
 
 
 @bp.route('/forgot_password', methods=['GET', 'POST'])
@@ -118,7 +89,36 @@ def forgot_password():
 
     return json.dumps({'userExist': False, 'error': 'User does not exist'})
 
+'''
+@bp.route('/register', methods=['GET', 'POST'])
+def register():
+    error = None
+    if request.method == 'POST':
+        req = request.json
+        username = req['username']
+        email = req['email']
+        password = req['password']
+        
 
+        user = user_model.UserModel()
+        userBalance = balance_model.BalanceModel()
+        userProfile = profile_model.ProfileModel()
+
+        if user.isExist("userName", username):
+            error = 'Username already taken'
+        elif user.isExist("email", email):
+            error = 'Email already used'
+        if error is None:
+            user.setUserName(username)
+            user.setEmail(email)
+            user.setPassword(password)
+            user.insertUser()
+            user.setUser(username)
+            userBalance.initBalance(user.getUserId(),'USD')
+            userProfile.initProfile(user.getUserId())
+            return json.dumps({'registered': True})
+
+    return json.dumps({'registered': False, 'error': error})
 @bp.route('/profile', methods=['GET', 'POST'])
 @token_required
 def profile():
