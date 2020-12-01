@@ -61,6 +61,20 @@
        
     }
     
+    #forgot-password{
+        display: block;
+        text-decoration: none;
+    }
+    
+    #forgot-password:visited{
+       
+        text-decoration: none;
+    }
+    
+    #forgot-password:link{
+       
+        text-decoration: none;
+    }
     
     
     
