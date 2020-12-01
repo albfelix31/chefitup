@@ -77,7 +77,7 @@ export default class EmployeeLogin extends React.Component {
                 } 
                 <Form>
                   <Form.Group controlId="formEmail">
-                    <Form.Label className="text-light">Email :</Form.Label>
+                    <Form.Label className="text-light">Username:</Form.Label>
                     <Form.Control type="email" placeholder="Enter Email" 
                       onChange={this.handleChange("email")}/>
                   </Form.Group>

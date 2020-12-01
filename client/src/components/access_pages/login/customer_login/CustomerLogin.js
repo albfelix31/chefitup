@@ -80,7 +80,7 @@ export default class CustomerLogin extends React.Component {
                 } 
                 <Form>
                   <Form.Group controlId="formUserName">
-                    <Form.Label className="text-light">Email:</Form.Label>
+                    <Form.Label className="text-light">Username:</Form.Label>
                     <Form.Control type="username" placeholder="Enter Email" 
                       onChange={this.handleChange("username")}/>
                   </Form.Group>
