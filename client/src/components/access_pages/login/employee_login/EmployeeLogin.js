@@ -7,12 +7,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Logo from '../../../assets/logo.png';
 import './EmployeeLogin.css'
-
+import api from '../../../API/api'
 export default class EmployeeLogin extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      email: "",
+      username: "",
       password: "",
       errors: [],
     };
@@ -24,34 +24,28 @@ export default class EmployeeLogin extends React.Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault(); 
-    const { email, password, errors } = this.state;
-    this.setState({ errors: [] });
-    if (email === "") {
-      this.setState(({errors}) => ({
-        errors: errors.concat("Please Enter an Email")
-      }));
+    e.preventDefault();
+    const { username, password } = this.state;
+    var newState = Object.assign({}, this.state);
+    newState.errors = [];
+    if (username === "") {
+      newState.errors.push("Please Enter an Username");
     }
     if (password === "") {
-      this.setState(({errors}) => ({
-        errors: errors.concat("Please Enter a Password")
-      }));
+      newState.errors.push("Please Enter a Password");
     }
-    if(errors.length === 0) {
+    if(newState.errors.length === 0) {
       // Insert Backend Here.
-      
-    }};
-
-
-    renderRedirect = () => {
-      if (this.state.redirect) {
-          window.location.href = this.state.pathname
-      }
-  }
-    signIn = () => {
-      this.setState({ redirect: true,pathname: '/DeliveryHome' })
-      this.renderRedirect();
+      const data = this.state
+      const API = new api();
+      API.logIn(data).then( error => {
+        this.setState(({errors}) => ({
+          errors: errors.concat(error)
+        }));
+      });
     }
+    this.setState(newState);
+  };
 
    
 
@@ -94,7 +88,7 @@ export default class EmployeeLogin extends React.Component {
                   </Form.Group>
                 </Form>
                 <Button className="btn-login" variant="primary" type="submit" size="lg" block
-                  onClick={this.handleSubmit,this.signIn}>
+                  onClick={this.handleSubmit}>
                   Sign in
                 </Button>
                 <br/>

@@ -7,14 +7,16 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Logo from '../../../assets/logo.png';
 import './CustomerLogin.css'
+import api from '../../../API/api'
 
 export default class CustomerLogin extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      email: "",
+      username: "",
       password: "",
-      errors: [],
+      type: "c" ,
+      errors: []
     };
   }
 
@@ -24,24 +26,28 @@ export default class CustomerLogin extends React.Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault(); 
-    const { email, password, errors } = this.state;
-    this.setState({ errors: [] });
-    if (email === "") {
-      this.setState(({errors}) => ({
-        errors: errors.concat("Please Enter an Email")
-      }));
+    e.preventDefault();
+    const { username, password } = this.state;
+    var newState = Object.assign({}, this.state);
+    newState.errors = [];
+    if (username === "") {
+      newState.errors.push("Please Enter an Username");
     }
     if (password === "") {
-      this.setState(({errors}) => ({
-        errors: errors.concat("Please Enter a Password")
-      }));
+      newState.errors.push("Please Enter a Password");
     }
-    if(errors.length === 0) {
+    if(newState.errors.length === 0) {
       // Insert Backend Here.
-      
-    }};
-
+      const data = this.state
+      const API = new api();
+      API.logIn(data).then( error => {
+        this.setState(({errors}) => ({
+          errors: errors.concat(error)
+        }));
+      });
+    }
+    this.setState(newState);
+  };
 
 
    
@@ -73,10 +79,10 @@ export default class CustomerLogin extends React.Component {
                 <div></div>
                 } 
                 <Form>
-                  <Form.Group controlId="formEmail">
-                    <Form.Label className="text-light">Customer Email Address:</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Email" 
-                      onChange={this.handleChange("email")}/>
+                  <Form.Group controlId="formUserName">
+                    <Form.Label className="text-light">Username:</Form.Label>
+                    <Form.Control type="username" placeholder="Enter Email" 
+                      onChange={this.handleChange("username")}/>
                   </Form.Group>
                   <Form.Group controlId="formPassword">
                     <Form.Label className="text-light">Password:</Form.Label>
@@ -85,7 +91,7 @@ export default class CustomerLogin extends React.Component {
                   </Form.Group>
                 </Form>
                 <Button className="btn-login" variant="primary" type="submit" size="lg" block
-                  onClick={this.handleSubmit,this.signIn}>
+                  onClick={this.handleSubmit}>
                   Sign in
                 </Button>
                 <br/>
