@@ -14,6 +14,7 @@ export default class EmployeeLogin extends React.Component {
     this.state = {
       username: "",
       password: "",
+      type: "e",
       errors: [],
     };
   }
@@ -78,8 +79,8 @@ export default class EmployeeLogin extends React.Component {
                 <Form>
                   <Form.Group controlId="formEmail">
                     <Form.Label className="text-light">Username:</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Email" 
-                      onChange={this.handleChange("email")}/>
+                    <Form.Control type="username" placeholder="Enter Email" 
+                      onChange={this.handleChange("username")}/>
                   </Form.Group>
                   <Form.Group controlId="formPassword">
                     <Form.Label className="text-light">Password:</Form.Label>

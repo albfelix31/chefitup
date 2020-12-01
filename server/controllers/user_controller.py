@@ -2,6 +2,7 @@ from hashlib import md5
 from io import SEEK_CUR
 
 from server.models import customer_profile_model
+from server.models import employee_profile_model
 from server.models import user_model
 
 from flask import (
@@ -33,21 +34,39 @@ def login():
         user = user_model.UserModel()
         user.setUser(username)
         app = current_app._get_current_object()    
-        customerProfile = customer_profile_model.CustomerProfileModel(user.getUserId())    
+        customerProfile = customer_profile_model.CustomerProfileModel(user.getUserId())
+        
+        
+        
         if user.getUserName() is None or user.getPassword() != md5(password.encode('utf-8')).hexdigest():
             error = 'Invalid username or password or not correct.'
 
-        if customerProfile.getApprove() == "0":
-            error = 'Account not approve yet!'
+     
+        if user.getUserName() is not None:
+            if req['type'] != user.getType():
+                if user.getType() == "c":
+                    error = "Not a customer account"
+                else:
+                    error = "Not a employee account"
 
-        if req['type'] == 'c':
-            path = '/Menu'
+        if user.getType() == 'e':
 
-        if req['type'] == 'e':
-            path = '/Menu'
+            employeeProfile = employee_profile_model.EmployeeProfileModel(user.getUserId())        
 
-        if req['type'] == 'm':
-            path = '/Manager'
+            if user.getType() == 'e':
+                if employeeProfile.getPosition() == "chef":
+                    path = '/chef'
+                if employeeProfile.getPosition() == "deliveryboy":
+                    path = '/DeliveryHome'
+                if employeeProfile.getPosition() == "manager":
+                    path = '/Manager' 
+                    
+        if req['type'] == "c":
+            if customerProfile.getApprove() == "0":
+                error = 'Account not approve yet!'
+            else:
+                path = '/Menu'    
+      
 
         if error is None:
             session.clear()
@@ -55,7 +74,7 @@ def login():
             session['username'] = user.getUserName()
             session['email'] = user.getEmail()
             token = jwt.encode({'userId': user.getUserId(), 'username': user.getUserName(), 'email': user.getEmail(), 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=50)}, app.config['SECRET_KEY'])
-            return json.dumps({'authenticated': True, 'token': token.decode('UTF-8'),'path': path})
+            return json.dumps({'authenticated': True, 'token': token.decode('UTF-8'),'path': path, 'type': user.getType()})
 
         flash(error)
 
@@ -118,7 +137,7 @@ def register():
             user.setType(req['type'])
             user.insertUser()
             user.setUser(username)
-            customerProfile.initProfile(user.getUserId(),req['name'])
+            customerProfile.initProfile(user.getUserId(),req['name'],req['deposit'])
             return json.dumps({'registered': True})
 
     return json.dumps({'registered': False, 'error': error})

@@ -24,3 +24,18 @@ CREATE TABLE CustomerProfile(
     userId INT NOT NULL,
     FOREIGN KEY (userId) REFERENCES User(userId)
 );
+
+CREATE TABLE EmployeeProfile(
+    profileId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    employeeId VARCHAR(255) NOT NULL,
+    joiningDate VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    position VARCHAR(255) NOT NULL,
+    salary VARCHAR(255) NOT NULL,
+    userId INT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES User(userId)
+);
+
+

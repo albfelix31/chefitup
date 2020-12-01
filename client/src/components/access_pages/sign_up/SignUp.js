@@ -15,6 +15,7 @@ export default class SignUp extends React.Component {
             confirmedPassword: "",
             username: "",
             password: "",
+            deposit: "",
             type: "c",
             errors: [],
         };
@@ -27,7 +28,7 @@ export default class SignUp extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, email, password, confirmedPassword, userName, errors } = this.state;
+        const { name, email, password, deposit, confirmedPassword, userName, errors } = this.state;
         this.setState({ errors: [] });
 
         if (name === "") {
@@ -105,6 +106,11 @@ export default class SignUp extends React.Component {
                                     onChange={this.handleChange("email")} />
                             </Form.Group>
 
+                            <Form.Group controlId="formDeposit">
+                                <Form.Label className="text-light">Deposit</Form.Label>
+                                <Form.Control type="text" placeholder="Deposit"
+                                    onChange={this.handleChange("deposit")} />
+                            </Form.Group>
 
                             <Form.Group controlId="formUsername">
                                 <Form.Label className="text-light">Username:</Form.Label>
@@ -123,6 +129,8 @@ export default class SignUp extends React.Component {
                                 <Form.Control type="password" placeholder="Retype password"
                                     onChange={this.handleChange("confirmedPassword")} />
                             </Form.Group>
+
+                          
                         </Form>
                         <Button className="btn-login" variant="primary" type="submit" size="lg" block
                             onClick={this.handleSubmit}>
