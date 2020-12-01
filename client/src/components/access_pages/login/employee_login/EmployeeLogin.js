@@ -93,8 +93,8 @@ export default class EmployeeLogin extends React.Component {
                 </Button>
                 <br/>
              
-                <Link to="ForgotPassword" className="text-primary">Forgot Your Password?</Link>
-                <Link to="SignUp" className="text-primary">SignUp</Link>
+                <Link to="ForgotPassword" id="forgot-password" className="text-primary">Forgot Your Password?</Link>
+                <Link to="SignUp" id="sign-up" className="text-primary">Sign Up</Link>
               </div>
               </div>
         </Container>

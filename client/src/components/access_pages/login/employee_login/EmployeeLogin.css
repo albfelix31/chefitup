@@ -58,8 +58,20 @@ margin: 3% auto;
     margin: 2vh auto;
    
 }
+#forgot-password{
+    display: block;
+    text-decoration: none;
+}
 
+#forgot-password:visited{
+   
+    text-decoration: none;
+}
 
+#forgot-password:link{
+   
+    text-decoration: none;
+}
 
 
 @media (max-width: 1024px){
