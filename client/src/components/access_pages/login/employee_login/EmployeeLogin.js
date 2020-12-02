@@ -14,7 +14,7 @@ export default class EmployeeLogin extends React.Component {
     this.state = {
       username: "",
       password: "",
-      type: "e",
+      type: ['e','m'],
       errors: [],
     };
   }

@@ -43,7 +43,7 @@ def login():
 
      
         if user.getUserName() is not None:
-            if req['type'] != user.getType():
+            if user.getType() not in req['type']:
                 if user.getType() == "c":
                     error = "Not a customer account"
                 else:
@@ -59,8 +59,8 @@ def login():
                     path = '/chef'
                 if employeeProfile.getPosition() == "deliveryboy":
                     path = '/DeliveryHome'
-                if employeeProfile.getPosition() == "manager":
-                    path = '/Manager' 
+        if user.getType() == 'm':
+                    path = '/Manager'        
                     
         if req['type'] == "c":
             if customerProfile.getApprove() == "0":

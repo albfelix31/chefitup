@@ -14,8 +14,8 @@
  width: 100%;   
 }
 .modal-content{
-
-    width: 140%;
+    margin-left: -250px;
+    width: 200%;
 }
 .profile-img {
     height: 200px;

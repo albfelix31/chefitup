@@ -10,7 +10,7 @@ CREATE TABLE User(
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     type  VARCHAR(255) NOT NULL,
-    registrationDate DATETIME NOT NULL
+    registrationDate VARCHAR(255)NOT NULL
 );
 
 CREATE TABLE CustomerProfile(
@@ -21,6 +21,7 @@ CREATE TABLE CustomerProfile(
     balance VARCHAR(255) NOT NULL,
     subscribe BOOLEAN DEFAULT 0,
     approve VARCHAR(255) NOT NULL,
+    vip VARCHAR(255) NOT NULL,
     userId INT NOT NULL,
     FOREIGN KEY (userId) REFERENCES User(userId)
 );
@@ -56,3 +57,6 @@ Create Table Rating(
     FOREIGN KEY (userID) REFERENCES User(userID),
     FOREIGN KEY (dishId) REFERENCES Menu(dishId)
 );
+
+
+INSERT INTO User(userName,password,email,type,registrationDate) VALUES ('eddie',MD5('123'),'eddie@gmail.com','m',NOW())

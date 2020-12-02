@@ -15,7 +15,7 @@ class UserModel:
         self.password = None
         self.email = None
         self.type = None
-
+        self.registrationDate = None
         if userId is not None:
             self.dataCur.execute('SELECT * FROM User WHERE userId = ' + "'" + str(userId) + "'" )
             results = self.dataCur.fetchone()
@@ -25,6 +25,7 @@ class UserModel:
                 self.password = results['password']
                 self.email = results['email']
                 self.type = results['type']
+                self.registrationDate = results['registrationDate']
 
     def setType(self,type):
         self.type = type
@@ -56,6 +57,9 @@ class UserModel:
     def insertUser(self):
         self.dataCur.execute('INSERT INTO User(userName,password,email,type,registrationDate) VALUES (' +  "'" + self.username + "'," +  "'" + self.password + "'," +  "'" + self.email + "'," + "'" + self.type + "'," ' NOW() )')
         self.database.commit()
+
+    def getRegistrationDate(self):
+        return self.registrationDate
     
     def setUser(self,username):
         self.userId = None
@@ -90,3 +94,6 @@ class UserModel:
         letters = string.ascii_lowercase
         result_str = ''.join(random.sample(letters, length))
         return str(result_str)
+
+
+

@@ -90,5 +90,40 @@ async removeDish(data){
     }
   }
 
+async getNotApprove(){
+    const response = await fetch('/customerprofile/checkApprove', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['customers']
+  }
+
+  async approveCustomer(data){
+    const response = await fetch('/customerprofile/approve', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    window.location.href = '/MyCustomers';
+    
+  }
+
+  async getCustomer(){
+    const response = await fetch('/customerprofile/getCustomer', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['customers']
+  }
+  
 }
 

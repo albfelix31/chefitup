@@ -19,6 +19,8 @@ import Add from "../../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
 import { Fade } from 'react-bootstrap';
+import api from '../../../../API/api'
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     className="threedots-a"
@@ -36,22 +38,47 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 export default class MyCustomers extends React.Component {
       componentDidMount() {
-        // Insert Backend Call For Textbooks When Nothing is on Search
+      
+          const API = new api();
+          let listCustomer = []
+          API.getNotApprove().then ( customers => {
+            for(let i = 0; i < customers.length; i++){
+              listCustomer.push({
+              profileId: customers[i]['profileId'],
+              userId: customers[i]['userId'],
+              name: customers[i]['name'],
+              userName: customers[i]['userName'],
+              deposit: customers[i]['balance'],
+              email: customers[i]['email'],
+    
+            })
+
+            this.setState({
+              applyingCustomers: listCustomer
+            })
+          }
+          })
+
+          API.getCustomer().then ( customers => {
+            for(let i = 0; i < customers.length; i++){
+              listCustomer.push({
+              profileId: customers[i]['profileId'],
+              userId: customers[i]['userId'],
+              name: customers[i]['name'],
+              compliments: 0,
+              complaints: 0,
+              image: Profile,
+    
+            })
+
+            this.setState({
+              customers: listCustomer
+            })
+          }
+          })
 
     this.setState({
-        customers: [
-          {name: "Yes Sir",compliments: 1, complaints: 2, image: Profile},
-          {name: "No sir",compliments: 5, complaints: 0, image: Profile},
-          {name: "Joane Tho",compliments: 2, complaints: 5, image: Profile},
-          {name: "Kha Zhix",compliments: 10, complaints: 3, image: Profile},
-          {name: "Rengar Blizt",compliments: 2, complaints: 2, image: Profile},
-        ],
-
-        applyingCustomers: [
-          {name: "Good", userName: "Customer003", deposit:200, email:"Cgood003@gmail.com"},
-          {name: "Bad", userName: "Bad003", deposit:100, email:"BadC@gmail.com"},
-         
-        ],
+        
 
         vipCustomers: [
           {name: "VIP",lastName: "Important", userName: "VIP001", email:"VIPImportnat@gmail.com"},
@@ -92,8 +119,14 @@ export default class MyCustomers extends React.Component {
     this.setState({ isOpenVIP: true, n: index })
 };
 
-    addEmployee = index => (e) => {
+    acceptCustomer = index => (e) => {
+      const data = {"approve": 1, "profileId": this.state.applyingCustomers[index]["profileId"]}
+      const API = new api();
+      API.approveCustomer(data).then(status => {
+
+      })
       e.preventDefault();
+      console.log(index)
       this.setState({ isOpenAddCustomer: true, n: index })
   };
     closeModal = () => {
@@ -110,9 +143,13 @@ export default class MyCustomers extends React.Component {
 
     }
 
-    deleteEmployee = index => (e) => {
+    declineCustomer = index => (e) => {
     e.preventDefault(); 
+    const data = {"userId": this.state.applyingCustomers[index]["userId"], "approve": 0, "profileId": this.state.applyingCustomers[index]["profileId"]}
+    const API = new api();
+    API.approveCustomer(data).then(status => {
 
+    })  
     console.log(index)
 
     }
@@ -150,17 +187,6 @@ export default class MyCustomers extends React.Component {
                 <Col>
                   <Form.Label>Email</Form.Label>
                   <Form.Control placeholder="Email" />
-                </Col>
-              </Form.Row>
-
-              <Form.Row>
-                <Col>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control placeholder="Password" />
-                </Col>
-                <Col>
-                  <Form.Label>Confirm password</Form.Label>
-                  <Form.Control placeholder="Confirm password" />
                 </Col>
               </Form.Row>
               <Form.Row>
@@ -233,10 +259,10 @@ export default class MyCustomers extends React.Component {
       <td>{list.userName}</td>
       <td>{list.deposit}</td>
       <td>{list.email}</td>
-      <td><Button variant="primary" >
+      <td><Button onClick={this.acceptCustomer(index)} variant="primary" >
     Accept
   </Button></td>
-  <td><Button variant="primary">
+  <td><Button onClick={this.declineCustomer(index)} variant="primary">
     Decline
   </Button></td>
     </tr>
@@ -249,9 +275,7 @@ export default class MyCustomers extends React.Component {
 
 </Modal.Body>
 <Modal.Footer>
-  <Button variant="primary" onClick={this.saveEmployee}>
-    Save
-  </Button>
+
   <Button variant="primary" onClick={this.closeModal}>
     Close
   </Button>
@@ -289,7 +313,7 @@ export default class MyCustomers extends React.Component {
       <td>{list.name}</td>
       <td>{list.lastName}</td>
       <td>{list.userName}</td>
-      <td>{list.deposit}</td>
+      <td>{"$" + list.deposit}</td>
       <td>{list.email}</td>
     </tr>
   ))}
@@ -367,7 +391,7 @@ export default class MyCustomers extends React.Component {
                   <Dropdown.Menu size="sm" title="">
                   <Dropdown.Header>Options</Dropdown.Header>
                   <Dropdown.Item onClick={this.openModal(index)}>Edit</Dropdown.Item>
-                  <Dropdown.Item onClick={this.deleteEmployee(index)}>Delete</Dropdown.Item>
+                  <Dropdown.Item onClick={this.declineCustomer(index)}>Delete</Dropdown.Item>
                   </Dropdown.Menu>
               </Dropdown>  
               <Card.Img className="profile-img" src={list.image} />

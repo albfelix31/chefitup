@@ -12,7 +12,7 @@ class CustomerProfileModel:
         self.balance = None
         self.subscribe = None
         self.approve = None
-
+        self.profileId = None
         if userId is not None:
             self.dataCur.execute('SELECT * FROM CustomerProfile WHERE userId = ' + "'" + str(userId) + "'" )
             results = self.dataCur.fetchone()
@@ -23,12 +23,15 @@ class CustomerProfileModel:
                 self.balance = results['balance']
                 self.subscribe = results['subscribe']
                 self.approve = results['approve']
-
+                self.profileId = results['profileId']
     def setName(self,name):
         self.name = name
 
     def getName(self):
         return self.name
+
+    def setProfileId(self,profileId):
+        self.profileId = profileId
 
     def setAddress(self,address):
         self.address = address
@@ -61,9 +64,24 @@ class CustomerProfileModel:
         return self.approve
 
     def updateField(self,field,attribute):
-        self.dataCur.execute('UPDATE CustomerProfile Set ' + field + ' = ' + "'" + attribute + "'" + "WHERE userId = " + "'" + str(self.userId) + "'")
+        self.dataCur.execute('UPDATE CustomerProfile Set ' + field + ' = ' + "'" + attribute + "'" + "WHERE profileId = " + "'" + str(self.profileId) + "'")
         self.database.commit()
     
     def initProfile(self,userId,name,deposit):
         self.dataCur.execute('INSERT INTO CustomerProfile(name,address,payment,balance,subscribe,approve,userId) VALUES (' +  "'" + str(name) + "'," + "'' , '', " +  "'" + str(deposit) + "'," +  " '0', '0'," +  "'" + str(userId) + "'" + ')')
         self.database.commit()
+
+    def getNotApprove(self):
+        self.dataCur.execute('SELECT * FROM CustomerProfile WHERE approve = "0"')
+        results = self.dataCur.fetchall()
+        return results
+
+    def removeCustomer(self,profileId,userId):
+        self.dataCur.execute('DELETE FROM CustomerProfile WHERE profileId = ' + "'" + str(profileId) + "'")
+        self.dataCur.execute('DELETE FROM User WHERE userId = ' + "'" + str(userId) + "'")
+        self.database.commit()
+
+    def getCustomer(self):
+        self.dataCur.execute('SELECT * FROM CustomerProfile WHERE approve = "1"')
+        results = self.dataCur.fetchall()
+        return results
