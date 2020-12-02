@@ -1,8 +1,7 @@
-from flask import app
 from server import db
-from hashlib import md5
 
-# User table from the database
+
+# Customer table from the database
 class CustomerProfileModel:
     def __init__(self,userId = None):
         self.database = db.connection

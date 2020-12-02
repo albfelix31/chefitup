@@ -18,6 +18,7 @@ import DishPic from "./dish.jpg"
 import Add from "../../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
+import api from '../../../../API/api'
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -42,31 +43,50 @@ export default class Chef extends React.Component {
 
     componentDidMount() {
         // Insert Backend Call For Textbooks When Nothing is on Search
+      const API = new api();
+      let listDishes = []
+      API.getMenu().then ( dishes => {
+        for(let i = 0; i < dishes.length; i++){
+        listDishes.push({
+          dishName: dishes[i]['dishName'],
+          description: dishes[i]['description'],
+          ingredients: dishes[i]['ingredients'],
+          keywords: dishes[i]['keywords'],
+          image: DishPic
 
-    this.setState({
-        dishes: [
-          {name: "Dish name 1", rating: "rating 1", image: DishPic},
-          {name: "Dish name 2", rating: "rating 2", image: DishPic},
-          {name: "Dish name 7", rating: "rating 7", image: DishPic},
-          {name: "Dish name 8", rating: "rating 8", image: DishPic},
-          {name: "Dish name 9", rating: "rating 9", image: DishPic},
-        ]
-      });
+        })
+    
+        this.setState({
+          dishes: listDishes
+        })
+      }
+      })
       }
     
       constructor(props) {
         super(props);
         this.state = {
+          dishName: "",
+          description: "",
+          ingredients: "",
+          keywords: "",
           search: "",
           dishes: [],
           isOpen: false,
-          n: null
+          n: null,
+          errors: [],
         };
       }
  
     openModal = index => (e) => {
         e.preventDefault();
         this.setState({ isOpen: true, n: index })
+        this.setState({
+          dishName: this.state.dishes[index]['dishName'],
+          description:  this.state.dishes[index]['description'],
+          ingredients:  this.state.dishes[index]['ingredients'],
+          keywords:  this.state.dishes[index]['keywords'],
+        })
     
     };
     closeModal = () => {
@@ -75,12 +95,45 @@ export default class Chef extends React.Component {
     };
     
 
-  saveDish = () => {
+  handleChange = (input) => (e) => {
+      this.setState({ [input]: e.target.value });
+    };
+
+  saveDish = (e) => {
     
     console.log(this.state.n)
+    e.preventDefault();
+    const { dishName, description, ingredients, keywords } = this.state;
+    var newState = Object.assign({}, this.state);
+    newState.errors = [];
+    if (dishName === ""){
+      newState.errors.push("Please Enter the dish name for the dish.");
+    }
+    if (description === ""){
+      newState.errors.push("Please Enter the description for the dish.");
+    }
+    if (ingredients === ""){
+      newState.errors.push("Please Enter the ingredients for the dish.");
+    }
+    if (keywords === ""){
+      newState.errors.push("Please Enter the keywords for the dish.");
+    }
+    if (newState.errors.length === 0){
+      // Add textbook to database for listing, also make it show up on currently listed for the user.
+      const data = this.state;
+      const API = new api();
+      if(this.state.n == "add"){
+        API.addDish(data).then( error => {
+          this.setState(({errors}) => ({
+            errors: errors.concat(error)
+          }));
+        })
+      }else{
 
-    this.setState({ isOpen: false })
-
+      }
+      this.setState({ isOpen: false })
+    }
+    this.setState(newState)
   }
 
   deleteDish = index => (e) => {
@@ -96,28 +149,35 @@ export default class Chef extends React.Component {
 
         <Modal show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit Dish</Modal.Title>
+            <Modal.Title>{this.state.n == 'add' ? "Add Dish" : "Edit Dish"}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          <ul data-testid="errors">
+                    { this.state.errors.length > 0 &&
+                      this.state.errors.map((error,index) => {
+                        return <li key={index} className="text-warning"> {error} </li>
+                    })
+                    }
+                  </ul>
               <Form>
                 <Form.Group controlId="formDisnName">
                     <Form.Label>Disn Name</Form.Label>
-                    <Form.Control placeholder="Disn Name" />
+                    <Form.Control onChange={this.handleChange("dishName")} value={this.state.dishName} placeholder="Disn Name" />
                 </Form.Group>
 
                 <Form.Group controlId="formDishDescription">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Control onChange={this.handleChange("description")} value={this.state.description} as="textarea" rows={3} />
                 </Form.Group>
 
                 <Form.Group controlId="formDishIngredients">
                     <Form.Label>Ingredients</Form.Label>
-                    <Form.Control placeholder="Disn Name" />
+                    <Form.Control onChange={this.handleChange("ingredients")} value={this.state.ingredients} placeholder="ingredients" />
                 </Form.Group>
 
                 <Form.Group controlId="formDishKeyWords">
                     <Form.Label>Key Words</Form.Label>
-                    <Form.Control placeholder="Disn Name" />
+                    <Form.Control onChange={this.handleChange("keywords")} value={this.state.keywords} placeholder="keywords" />
                 </Form.Group>
 
               </Form>
@@ -136,7 +196,7 @@ export default class Chef extends React.Component {
                 <h1>My Dishes</h1>  
             </Col>
             <Col>
-                <Button className="btn-dish" variant="primary"><Image className="add-sign" src={Add}/>Add Dish</Button>
+                <Button className="btn-dish" onClick={this.openModal("add")} variant="primary"><Image className="add-sign" src={Add}/>Add Dish</Button>
             </Col>
         </Row>
         <Form>
@@ -182,7 +242,7 @@ export default class Chef extends React.Component {
                   <ListGroup className="list-group-flush">
                     <ListGroupItem>
                       <Card.Title>
-                        {list.name}
+                        {list.dishName}
                       </Card.Title>
                       <Card.Text>
                         {list.rating}

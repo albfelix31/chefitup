@@ -38,4 +38,19 @@ CREATE TABLE EmployeeProfile(
     FOREIGN KEY (userId) REFERENCES User(userId)
 );
 
+CREATE TABLE Menu(
+    dishId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    dishName VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    ingredients VARCHAR(255) NOT NULL,
+    keywords VARCHAR(255) NOT NULL,
+    profileId INT NOT NULL,
+    FOREIGN KEY (profileId) REFERENCES EmployeeProfile(profileId)
+);
 
+Create Table Rating(
+    ratingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    rating VARCHAR(255) NOT NULL,
+    dishId INT NOT NULL,
+    FOREIGN KEY (dishId) REFERENCES Menu(dishId)
+);

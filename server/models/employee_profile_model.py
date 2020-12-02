@@ -1,7 +1,7 @@
 from server import db
-from hashlib import md5
 
-# User table from the database
+
+# Employee profile table from the database
 class EmployeeProfileModel:
     def __init__(self,userId = None):
         self.database = db.connection
@@ -13,6 +13,7 @@ class EmployeeProfileModel:
         self.position = None
         self.salary = None
         self.userId = userId
+        self.profileId = None
 
         if userId is not None:
             self.dataCur.execute('SELECT * FROM EmployeeProfile WHERE userId = ' + "'" + str(userId) + "'" )
@@ -24,7 +25,8 @@ class EmployeeProfileModel:
                 self.employeeId = results['employeeId']
                 self.position = results['position']
                 self.salary = results['salary']
-                
+                self.profileId = results['profileId']
+    
 
     def setFirstName(self,firstName):
         self.firstName = firstName
@@ -44,7 +46,9 @@ class EmployeeProfileModel:
     def setSalary(self,salary):
         self.salary = salary
 
-
+    def getProfileId(self):
+        return self.profileId
+        
     def getFirstName(self):
         return self.firstName
 

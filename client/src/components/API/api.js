@@ -35,5 +35,44 @@ export default class API {
     }
   }
 
+  async addDish(data){
+    const response = await fetch('/Menu/add', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+        body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    if (response_1['Added']) {
+      window.location.href = '/chef';
+    } else {
+      return response_1['error'];
+    }
+  }
+
+async updateDish(data){
+    const response = await fetch('/Menu/update', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const response_1 = await response.json();
+    return response_1['error'];
+  }
+
+async getMenu(){
+    const response = await fetch('/Menu/getMenu', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['dishes']
+  }
+
 }
 

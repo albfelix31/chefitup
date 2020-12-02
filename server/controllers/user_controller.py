@@ -15,7 +15,7 @@ from flask_mail import Mail
 import json
 import jwt
 import datetime
-from server.controllers.token import token_required
+
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -35,7 +35,7 @@ def login():
         user.setUser(username)
         app = current_app._get_current_object()    
         customerProfile = customer_profile_model.CustomerProfileModel(user.getUserId())
-        
+        session.clear()
         
         
         if user.getUserName() is None or user.getPassword() != md5(password.encode('utf-8')).hexdigest():
@@ -52,9 +52,10 @@ def login():
         if user.getType() == 'e':
 
             employeeProfile = employee_profile_model.EmployeeProfileModel(user.getUserId())        
-
+            
             if user.getType() == 'e':
                 if employeeProfile.getPosition() == "chef":
+                    session['profileId'] = employeeProfile.getProfileId()
                     path = '/chef'
                 if employeeProfile.getPosition() == "deliveryboy":
                     path = '/DeliveryHome'
@@ -69,10 +70,10 @@ def login():
       
 
         if error is None:
-            session.clear()
             session['userId'] = user.getUserId()
             session['username'] = user.getUserName()
             session['email'] = user.getEmail()
+            
             token = jwt.encode({'userId': user.getUserId(), 'username': user.getUserName(), 'email': user.getEmail(), 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=50)}, app.config['SECRET_KEY'])
             return json.dumps({'authenticated': True, 'token': token.decode('UTF-8'),'path': path, 'type': user.getType()})
 
@@ -142,7 +143,6 @@ def register():
 
     return json.dumps({'registered': False, 'error': error})
 @bp.route('/profile', methods=['GET', 'POST'])
-@token_required
 def profile():
     user = user_model.UserModel()
     return None
