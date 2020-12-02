@@ -249,8 +249,8 @@ export default class MyCustomers extends React.Component {
                     </Card.Text>
                     <Card.Text>
                     
-                    <Button className="view-compliments" variant="primary">
-               View Complaints   <Badge variant="light">{list.complaints}</Badge>
+                    <Button className="view-compliments"  variant="primary">
+               View Complaints   <Badge id="complaints" variant="light">{list.complaints}</Badge>
               </Button>
                     </Card.Text>
                     </div>
