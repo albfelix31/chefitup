@@ -48,8 +48,8 @@ export default class MyCustomers extends React.Component {
         ],
 
         applyingCustomers: [
-          {name: "Good",lastName: "Customer", userName: "Customer003", deposit:200, email:"Cgood003@gmail.com"},
-          {name: "Bad",lastName: "Customer", userName: "Bad003", deposit:100, email:"BadC@gmail.com"},
+          {name: "Good", userName: "Customer003", deposit:200, email:"Cgood003@gmail.com"},
+          {name: "Bad", userName: "Bad003", deposit:100, email:"BadC@gmail.com"},
          
         ],
 
@@ -128,7 +128,7 @@ export default class MyCustomers extends React.Component {
 
 
         <Modal.Header closeButton>
-          <Modal.Title>{this.state.n == 'add' ? "Add Employee" : "Edit Employee"}</Modal.Title>
+          <Modal.Title>Edit Customer</Modal.Title>
         </Modal.Header>
 
 
@@ -137,12 +137,8 @@ export default class MyCustomers extends React.Component {
              
              <Form.Row>
                 <Col>
-                  <Form.Label>First name</Form.Label>
+                  <Form.Label>Name</Form.Label>
                   <Form.Control placeholder="First name" />
-                </Col>
-                <Col>
-                  <Form.Label>Last name</Form.Label>
-                  <Form.Control placeholder="Last name" />
                 </Col>
               </Form.Row>
 
@@ -169,8 +165,8 @@ export default class MyCustomers extends React.Component {
               </Form.Row>
               <Form.Row>
                 <Col>
-                  <Form.Label>Employee ID</Form.Label>
-                  <Form.Control placeholder="Employee ID" />
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control placeholder="Address" />
                 </Col>
                 <Col>
                   <Form.Label>Joining date</Form.Label>
@@ -180,18 +176,18 @@ export default class MyCustomers extends React.Component {
 
               <Form.Row>
                 <Col>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control placeholder="Phone" />
+                  <Form.Label>Payment</Form.Label>
+                  <Form.Control placeholder="Payment" />
                 </Col>
                 <Col>
-                  <Form.Label>Position</Form.Label>
-                  <Form.Control placeholder="Position" />
+                  <Form.Label>Balance</Form.Label>
+                  <Form.Control placeholder="balace" />
                 </Col>
               </Form.Row>
               <Form.Row>
                 <Col>
-                  <Form.Label>Salary</Form.Label>
-                  <Form.Control placeholder="Salary" />
+                  <Form.Label>Subscribe</Form.Label>
+                  <Form.Control placeholder="Subscribe" />
                 </Col>
               </Form.Row>  
            
@@ -223,8 +219,7 @@ export default class MyCustomers extends React.Component {
       <Table responsive  striped bordered hover>
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th>Name</th>
       <th>Username</th>
       <th>Deposit</th>
       <th>Email</th>
@@ -235,7 +230,6 @@ export default class MyCustomers extends React.Component {
           this.state.applyingCustomers.map((list, index) => (
     <tr>
       <td>{list.name}</td>
-      <td>{list.lastName}</td>
       <td>{list.userName}</td>
       <td>{list.deposit}</td>
       <td>{list.email}</td>
