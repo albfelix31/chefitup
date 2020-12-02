@@ -1,0 +1,15 @@
+#search-input{
+
+    width: 50% !important;
+}
+
+.total-btn{
+
+    margin-right: auto;
+    width: 20%;
+}
+
+.list{
+    margin-top: 20px;
+    border: 1px solid black;
+}

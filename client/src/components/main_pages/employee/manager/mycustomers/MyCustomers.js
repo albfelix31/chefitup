@@ -1,7 +1,7 @@
 import React from 'react';
-import './Manager.css'
+import './MyCustomers.css'
 import ReactDOM from "react-dom";
-
+import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,10 +14,11 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
-import Profile from "./profile.png"
-import Add from "./../img/add.png"
+import Profile from "../profile.png"
+import Add from "../../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
+import { Fade } from 'react-bootstrap';
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     className="threedots-a"
@@ -33,18 +34,31 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   </a>
 ));
 
-export default class Manager extends React.Component {
+export default class MyCustomers extends React.Component {
       componentDidMount() {
         // Insert Backend Call For Textbooks When Nothing is on Search
 
     this.setState({
-        employee: [
-          {name: "Eddie Ozuna", position: "Manager", image: Profile},
-          {name: "Cristian Cuevas", position: "Driver", image: Profile},
-          {name: "Albert Felix", position: "Chef", image: Profile},
-          {name: "Nahin Imtiaz", position: "Chef", image: Profile},
-          {name: "Palomo Dime", position: "Driver", image: Profile},
+        customers: [
+          {name: "Yes Sir",compliments: 1, complaints: 2, image: Profile},
+          {name: "No sir",compliments: 5, complaints: 0, image: Profile},
+          {name: "Joane Tho",compliments: 2, complaints: 5, image: Profile},
+          {name: "Kha Zhix",compliments: 10, complaints: 3, image: Profile},
+          {name: "Rengar Blizt",compliments: 2, complaints: 2, image: Profile},
+        ],
+
+        applyingCustomers: [
+          {name: "Good",lastName: "Customer", userName: "Customer003", deposit:200, email:"Cgood003@gmail.com"},
+          {name: "Bad",lastName: "Customer", userName: "Bad003", deposit:100, email:"BadC@gmail.com"},
+         
+        ],
+
+        vipCustomers: [
+          {name: "VIP",lastName: "Important", userName: "VIP001", email:"VIPImportnat@gmail.com"},
+          {name: "Not",lastName: "Important", userName: "Not02",  email:"NotVip@gmail.com"},
+         
         ]
+
       });
       }
 
@@ -52,8 +66,12 @@ export default class Manager extends React.Component {
         super(props);
         this.state = {
           search: "",
-          employee: [],
+          customers: [],
+          applyingCustomers:[],
+          vipCustomers:[],
           isOpen: false,
+          isOpenAddCustomer:false,
+          isOpenVIP:false,
           n: null
         };
       }
@@ -62,16 +80,32 @@ export default class Manager extends React.Component {
         e.preventDefault();
         this.setState({ isOpen: true, n: index })
     };
+
+    
+    openModalCustomer = index => (e) => {
+      e.preventDefault();
+      this.setState({ isOpenAddCustomer: true, n: index })
+  };
+
+  openModalVIPRegular = index => (e) => {
+    e.preventDefault();
+    this.setState({ isOpenVIP: true, n: index })
+};
+
+    addEmployee = index => (e) => {
+      e.preventDefault();
+      this.setState({ isOpenAddCustomer: true, n: index })
+  };
     closeModal = () => {
-        this.setState({ isOpen: false })
+        this.setState({ isOpen: false, isOpenAddCustomer: false, isOpenVIP:false })
 
     };
 
 
     saveEmployee = () => {
     
-    
-    console.log(this.state.n)
+
+      //Send information to api
     this.setState({ isOpen: false })
 
     }
@@ -90,6 +124,7 @@ export default class Manager extends React.Component {
 
     {/*Modal for details */}
       <Modal show={this.state.isOpen} onHide={this.closeModal}>
+
 
 
         <Modal.Header closeButton>
@@ -173,28 +208,145 @@ export default class Manager extends React.Component {
       </Modal>
       
       
+{/* Modal to add employees */}
+<Modal show={this.state.isOpenAddCustomer} onHide={this.closeModal}>
+<Modal.Header closeButton>
+  <Modal.Title>Add Customer</Modal.Title>
+</Modal.Header>
+
+
+<Modal.Body>
+{/* 
+  For every customer, make a new form and list group */}
+
+<div className="list">
+      <Table responsive  striped bordered hover>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Deposit</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+      { 
+          this.state.applyingCustomers.map((list, index) => (
+    <tr>
+      <td>{list.name}</td>
+      <td>{list.lastName}</td>
+      <td>{list.userName}</td>
+      <td>{list.deposit}</td>
+      <td>{list.email}</td>
+      <td><Button variant="primary" >
+    Accept
+  </Button></td>
+  <td><Button variant="primary">
+    Decline
+  </Button></td>
+    </tr>
+  ))}
+  </tbody>
+</Table>
+
+</div>
+
+
+</Modal.Body>
+<Modal.Footer>
+  <Button variant="primary" onClick={this.saveEmployee}>
+    Save
+  </Button>
+  <Button variant="primary" onClick={this.closeModal}>
+    Close
+  </Button>
+</Modal.Footer>
+</Modal>
       
+
+
       
+{/* Modal to see regular/VIP customers   */}
+<Modal show={this.state.isOpenVIP} onHide={this.closeModal}>
+<Modal.Header closeButton>
+  <Modal.Title> {this.state.n == 'vip' ? "⭐ VIP Customer" : "Regular Customers"}</Modal.Title>
+</Modal.Header>
+
+<Modal.Body>
+{/* 
+  For every customer, make a new form and list group */}
+
+<div className="list">
+      <Table responsive  striped bordered hover>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Deposit</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+      { 
+          this.state.vipCustomers.map((list, index) => (
+    <tr>
+      <td>{list.name}</td>
+      <td>{list.lastName}</td>
+      <td>{list.userName}</td>
+      <td>{list.deposit}</td>
+      <td>{list.email}</td>
+    </tr>
+  ))}
+  </tbody>
+</Table>
+
+</div>
+
+</Modal.Body>
+<Modal.Footer>
+  <Button variant="primary" onClick={this.saveEmployee}>
+    Save
+  </Button>
+  <Button variant="primary" onClick={this.closeModal}>
+    Close
+  </Button>
+</Modal.Footer>
+</Modal>
+      
+
+
+
+
       <Row className="row-top">
           <Col>
-              <h1>My Employees</h1>  
+              <h1>My Customers</h1>  
           </Col>
           <Col>
             <div className="btn-container">
-              <Button className="btn-employee" onClick={this.openModal("add")} variant="primary"><Image className="add-sign" src={Add}/>Add Employee</Button>
+              <Button className="btn-employee" onClick={this.openModalCustomer()} variant="success"><Image className="add-sign" src={Add}/>Add Customers</Button>
+             <Button className="btn-employee" onClick={this.openModalVIPRegular("vip")}  variant="primary">
+             ⭐ VIP <Badge variant="light">2</Badge>
+              </Button>
+             
+              <Button onClick={this.openModalVIPRegular()} className="btn-employee" variant="primary">
+                Regular <Badge variant="light">2</Badge>
+              </Button>
               <Button className="btn-employee" variant="primary">
                 Total <Badge variant="light">5</Badge>
               </Button>
+              
               </div>
           </Col>
       </Row>
       <Form>
           <Form.Row>
               <Col>
-              <Form.Control placeholder="Employee ID" />
+              <Form.Control placeholder="Customer ID" />
               </Col>
               <Col>
-              <Form.Control placeholder="Employee Name" />
+              <Form.Control placeholder="Customer Name" />
               </Col>
               <Col>
                   <Form.Group as={Col} controlId="formGridState">
@@ -212,15 +364,15 @@ export default class Manager extends React.Component {
       </Form>
       <Row className="row-resize">
         { 
-          this.state.employee.map((list, index) => (
+          this.state.customers.map((list, index) => (
               
             <Col key={index} sm="6" md="4" lg="3" className="book-selection">           
-              <Card className="text-center employees">
+              <Card className="text-center customers">
               <Dropdown className="threedots-container">
                   <Dropdown.Toggle as={CustomToggle} />
                   <Dropdown.Menu size="sm" title="">
                   <Dropdown.Header>Options</Dropdown.Header>
-                  <Dropdown.Item onClick={this.openModal(index)}>Edits</Dropdown.Item>
+                  <Dropdown.Item onClick={this.openModal(index)}>Edit</Dropdown.Item>
                   <Dropdown.Item onClick={this.deleteEmployee(index)}>Delete</Dropdown.Item>
                   </Dropdown.Menu>
               </Dropdown>  
@@ -230,9 +382,21 @@ export default class Manager extends React.Component {
                     <Card.Title>
                       {list.name}
                     </Card.Title>
+                    <div className ="ratings">
                     <Card.Text>
-                      {list.position}
+                     
+                      <Button className="view-compliments" variant="primary">
+               View Compliments <Badge variant="light">{list.compliments}</Badge>
+              </Button>
                     </Card.Text>
+                    <Card.Text>
+                    
+                    <Button className="view-compliments"  variant="primary">
+               View Complaints   <Badge id="complaints" variant="light">{list.complaints}</Badge>
+              </Button>
+                    </Card.Text>
+                    </div>
+                    
                   </ListGroupItem>
                 </ListGroup>
               </Card>

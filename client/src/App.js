@@ -46,6 +46,9 @@ import CurrentOrder from './components/main_pages/employee/delivery/currentorder
 
 import Footer from './components/Footer/Footer';
 import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrderDelivery';
+import NavManager from './components/navbars/nav_manager/NavManager';
+import MyCustomers from './components/main_pages/employee/manager/mycustomers/MyCustomers';
+import Cases from './components/main_pages/cases/Cases';
 
 
 class App extends React.Component {
@@ -95,12 +98,16 @@ class App extends React.Component {
       case '/chef':
         return <NavEmployee/>
       case '/manager':
-        return <NavEmployee/>
+        return <NavManager/>
+      case "/cases":
+        return <NavManager/>
       case '/employeelogin':
       case '/customerlogin':
       case '/pastorders':
       case '/signup':
         return <NavLogin/>
+      case '/mycustomers':
+        return <NavManager/>
       default:
         return null
     }
@@ -138,12 +145,14 @@ class App extends React.Component {
         <Container fluid>
           <Row className="justify-content-center">
             <Switch>
+            <Route path="/MyCustomers" component={MyCustomers} />
               <Route path="/Forgotpassword" component={ForgotPassowrd} />
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
               <Route path="/Employeelogin" component={EmployeeLogin} />
               <Route path="/Customer" component={Main} />
               <Route path="/Chef" component={Chef} />
+              <Route path="/Cases" component={Cases} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
               <Route path="/Checkout" component={Checkout} />

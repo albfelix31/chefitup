@@ -1,3 +1,22 @@
+
+.col-md-4 {
+    flex: 0 0 33.3333333%;
+    max-width: 33.3333333%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+}
+
+.list{
+
+ width: 100%;   
+}
+.modal-content{
+
+    width: 100%;
+}
 .profile-img {
     height: 200px;
     width: 200px;
@@ -7,11 +26,10 @@
     margin-bottom: 10%;
 }
 
-.employees{
+.customers{
     margin-top: 10%;
     color:black !important;
     border-color: black;
-    width: 80%;
 }
 
 .btn-search{
@@ -68,4 +86,25 @@
   
 .threedots-container{
     text-align: right;
+}
+
+
+.ratings{
+width: 100%;
+  display: inline-flex;
+}
+
+.card-text{
+   
+    display: inline-block;
+margin-right: 20px;
+}
+
+.view-compliments{
+
+    width: 100%;
+}
+.complaints{
+
+    margin-right: 10px;
 }
