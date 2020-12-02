@@ -1,7 +1,7 @@
 import React from 'react';
 import './MyCustomers.css'
 import ReactDOM from "react-dom";
-
+import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -220,35 +220,35 @@ export default class MyCustomers extends React.Component {
   For every customer, make a new form and list group */}
 
 <div className="list">
-  <ListGroup horizontal="lg" className="my-2" >
-    <ListGroup.Item>First Name</ListGroup.Item>
-    <ListGroup.Item>Last Name</ListGroup.Item>
-    <ListGroup.Item>Username</ListGroup.Item>
-    <ListGroup.Item>Deposit</ListGroup.Item>
-    <ListGroup.Item>Email</ListGroup.Item>
-  </ListGroup>
-
-{ 
+      <Table responsive  striped bordered hover>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Deposit</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+      { 
           this.state.applyingCustomers.map((list, index) => (
-              
-    <Form>
-    <ListGroup horizontal="lg" className="my-2" >
-    <ListGroup.Item variant="dark">{list.name}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.lastName}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.userName}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.deposit}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.email}</ListGroup.Item>
-    <ListGroup.Item variant="dark">  <Button variant="primary" onClick={this.saveEmployee}>
-   Accept
-  </Button></ListGroup.Item>
-    <ListGroup.Item variant="dark">  <Button variant="primary" onClick={this.saveEmployee}>
-   Decline
-  </Button></ListGroup.Item>
-</ListGroup>
-    
-    </Form>
-
-          ))}
+    <tr>
+      <td>{list.name}</td>
+      <td>{list.lastName}</td>
+      <td>{list.userName}</td>
+      <td>{list.deposit}</td>
+      <td>{list.email}</td>
+      <td><Button variant="primary" >
+    Accept
+  </Button></td>
+  <td><Button variant="primary">
+    Decline
+  </Button></td>
+    </tr>
+  ))}
+  </tbody>
+</Table>
 
 </div>
 
@@ -278,38 +278,31 @@ export default class MyCustomers extends React.Component {
   For every customer, make a new form and list group */}
 
 <div className="list">
-  <ListGroup horizontal="lg" className="my-2" >
-    <ListGroup.Item>First Name</ListGroup.Item>
-    <ListGroup.Item>Last Name</ListGroup.Item>
-    <ListGroup.Item>Username</ListGroup.Item>
-    <ListGroup.Item>Deposit</ListGroup.Item>
-    <ListGroup.Item>Email</ListGroup.Item>
-  </ListGroup>
-
-{ 
-          this.state.applyingCustomers.map((list, index) => (
-              
-    <Form>
-    <ListGroup horizontal="lg" className="my-2" >
-    <ListGroup.Item variant="dark">{list.name}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.lastName}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.userName}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.deposit}</ListGroup.Item>
-    <ListGroup.Item variant="dark">{list.email}</ListGroup.Item>
-    <ListGroup.Item variant="dark">  <Button variant="primary" onClick={this.saveEmployee}>
-   Accept
-  </Button></ListGroup.Item>
-    <ListGroup.Item variant="dark">  <Button variant="primary" onClick={this.saveEmployee}>
-   Decline
-  </Button></ListGroup.Item>
-</ListGroup>
-    
-    </Form>
-
-          ))}
+      <Table responsive  striped bordered hover>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Deposit</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+      { 
+          this.state.vipCustomers.map((list, index) => (
+    <tr>
+      <td>{list.name}</td>
+      <td>{list.lastName}</td>
+      <td>{list.userName}</td>
+      <td>{list.deposit}</td>
+      <td>{list.email}</td>
+    </tr>
+  ))}
+  </tbody>
+</Table>
 
 </div>
-
 
 </Modal.Body>
 <Modal.Footer>

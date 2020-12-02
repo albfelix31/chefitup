@@ -92,7 +92,6 @@ export default class Manager extends React.Component {
       <Modal show={this.state.isOpen} onHide={this.closeModal}>
 
 
-
         <Modal.Header closeButton>
           <Modal.Title>{this.state.n == 'add' ? "Add Employee" : "Edit Employee"}</Modal.Title>
         </Modal.Header>

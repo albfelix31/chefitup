@@ -49,6 +49,7 @@ import Footer from './components/Footer/Footer';
 import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrderDelivery';
 import NavManager from './components/navbars/nav_manager/NavManager';
 import MyCustomers from './components/main_pages/employee/manager/mycustomers/MyCustomers';
+import Cases from './components/main_pages/cases/Cases';
 
 
 class App extends React.Component {
@@ -98,6 +99,8 @@ class App extends React.Component {
       case '/chef':
         return <NavEmployee/>
       case '/manager':
+        return <NavManager/>
+      case "/cases":
         return <NavManager/>
       case '/employeelogin':
       case '/customerlogin':
@@ -151,6 +154,7 @@ class App extends React.Component {
               <Route path="/Employeelogin" component={EmployeeLogin} />
               <Route path="/Customer" component={Main} />
               <Route path="/Chef" component={Chef} />
+              <Route path="/Cases" component={Cases} />
               <Route path="/Billing" component={Billing} />
               <Route path="/Cart" component={Cart} />
               <Route path="/Checkout" component={Checkout} />

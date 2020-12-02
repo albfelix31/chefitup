@@ -44,7 +44,7 @@ export default class NavManager extends React.Component {
                     <NavDropdown.Item href="/MyCustomers">My Customers</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Discussion Forum</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.4">Account</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.4">Cases</NavDropdown.Item>
+                    <NavDropdown.Item href="/Cases">Cases</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.5">Help</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item className="navSignOut" href="#action/3.6" onClick={this.signOut}>Sign out</NavDropdown.Item>
