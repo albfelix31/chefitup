@@ -374,7 +374,7 @@ export default class MyCustomers extends React.Component {
           this.state.customers.map((list, index) => (
               
             <Col key={index} sm="6" md="4" lg="3" className="book-selection">           
-              <Card className="text-center employees">
+              <Card className="text-center customers">
               <Dropdown className="threedots-container">
                   <Dropdown.Toggle as={CustomToggle} />
                   <Dropdown.Menu size="sm" title="">
