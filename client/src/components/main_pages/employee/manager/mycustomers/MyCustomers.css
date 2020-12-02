@@ -1,3 +1,22 @@
+
+.col-md-4 {
+    flex: 0 0 33.3333333%;
+    max-width: 33.3333333%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+}
+
+.list{
+
+ width: 100%;   
+}
+.modal-content{
+
+    width: 100%;
+}
 .profile-img {
     height: 200px;
     width: 200px;
