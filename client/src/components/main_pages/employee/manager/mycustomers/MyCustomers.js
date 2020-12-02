@@ -1,5 +1,5 @@
 import React from 'react';
-import './Manager.css'
+import './MyCustomers.css'
 import ReactDOM from "react-dom";
 
 import Container from 'react-bootstrap/Container';
@@ -14,8 +14,8 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
-import Profile from "./profile.png"
-import Add from "./../img/add.png"
+import Profile from "../profile.png"
+import Add from "../../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -33,17 +33,17 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   </a>
 ));
 
-export default class Manager extends React.Component {
+export default class MyCustomers extends React.Component {
       componentDidMount() {
         // Insert Backend Call For Textbooks When Nothing is on Search
 
     this.setState({
         employee: [
-          {name: "Eddie Ozuna", position: "Manager", image: Profile},
-          {name: "Cristian Cuevas", position: "Driver", image: Profile},
-          {name: "Albert Felix", position: "Chef", image: Profile},
-          {name: "Nahin Imtiaz", position: "Chef", image: Profile},
-          {name: "Palomo Dime", position: "Driver", image: Profile},
+          {name: "Yes Sir",compliments: 1, complaints: 2, image: Profile},
+          {name: "No sir",compliments: 5, complaints: 0, image: Profile},
+          {name: "Joane Tho",compliments: 2, complaints: 5, image: Profile},
+          {name: "Kha Zhix",compliments: 10, complaints: 3, image: Profile},
+          {name: "Rengar Blizt",compliments: 2, complaints: 2, image: Profile},
         ]
       });
       }
@@ -178,24 +178,33 @@ export default class Manager extends React.Component {
       
       <Row className="row-top">
           <Col>
-              <h1>My Employees</h1>  
+              <h1>My Customers</h1>  
           </Col>
           <Col>
             <div className="btn-container">
-              <Button className="btn-employee" onClick={this.openModal("add")} variant="primary"><Image className="add-sign" src={Add}/>Add Employee</Button>
+              <Button className="btn-employee" onClick={this.openModal("add")} variant="success"><Image className="add-sign" src={Add}/>Add Customers</Button>
+
+             <Button className="btn-employee" variant="primary">
+             ⭐ VIP <Badge variant="light">2</Badge>
+              </Button>
+             
+              <Button className="btn-employee" variant="primary">
+                Regular <Badge variant="light">2</Badge>
+              </Button>
               <Button className="btn-employee" variant="primary">
                 Total <Badge variant="light">5</Badge>
               </Button>
+              
               </div>
           </Col>
       </Row>
       <Form>
           <Form.Row>
               <Col>
-              <Form.Control placeholder="Employee ID" />
+              <Form.Control placeholder="Customer ID" />
               </Col>
               <Col>
-              <Form.Control placeholder="Employee Name" />
+              <Form.Control placeholder="Customer Name" />
               </Col>
               <Col>
                   <Form.Group as={Col} controlId="formGridState">
@@ -221,7 +230,7 @@ export default class Manager extends React.Component {
                   <Dropdown.Toggle as={CustomToggle} />
                   <Dropdown.Menu size="sm" title="">
                   <Dropdown.Header>Options</Dropdown.Header>
-                  <Dropdown.Item onClick={this.openModal(index)}>Edits</Dropdown.Item>
+                  <Dropdown.Item onClick={this.openModal(index)}>Edit</Dropdown.Item>
                   <Dropdown.Item onClick={this.deleteEmployee(index)}>Delete</Dropdown.Item>
                   </Dropdown.Menu>
               </Dropdown>  
@@ -231,9 +240,21 @@ export default class Manager extends React.Component {
                     <Card.Title>
                       {list.name}
                     </Card.Title>
+                    <div className ="ratings">
                     <Card.Text>
-                      {list.position}
+                     
+                      <Button className="view-compliments" variant="primary">
+               View Compliments <Badge variant="light">{list.compliments}</Badge>
+              </Button>
                     </Card.Text>
+                    <Card.Text>
+                    
+                    <Button className="view-compliments" variant="primary">
+               View Complaints   <Badge variant="light">{list.complaints}</Badge>
+              </Button>
+                    </Card.Text>
+                    </div>
+                    
                   </ListGroupItem>
                 </ListGroup>
               </Card>

@@ -47,6 +47,8 @@ import CurrentOrder from './components/main_pages/employee/delivery/currentorder
 
 import Footer from './components/Footer/Footer';
 import PastOrdersDelivery from './components/main_pages/employee/delivery/pastorder/PastOrderDelivery';
+import NavManager from './components/navbars/nav_manager/NavManager';
+import MyCustomers from './components/main_pages/employee/manager/mycustomers/MyCustomers';
 
 
 class App extends React.Component {
@@ -96,13 +98,15 @@ class App extends React.Component {
       case '/chef':
         return <NavEmployee/>
       case '/manager':
-        return <NavEmployee/>
+        return <NavManager/>
       case '/employeelogin':
       case '/customerlogin':
       case '/pastorders':
         return <NavLogin/>
       case '/register':
         return <NavLogin/>
+      case '/mycustomers':
+        return <NavManager/>
       default:
         return null
     }
@@ -140,6 +144,7 @@ class App extends React.Component {
         <Container fluid>
           <Row className="justify-content-center">
             <Switch>
+            <Route path="/MyCustomers" component={MyCustomers} />
               <Route path="/Forgotpassword" component={ForgotPassowrd} />
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
