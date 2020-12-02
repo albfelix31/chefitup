@@ -52,5 +52,7 @@ Create Table Rating(
     ratingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rating VARCHAR(255) NOT NULL,
     dishId INT NOT NULL,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(userID),
     FOREIGN KEY (dishId) REFERENCES Menu(dishId)
 );

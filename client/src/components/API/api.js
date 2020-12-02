@@ -74,5 +74,21 @@ async getMenu(){
     return response_1['dishes']
   }
 
+async removeDish(data){
+    const response = await fetch('/Menu/remove', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+        body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    if (response_1['Remove']) {
+      window.location.href = '/chef';
+    } else {
+      return response_1['error'];
+    }
+  }
+
 }
 

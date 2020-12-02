@@ -48,6 +48,7 @@ export default class Chef extends React.Component {
       API.getMenu().then ( dishes => {
         for(let i = 0; i < dishes.length; i++){
         listDishes.push({
+          dishId: dishes[i]['dishId'],
           dishName: dishes[i]['dishName'],
           description: dishes[i]['description'],
           ingredients: dishes[i]['ingredients'],
@@ -81,12 +82,14 @@ export default class Chef extends React.Component {
     openModal = index => (e) => {
         e.preventDefault();
         this.setState({ isOpen: true, n: index })
-        this.setState({
-          dishName: this.state.dishes[index]['dishName'],
-          description:  this.state.dishes[index]['description'],
-          ingredients:  this.state.dishes[index]['ingredients'],
-          keywords:  this.state.dishes[index]['keywords'],
-        })
+        if(index != "add"){
+          this.setState({
+            dishName: this.state.dishes[index]['dishName'],
+            description:  this.state.dishes[index]['description'],
+            ingredients:  this.state.dishes[index]['ingredients'],
+            keywords:  this.state.dishes[index]['keywords'],
+          })
+        }
     
     };
     closeModal = () => {
@@ -138,7 +141,11 @@ export default class Chef extends React.Component {
 
   deleteDish = index => (e) => {
     e.preventDefault(); 
-
+    const API = new api();
+    const data = this.state.dishes[index]
+    API.removeDish(data).then(error => {
+      this.setState({ errors:  error });
+    })
     console.log(index)
 
   }
