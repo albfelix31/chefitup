@@ -16,7 +16,7 @@ import DeliveryAvailable from './components/main_pages/employee/delivery/availab
 import Manager from './components/main_pages/employee/manager/Manager';
 import WarningEmployee from './components/main_pages/employee/warningsemployee/WarningsEmployee';
 import Discussion from './components/main_pages/discussion/Discussion';
-import Main from './components/main_pages/customer/main/Main';
+import CustomerMain from './components/main_pages/customer/main/Main';
 import Billing from './components/main_pages/customer/billing/Billing';
 import Cart from './components/main_pages/customer/cart/Cart';
 import Checkout from './components/main_pages/customer/checkout/Checkout';
@@ -59,7 +59,7 @@ class App extends React.Component {
     switch(path.toLowerCase()){
       case '/surfer':
         return <NavSurfer />
-      case '/customer':
+     
       case '/checkout':
       case '/shipping':
       case '/reviewcustomer':
@@ -110,6 +110,10 @@ class App extends React.Component {
         return <NavLogin/>
       case '/mycustomers':
         return <NavManager/>
+        case '/customer':
+          return <NavCustomer/>
+
+
       default:
         return null
     }
@@ -152,7 +156,7 @@ class App extends React.Component {
               <Route path="/Surfer" component={Surfer} />
               <Route path="/Customerlogin" component={CustomerLogin} />
               <Route path="/Employeelogin" component={EmployeeLogin} />
-              <Route path="/Customer" component={Main} />
+              <Route path="/Customer" component={CustomerMain} />
               <Route path="/Chef" component={Chef} />
               <Route path="/Cases" component={Cases} />
               <Route path="/Billing" component={Billing} />
