@@ -18,6 +18,8 @@ import Profile from "./profile.png"
 import Add from "./../img/add.png"
 import Dropdown from "react-bootstrap/Dropdown"
 import Modal from "react-bootstrap/Modal"
+import api from '../../../API/api'
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     className="threedots-a"
@@ -35,26 +37,51 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 export default class Manager extends React.Component {
       componentDidMount() {
-        // Insert Backend Call For Textbooks When Nothing is on Search
+        // Insert Backend Call For employee 
 
-    this.setState({
-        employee: [
-          {name: "Eddie Ozuna", position: "Manager", image: Profile},
-          {name: "Cristian Cuevas", position: "Driver", image: Profile},
-          {name: "Albert Felix", position: "Chef", image: Profile},
-          {name: "Nahin Imtiaz", position: "Chef", image: Profile},
-          {name: "Palomo Dime", position: "Driver", image: Profile},
-        ]
-      });
+
+
+      
+        const API = new api();
+        let listEmployee = []
+        API.getEmployee().then ( employee => {
+          for(let i = 0; i < employee.length; i++){
+            listEmployee.push({
+            profileId: employee[i]['profileId'],
+            userId: employee[i]['userId'],
+            firstName: employee[i]['firstName'],
+            lastName: employee[i]['lastName'],
+            salary: employee[i]['salary'],
+            position: employee[i]['position'],
+            image: Profile
+  
+          })
+      
+          this.setState({
+            employee: listEmployee
+          })
+        }
+        })
       }
 
-      constructor(props) {
-        super(props);
+      constructor() {
+        super();
         this.state = {
-          search: "",
-          employee: [],
-          isOpen: false,
-          n: null
+          token: "",
+          userName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          employeeId: "",
+          position: "",
+          salary: "",
+          profileId: "",
+          userId:"",
+          errors: [],
+          employee: []
         };
       }
 
@@ -67,18 +94,89 @@ export default class Manager extends React.Component {
 
     };
 
+      // Handle field change
+  handleChange = (input) => (e) => {
+    this.setState({ [input]: e.target.value });
+  };
+    saveEmployee = (e) => {
+    
+    
+      e.preventDefault();
+      const { userName, email, firstName, lastName, phoneNumber, employeeId,position,salary, password, confirmPassword } = this.state;
+      var newState = Object.assign({}, this.state);
+      newState.errors = [];
+      // Users are allowed to change their information as long as they enter their current password.
+      // They are NOT forced to change their current password when updating their information.
 
-    saveEmployee = () => {
-    
-    
-    console.log(this.state.n)
-    this.setState({ isOpen: false })
+
+
+          if (userName === ""){
+            newState.errors.push("Please Enter the employee username.");
+          }
+          if (email === ""){
+            newState.errors.push("Please Enter the employee email.");
+          }
+          if (password === ""){
+            newState.errors.push("Please Enter the employee password.");
+          }
+          if (confirmPassword === ""){
+            newState.errors.push("Please confirm password.");
+          }
+
+          if (firstName === ""){
+            newState.errors.push("Please Enter the employee first name.");
+          }
+          if (lastName === ""){
+            newState.errors.push("Please Enter the employee last name.");
+          }
+          if (phoneNumber === ""){
+            newState.errors.push("Please Enter the employee phone number.");
+          }
+          if (employeeId === ""){
+            newState.errors.push("Please Enter the employee id.");
+          }
+
+          if (position === ""){
+            newState.errors.push("Please Enter the employee position.");
+          }
+          if (salary === ""){
+            newState.errors.push("Please Enter the employee position salary.");
+          }
+       
+
+          if (newState.errors.length === 0){ 
+            if (password !== confirmPassword) {
+              newState.errors.push("The New Passwords Do Not Match");
+            }
+            else{
+              // Backend, check if the password is correct with user password in database. 
+              // If so, update password using the new password, email, firstName, lastName, phoneNumber, address, city, state, zipcode
+              // If not, return an error saying "Current Password is Incorrect"
+              const data = this.state
+              const API = new api();
+              API.addEmployee(data).then( error => {
+                this.setState(({errors}) => ({
+                  errors: errors.concat(error)
+                }));
+              });
+              this.setState({ isOpen: false })
+            }
+        }
+        
+      
+      this.setState(newState);
+  
 
     }
 
     deleteEmployee = index => (e) => {
     e.preventDefault(); 
-
+    e.preventDefault(); 
+    const API = new api();
+    const data = this.state.employee[index]
+    API.removeEmployee(data).then(error => {
+      this.setState({ errors:  error });
+    })
     console.log(index)
 
     }
@@ -96,67 +194,69 @@ export default class Manager extends React.Component {
           <Modal.Title>{this.state.n == 'add' ? "Add Employee" : "Edit Employee"}</Modal.Title>
         </Modal.Header>
 
-
+        <ul data-testid="errors">
+                    { this.state.errors.length > 0 &&
+                      this.state.errors.map((error,index) => {
+                        return <li key={index} className="text-warning"> {error} </li>
+                    })
+                    }
+        </ul>
         <Modal.Body>
             <Form>
              
              <Form.Row>
                 <Col>
                   <Form.Label>First name</Form.Label>
-                  <Form.Control placeholder="First name" />
+                  <Form.Control placeholder="First name" onChange={this.handleChange("firstName")}/>
                 </Col>
                 <Col>
                   <Form.Label>Last name</Form.Label>
-                  <Form.Control placeholder="Last name" />
+                  <Form.Control placeholder="Last name" onChange={this.handleChange("lastName")}/>
                 </Col>
               </Form.Row>
 
               <Form.Row>
                 <Col>
                   <Form.Label>Username</Form.Label>
-                  <Form.Control placeholder="Username" />
+                  <Form.Control placeholder="Username" onChange={this.handleChange("userName")}/>
                 </Col>
                 <Col>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control placeholder="Email" />
+                  <Form.Control placeholder="Email" onChange={this.handleChange("email")}/>
                 </Col>
               </Form.Row>
 
               <Form.Row>
                 <Col>
                   <Form.Label>Password</Form.Label>
-                  <Form.Control placeholder="Password" />
+                  <Form.Control placeholder="Password" onChange={this.handleChange("password")}/>
                 </Col>
                 <Col>
                   <Form.Label>Confirm password</Form.Label>
-                  <Form.Control placeholder="Confirm password" />
+                  <Form.Control placeholder="Confirm password" onChange={this.handleChange("confirmPassword")}/>
                 </Col>
               </Form.Row>
               <Form.Row>
                 <Col>
                   <Form.Label>Employee ID</Form.Label>
-                  <Form.Control placeholder="Employee ID" />
-                </Col>
-                <Col>
-                  <Form.Label>Joining date</Form.Label>
-                  <Form.Control placeholder="Joining date" />
+                  <Form.Control placeholder="Employee ID" onChange={this.handleChange("employeeId")}/>
                 </Col>
               </Form.Row>
 
               <Form.Row>
                 <Col>
                   <Form.Label>Phone</Form.Label>
-                  <Form.Control placeholder="Phone" />
+                  <Form.Control placeholder="Phone"onChange={this.handleChange("phoneNumber")} />
                 </Col>
                 <Col>
                   <Form.Label>Position</Form.Label>
-                  <Form.Control placeholder="Position" />
+                  <Form.Control placeholder="Position" onChange={this.handleChange("position")}/>
                 </Col>
               </Form.Row>
               <Form.Row>
                 <Col>
                   <Form.Label>Salary</Form.Label>
-                  <Form.Control placeholder="Salary" />
+                  <Form.Control placeholder="Salary" onChange={this.handleChange("salary")}/>
                 </Col>
               </Form.Row>  
            
@@ -221,17 +321,21 @@ export default class Manager extends React.Component {
                   <Dropdown.Menu size="sm" title="">
                   <Dropdown.Header>Options</Dropdown.Header>
                   <Dropdown.Item onClick={this.openModal(index)}>Edits</Dropdown.Item>
-                  <Dropdown.Item onClick={this.deleteEmployee(index)}>Delete</Dropdown.Item>
+                  <Dropdown.Item onClick={this.deleteEmployee(index)}>Fire</Dropdown.Item>
                   </Dropdown.Menu>
               </Dropdown>  
               <Card.Img className="profile-img" src={list.image} />
                 <ListGroup className="list-group-flush">
                   <ListGroupItem>
                     <Card.Title>
-                      {list.name}
+                      {"Full name: " + list.firstName + " " + list.lastName}
                     </Card.Title>
                     <Card.Text>
-                      {list.position}
+                      {"Position: " + list.position}
+                    </Card.Text>
+                    <br />
+                    <Card.Text>
+                      {"Salary: $" +  list.salary}
                     </Card.Text>
                   </ListGroupItem>
                 </ListGroup>

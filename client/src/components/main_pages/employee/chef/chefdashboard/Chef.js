@@ -42,7 +42,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 export default class Chef extends React.Component {
 
     componentDidMount() {
-        // Insert Backend Call For Textbooks When Nothing is on Search
+        // Insert Backend Call For dishes 
       const API = new api();
       let listDishes = []
       API.getMenu().then ( dishes => {
@@ -249,10 +249,10 @@ export default class Chef extends React.Component {
                   <ListGroup className="list-group-flush">
                     <ListGroupItem>
                       <Card.Title>
-                        {list.dishName}
+                        {"Dish name: " + list.dishName}
                       </Card.Title>
                       <Card.Text>
-                        {list.rating}
+                        {"Dish Rating" + list.rating}
                       </Card.Text>
                     </ListGroupItem>
                   </ListGroup>

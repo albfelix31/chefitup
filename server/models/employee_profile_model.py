@@ -8,6 +8,7 @@ class EmployeeProfileModel:
         self.dataCur = db.connection.cursor()
         self.firstName = None
         self.lastName = None
+        self.password = None
         self.phoneNumber = None
         self.employeeId = None
         self.position = None
@@ -67,10 +68,22 @@ class EmployeeProfileModel:
     def getSalary(self):
         return self.salary 
 
+        
+
     def updateField(self,field,attribute):
         self.dataCur.execute('UPDATE EmployeeProfile Set ' + field + ' = ' + "'" + attribute + "'" + "WHERE userId = " + "'" + str(self.userId) + "'")
         self.database.commit()
     
-    def initProfile(self,userId):
-        self.dataCur.execute('INSERT INTO EmployeeProfile(firstName,lastName,employeeId,joiningDate,phone,state,position,salary,userId) VALUES ('  +  "'" + str(self.firstName) + "'," + "'" + str(self.lastName) + "'," + "'" + str(self.employeeId) + "'," + 'NOW(), ' + "'" + str(self.phoneNumber) + "'," + "'" + str(self.position) + "'," + "'" + str(self.salary) + "'," + "'" + str(userId) + "'" + ')')
+    def addEmployee(self,userId):
+        self.dataCur.execute('INSERT INTO EmployeeProfile(firstName,lastName,employeeId,joiningDate,phone,position,salary,userId) VALUES ('  +  "'" + str(self.firstName) + "'," + "'" + str(self.lastName) + "'," + "'" + str(self.employeeId) + "'," + 'NOW(), ' + "'" + str(self.phoneNumber) + "'," + "'" + str(self.position) + "'," + "'" + str(self.salary) + "'," + "'" + str(userId) + "'" + ')')
+        self.database.commit()
+
+    def getEmployee(self):
+        self.dataCur.execute('SELECT * FROM EmployeeProfile')
+        results = self.dataCur.fetchall()
+        return results
+
+    def removeEmployee(self,profileId,userId):
+        self.dataCur.execute('DELETE FROM EmployeeProfile WHERE profileId = ' + "'" + str(profileId) + "'")
+        self.dataCur.execute('DELETE FROM User WHERE userId = ' + "'" + str(userId) + "'")
         self.database.commit()

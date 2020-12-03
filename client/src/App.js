@@ -37,7 +37,7 @@ import ForgotPassowrd from './components/access_pages/forgot_password/ForgotPass
 import Choose from './components/access_pages/choose_login/Choose';
 import NavCustomer from './components/navbars/nav_customer/NavCustomer';
 import NavSurfer from './components/navbars/nav_surfer/NavSurfer';
-import NavEmployee from './components/navbars/nav_employee/NavEmployee';
+import NavChef from './components/navbars/nav_chef/NavChef';
 import NavLogin from './components/navbars/nav_login/NavLogin';
 import DeliveryHome from './components/main_pages/employee/delivery/availableorder/AvailableOrder';
 import SignUp from './components/access_pages/sign_up/SignUp';
@@ -80,23 +80,23 @@ class App extends React.Component {
       case '/warningcustomer':
         return <NavCustomer/>
       case '/warningchef':
-        return <NavEmployee/>
+        return <NavChef/>
       case '/deliveryhome':
           return <NavDelivery/>
       case '/currentorder':
         return <NavDelivery/>
       case '/warningsemployee':
-        return <NavEmployee/>
+        return <NavManager/>
       case'/pastordersdelivery':
       return <NavDelivery/>
       case '/disputecustomer':
         return <NavCustomer/>
       case '/disputechef':
-        return <NavEmployee/>
+        return <NavChef/>
       case '/disputedelivery':
-        return <NavEmployee/>
+        return <NavDelivery/>
       case '/chef':
-        return <NavEmployee/>
+        return <NavChef/>
       case '/manager':
         return <NavManager/>
       case "/cases":

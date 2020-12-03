@@ -41,6 +41,9 @@ def create_app():
     from server.controllers import menu_controller
     app.register_blueprint(menu_controller.bp)
 
+    from server.controllers import employee_profile_controller
+    app.register_blueprint(employee_profile_controller.bp)
+
     return app
 
     

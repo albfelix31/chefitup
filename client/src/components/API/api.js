@@ -124,6 +124,49 @@ async getNotApprove(){
     const response_1 = await response.json();
     return response_1['customers']
   }
+
+  async addEmployee(data){
+    const response = await fetch('/employeeProfile/add', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+        body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    if (response_1['Added']) {
+      window.location.href = '/Manager';
+    } else {
+      return response_1['error'];
+    }
+  }
+
+  async getEmployee(){
+    const response = await fetch('/employeeProfile/getEmployee', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['employees']
+  }
+
+  async removeEmployee(data){
+    const response = await fetch('/employeeProfile/remove', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+        body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    if (response_1['Remove']) {
+      window.location.href = '/Manager';
+    } else {
+      return response_1['error'];
+    }
+  }
   
 }
 

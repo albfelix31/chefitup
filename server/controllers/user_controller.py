@@ -54,8 +54,8 @@ def login():
             employeeProfile = employee_profile_model.EmployeeProfileModel(user.getUserId())        
             
             if user.getType() == 'e':
+                session['profileId'] = employeeProfile.getProfileId()
                 if employeeProfile.getPosition() == "chef":
-                    session['profileId'] = employeeProfile.getProfileId()
                     path = '/chef'
                 if employeeProfile.getPosition() == "deliveryboy":
                     path = '/DeliveryHome'
