@@ -26,3 +26,8 @@ p {
 .individual-dish {
   margin-right: 200px;
 }
+
+#menu-btn{
+
+  justify-content: right;
+}

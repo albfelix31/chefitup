@@ -40,7 +40,7 @@ export default class NavCustomer extends React.Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="container-fluid">
             <Form inline>
-              <FormControl type="text" placeholder="Search by restaurant, chef, or dish" className="mr-sm-2 searchBar" />
+              <FormControl type="text" placeholder="Search by chef, or dish" className="mr-sm-2 searchBar" />
               <Button className="searchBtn" variant="outline-success">Search</Button>
             </Form>
             <NavDropdown className="ml-auto navItem" title={"Hi, " + this.state.username} id="basic-nav-dropdown dropdown-menu-align-right" alignRight>
