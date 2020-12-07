@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import './Shipping.css'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import api from '../../../API/api'
 
 const Shipping = () =>  {
 
   const [shipping,setShipping] = useState({firstName:'',lastName:'',address1:'',address2:'',city:'',phone:'',state:'',zipCode:''});
-  const [shippingData,setShippingData] = useState([])
+  //const [shippingData,setShippingData] = useState([])
   const [billing,setBilling] = useState({firstName:'',lastName:'',address1:'',address2:'',city:'',phone:'',state:'',zipCode:''});
-  const [billingData,setBillingData] = useState([])
+  //const [billingData,setBillingData] = useState([])
   const [check,setCheck] = useState(false)
 
   const handleChangeShipping = (e) => {
@@ -35,18 +36,20 @@ const Shipping = () =>  {
     if(check){
        setBilling({...shipping})
     }
+    
     if(shipping.firstName && shipping.lastName && shipping.address1 && shipping.address2 && shipping.city && shipping.phone && shipping.state && shipping.zipCode &&
       billing.firstName && billing.lastName && billing.address1 && billing.address2 && billing.city && billing.phone && billing.state && billing.zipCode){
-
-      const newShippingData = {...shipping}
-      const newBillingData = {...billing}
-
-      setShippingData([...shippingData,newShippingData])
-      setShipping({firstName:'',lastName:'',address1:'',address2:'',city:'',phone:'',state:'',zipCode:''})
-
-      setBillingData([...billingData,newBillingData])
-      setBilling({firstName:'',lastName:'',address1:'',address2:'',city:'',phone:'',state:'',zipCode:''})
+      const API = new api();
+      const shippingData = {...shipping}
+      const billingData = {...billing}
+      API.setBillingData(billingData).then( error => {
+        console.log(error);
+      })
+      API.setShippingData(shippingData).then( error => {
+        console.log(error);
+      })
     }
+    window.location.href='/Menu';
   }
 
   return (
