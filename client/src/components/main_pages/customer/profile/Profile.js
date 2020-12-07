@@ -5,6 +5,7 @@ import {Container, Form, Button, Modal, Image} from 'react-bootstrap'
 import Edit from "./edit.svg"
 import jwt_decode from "jwt-decode";
 import Cookies from 'universal-cookie';
+import api from '../../../API/api'
 
 const Profile = () => {
 
