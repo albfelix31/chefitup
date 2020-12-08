@@ -61,6 +61,19 @@ export default class Discussion extends React.Component {
         },
       
       ],
+      comments:[
+        {
+          user: " Akali",
+          joinDate: "10/11/2020",
+          message:" I agree with this"
+        },
+        {
+          user: " Ronald",
+          joinDate: "10/11/2010",
+          message:" I do not agree"
+
+        }
+      ]
     });
   }
 
@@ -73,13 +86,15 @@ export default class Discussion extends React.Component {
     this.state = {
       search: "",
       posts: [],
+      comments:[],
       isOpen : false,
       caseID:1000,
       isNewThread:false, 
       n: null,
     };
 
-    
+    this.openPost = this.openPost.bind(this);
+    this.openNewThread = this.openNewThread.bind(this);
   }
 
  
@@ -87,6 +102,15 @@ export default class Discussion extends React.Component {
     e.preventDefault();
     this.setState({ isNewThread: true })
 };
+
+openPost(){
+
+  this.setState({
+    isOpen: true,
+   
+  })
+
+}
 
   
   closeModal = () => {
@@ -112,11 +136,12 @@ export default class Discussion extends React.Component {
       
       <Container fluid>
 
-
+{/* MODAL TO OPEN EACH POST */}
 <Modal animation={false} show={this.state.isOpen } onHide={this.closeModal}>
 <Modal.Header closeButton>
-  <Modal.Title class="mod-title"> Case:  {/*Put CASE ID here  */} </Modal.Title>
+  <Modal.Title class="mod-title"> Thread:   {/*Put CASE ID here  */} </Modal.Title>
   <Modal.Title  class="mod-title"> Date:  {/*Put DATE here  */} </Modal.Title>
+  <Modal.Title  class="mod-title"> Created by:  {/*Put DATE here  */} </Modal.Title>
 </Modal.Header>
 
 <Modal.Body>
@@ -124,32 +149,41 @@ export default class Discussion extends React.Component {
   For every customer, make a new form and list group */}
 
 
-<Form.Group controlId="exampleForm.ControlTextarea1">
-<Form.Label>Accuser ID: {/*Put ACCUSER ID here  */}  </Form.Label>
-    <Form.Label>Explanation from accuser</Form.Label>
-    <Form.Control as="textarea" rows={3} />
+
+{this.state.comments.map((list, index) => (
+
+<Form.Group >
+<Form.Label id="form-username">Username:{list.user}   {/*Put USERNAME here  */}  </Form.Label>
+<Form.Label id="form-joindate">Join Date: {list.joinDate}   {/*Put JOIN DATE here  */}</Form.Label>
+    <Form.Control as="textarea" disabled  readOnly  rows={3} placeholder={list.message} />
   </Form.Group>
 
-  <Form.Group controlId="exampleForm.ControlTextarea2">
-  <Form.Label>Defendant ID: {/*Put DEFENDANT ID here  */}  </Form.Label>
-    <Form.Label>Explanation from defendant</Form.Label>
-    <Form.Control as="textarea" rows={3} />
+ 
+
+))}
+
+<Form.Group >
+
+    <Form.Control as="textarea"  rows={3} placeholder="Add a new comment" />
+   
   </Form.Group>
 
-
-
+  {/* Submit new comment to API, with user information and join date */}
+  <div id="submit-btn" ><Button >
+    Submit comment
+  </Button></div>
+  
 </Modal.Body>
 <Modal.Footer>
   <Button variant="success"  >
-    Accept
+    Close
   </Button>
-  <Button variant="danger" >
-    Decline
-  </Button>
+ 
 </Modal.Footer>
 </Modal>
 
 
+{/* MODAL TO OPEN CREATE POST */}
 
 <Modal animation={false} show={this.state.isNewThread} onHide={this.closeModal}>
 <Modal.Header closeButton>
@@ -179,13 +213,6 @@ export default class Discussion extends React.Component {
  
 </Modal.Footer>
 </Modal>
-
-
-
-
-
-
-
 
         <Row className="row-top">
           <Col>
@@ -227,7 +254,7 @@ export default class Discussion extends React.Component {
               </thead>
               <tbody >
                 {this.state.posts.map((list, index) => (
-                  <tr key={index}   onClick={() => this.openCase()}>
+                  <tr key={index}   onClick={() => this.openPost()}>
                      
             
                     <td>{list.thread}</td>
