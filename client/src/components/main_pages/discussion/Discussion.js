@@ -75,27 +75,29 @@ export default class Discussion extends React.Component {
       posts: [],
       isOpen : false,
       caseID:1000,
+      isNewThread:false, 
       n: null,
     };
 
-    this.openCase = this.openCase.bind(this);
+    
   }
 
-
-  openCase(id){
-
-    this.setState({
-      isOpen: true,
-      caseID: id
-    })
-
-  }
+ 
+  openNewThread =  (e) => {
+    e.preventDefault();
+    this.setState({ isNewThread: true })
+};
 
   
   closeModal = () => {
-    this.setState({ isOpen: false})
+    this.setState({ isOpen: false, isNewThread:false })
 
   };
+
+       // Handle field change
+       handleChange = (input) => (e) => {
+        this.setState({ [input]: e.target.value });
+      };
 
 
 
@@ -138,7 +140,7 @@ export default class Discussion extends React.Component {
 
 </Modal.Body>
 <Modal.Footer>
-  <Button variant="success" >
+  <Button variant="success"  >
     Accept
   </Button>
   <Button variant="danger" >
@@ -146,6 +148,38 @@ export default class Discussion extends React.Component {
   </Button>
 </Modal.Footer>
 </Modal>
+
+
+
+<Modal animation={false} show={this.state.isNewThread} onHide={this.closeModal}>
+<Modal.Header closeButton>
+  <Modal.Title class="mod-title"> Title:  <Form.Control   />{/*Put CASE ID here  */} </Modal.Title>
+ 
+</Modal.Header>
+
+<Modal.Body>
+{/* 
+  For every customer, make a new form and list group */}
+
+
+<Form.Group controlId="exampleForm.ControlTextarea1">
+<Form.Label>Body: {/*Put ACCUSER ID here  */}  </Form.Label>
+   
+    <Form.Control as="textarea" rows={3} />
+  </Form.Group>
+
+
+
+
+</Modal.Body>
+<Modal.Footer>
+  <Button variant="success" >
+    Submit
+  </Button>
+ 
+</Modal.Footer>
+</Modal>
+
 
 
 
@@ -173,7 +207,7 @@ export default class Discussion extends React.Component {
               </Button>
             </Col>
           </Form.Row>
-          <Button className="btn-thread" variant="primary">
+          <Button className="btn-thread"  onClick={this.openNewThread} variant="primary">
                 New Thread
               </Button>
         </Form>
