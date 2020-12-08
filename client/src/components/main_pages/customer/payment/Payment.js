@@ -2,11 +2,12 @@ import React,{useState} from 'react';
 import './Payment.css'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import api from '../../../API/api'
 
 const Payment =() => {
 
   const [payment,setPayment] = useState({cardName:'',cardNumber:'',expMonth:'',expYear:'',cvv:'',depositAmount:''});
-  const [paymentData,setPaymentData] = useState([])
+  //const [paymentData,setPaymentData] = useState([])
 
   const handleChange = (e) => {
     const name = e.target.name
@@ -16,10 +17,13 @@ const Payment =() => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if(payment.cardName && payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.depositAmount){
-      const newData = {...payment}
-      setPaymentData([...paymentData,newData])
-      setPayment({cardName:'',cardNumber:'',expMonth:'',expYear:'',cvv:'',depositAmount:''})
+      const API = new api();
+      const data = {...payment}
+      API.addPayment(data).then( error => {
+        console.log(error);
+      })
     }
+    window.location.href='/Menu';
   }
 
   return (

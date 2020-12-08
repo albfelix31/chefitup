@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import './Reservation.css'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import api from '../../../API/api'
 
 const Reservation = () => {
 
   const [reservation,setReservation] = useState({fullName:'',phoneNumber:'',date:'',time:'',guest:''});
-  const [reservationData,setReservationData] = useState([])
+  //const [reservationData,setReservationData] = useState([])
 
   const handleChange = (e) => {
     const name = e.target.name
@@ -15,11 +16,14 @@ const Reservation = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(reservation.fullName && reservation.phoneNumber && reservation.date && reservation.time && reservation.guest ){
-      const newData = {...reservation}
-      setReservationData([...reservationData,newData])
-      setReservation({fullName:'',phoneNumber:'',date:'',time:'',guest:''})
+    if(reservation.fullName && reservation.phoneNumber && reservation.date && reservation.time && reservation.guest){
+      const API = new api();
+      const data = {...reservation}
+      API.addReservation(data).then( error => {
+        console.log(error);
+      })
     }
+    window.location.href='/Menu';
   }
 
   return (
