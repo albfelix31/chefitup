@@ -1,25 +1,80 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Container, Row, Col, Button, Image, FormControl} from 'react-bootstrap'
+
 import './Cart.css'
 import Dish from '../../../../public/FoodSample.jpg';
 import Minus from "../menu/minus.svg"
 import Plus from "../menu/plus.svg"
+import jwt_decode from "jwt-decode";
+import Cookies from 'universal-cookie';
+import api from '../../../API/api'
 
 const Cart = () => {
 
-    const dishesInCart = [
-        {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish, quantity: 7},
-        {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish, quantity: 5},
-        {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish, quantity: 3},
-        {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish, quantity: 2}
-    ]
+    // const dishesInCart = [
+    //     {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish, quantity: 7},
+    //     {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish, quantity: 5},
+    //     {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish, quantity: 3},
+    //     {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish, quantity: 2}
+    // ]
 
-    const recentlyViewedItems = [
-        {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish},
-        {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish},
-        {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish},
-        {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish}
-    ]
+    // const recentlyViewedItems = [
+    //     {dishID:'1', dishName:'Burger', price:'3.99', chefID:'1', chefName: "Cristian", image: Dish},
+    //     {dishID:'2', dishName:'Cake', price:'1.99', chefID:'2', chefName: "Albert", image: Dish},
+    //     {dishID:'3', dishName:'Juice', price:'5.99', chefID:'3', chefName: "Eddie", image: Dish},
+    //     {dishID:'4', dishName:'Soup', price:'2.99', chefID:'4', chefName: "Nahin", image: Dish}
+    // ]
+    const [cart,setCart]= useState([])
+    const [recentCart,setRecentCart]=useState([])
+
+    //Fetcing Shopping Cart data 
+    useEffect( ()=>{
+      // Insert Backend Call For dishes 
+      const API = new api();
+      const cookies = new Cookies();
+      const userID = jwt_decode(cookies.get('token')).userId;
+      let cart = []
+      //Fetching rating for each dish
+      API.getCart(userID).then ( data => {
+        for(let i = 0; i < data.length; i++){
+          cart.push({
+            dishID: data['dishId'],
+            dishName: data['dishName'],
+            price: data['price'],
+            chefId: data['chfId'],
+            chefName: data['chefName'],
+            image: data['image'],
+            quantity: data['quantity']
+          })
+        }
+      })
+      setCart(cart);
+    },[]);
+    // Fetching Recently Viewed dishes
+    useEffect( ()=>{
+      // Insert Backend Call For dishes 
+      const API = new api();
+      let listDishes = []
+      API.getTopDish().then ( dishes => {
+        for(let i = 0; i < dishes.length; i++){
+          //Fetching rating for each dish
+          API.getRating(dishes[i]['dishId']).then ( rating => {
+            listDishes.push({
+              dishID: dishes[i]['dishId'],
+              dishName: dishes[i]['dishName'],
+              ingredient: dishes[i]['ingredients'],
+              price: dishes[i]['price'],
+              category: dishes[i]['category'],
+              chefID: rating['chefId'],
+              chefName: rating['chefName'],
+              rating: rating['keywords'],
+              image: Dish
+            })
+          })
+        }
+        setRecentCart(listDishes);
+      }) 
+    },[]);
     const sum =()=>{
       let total = 0;
       for (let i = 0; i <cart.length; i++) {
@@ -27,8 +82,6 @@ const Cart = () => {
       }
       return total;
     }
-    const [cart,setCart]= useState(dishesInCart)
-    const [recentCart,setRecentCart]=useState(recentlyViewedItems)
     const [totalPrice, setTotalPrice] = useState(sum)
 
     const handleQuantity = (index,dish) => (e) => {
@@ -63,6 +116,17 @@ const Cart = () => {
 
         setCart(newArr);
       }
+    }
+    const handleSubmit = (e) => {
+      e.preventDefault()
+
+      const API = new api();
+      const cookies = new Cookies();
+      const orderData = {userId:jwt_decode(cookies.get('token')).userId, total:totalPrice, items:cart}
+      API.setOrder(orderData).then( error => {
+        console.log(error);
+      })
+      window.location.href='/chekout';
     }
 
     return (
@@ -121,12 +185,12 @@ const Cart = () => {
               <hr className="line-break"/>
               <p className="vip-discount-tagline p-3">You have qualified for VIP discount</p>
             </div>
-            <Button className="checkout-button" href="./checkout"> Take me to checkout </Button>
+            <Button className="checkout-button" onClick={handleSubmit}> Take me to checkout </Button>
           </Col>
         </Row>
 
         <Row className="second-row">
-          <h4> Recently Viewed Items </h4>
+          <h4> Top Popular Items </h4>
           <div className="recently-viewed-items">
 
           {

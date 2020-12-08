@@ -7,6 +7,8 @@ import DishPic from "./dish.jpg"
 import Minus from "./minus.svg"
 import Plus from "./plus.svg"
 import api from '../../../API/api'
+import jwt_decode from "jwt-decode";
+import Cookies from 'universal-cookie';
 
 const Menu = () =>{
 
@@ -47,7 +49,7 @@ const Menu = () =>{
   const [topDishData,setTopDishData] = useState([]);
 
   const [isOpen,setIsOpen]= useState(false)
-  const [openDish,setOpenDish]=useState({dishID:'',image:'',name:'',price:'',ingredient:''})
+  const [openDish,setOpenDish]=useState({dishId:'',name:'',price:'',chefID:'',chefName:'',ingredient:'',image:''})
   //const [cart,setCart]=useState([])
   const [quantity,setQuantity]=useState(1)
   //Fetching dish data and setting it to dishData state
@@ -109,23 +111,27 @@ const Menu = () =>{
     const name = dish.dishName
     const price = dish.price
     const ingredient = dish.ingredient
-    setOpenDish({...openDish,dishID:dishID,image:image,name:name,price:price,ingredient:ingredient})
+    const chefId= dish.chefID
+    const chefName= dish.chefName
+    setOpenDish({...openDish,dishId:dishID,name:name,price:price,chefId:chefId,chefName:chefName,ingredient:ingredient,image:image})
     setIsOpen(true)
   };
   const closeModal = () => {
      setIsOpen(false)
-     setOpenDish({dishID:'',image:'',name:'',price:'',ingredient:''})
+     setOpenDish({dishId:'',name:'',price:'',chefID:'',chefName:'',ingredient:'',image:''})
      setQuantity(1)
   };
   const addCart = () => {
+
     const API = new api();
-    const data = {dishID:openDish.dishID,quantity:quantity}
+    const cookies = new Cookies();
+    const data = {userId:jwt_decode(cookies.get('token')).userId, dishId:openDish.dishID, dishName:openDish.name, price:openDish.price, chefId:openDish.chefID, chefName:openDish.chefName, image: openDish.image,quantity:quantity}
     API.addToCart(data).then( error => {
       console.log(error);
     })
     //setCart(cart => [...cart,{dishID:openDish.dishID,quantity:quantity}])
     setIsOpen(false)
-    setOpenDish({dishID:'',image:'',name:'',price:'',ingredient:''})
+    setOpenDish({dishId:'',name:'',price:'',chefID:'',chefName:'',ingredient:'',image:''})
     setQuantity(1)
   }
 
