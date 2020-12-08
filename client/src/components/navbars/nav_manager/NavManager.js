@@ -42,7 +42,7 @@ export default class NavManager extends React.Component {
                 <NavDropdown className="ml-auto navItem" title={"Hi, " + this.state.username}  id="basic-nav-dropdown dropdown-menu-align-right" alignRight>
                     <NavDropdown.Item href="/Manager">My Employees</NavDropdown.Item>
                     <NavDropdown.Item href="/MyCustomers">My Customers</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Discussion Forum</NavDropdown.Item>
+                    <NavDropdown.Item href="/Discussion">Discussion Forum</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.4">Account</NavDropdown.Item>
                     <NavDropdown.Item href="/Cases">Cases</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.5">Help</NavDropdown.Item>
