@@ -90,12 +90,12 @@ export default class Main extends React.Component {
                     <Image className="dish-surfer" src={Dish} />
 
                     <div className="dish-info">
-                      <h5>{list.dishName} </h5>
-                      <p> {list.chefName} </p>
+                      <h5 className="dish-name">{list.dishName} </h5>
+                      <p className="dish-chef"> {list.chefName} </p>
 
                       {/* This needs to be changed for the library with rating stars */}
-                      <p> {list.rating} </p>
-                      <p> {list.restaurant} </p>
+                      <p className="dish-rating"> {list.rating} </p>
+                      <p className="dish-restaurant"> {list.restaurant} </p>
                     </div>
                   </div>
                 </Col>
@@ -115,12 +115,12 @@ export default class Main extends React.Component {
                     <Image className="dish-surfer" src={Dish} />
 
                     <div className="dish-info">
-                      <h5>{list.dishName} </h5>
-                      <p> {list.chefName} </p>
+                      <h5 className="dish-name">{list.dishName} </h5>
+                      <p className="dish-chef"> {list.chefName} </p>
 
                       {/* This needs to be changed for the library with rating stars */}
-                      <p> {list.rating} </p>
-                      <p> {list.restaurant} </p>
+                      <p className="dish-rating"> {list.rating} </p>
+                      <p className="dish-restaurant"> {list.restaurant} </p>
                     </div>
                   </div>
                 </Col>

@@ -70,7 +70,7 @@ export default class CustomerLogin extends React.Component {
             <div className="container-bg rounded ">
 
               <div className="login-form">
-              <h2 className="text-light text-center">Sign in with your ChefItUp account</h2>
+              <h2 className="text-light text-center sign-text">Sign in with your ChefItUp account</h2>
                 { this.state.errors.length > 0 ?  
                   this.state.errors.map((error,index) => {
                     return <li key={index} className="text-warning"> {error} </li>
