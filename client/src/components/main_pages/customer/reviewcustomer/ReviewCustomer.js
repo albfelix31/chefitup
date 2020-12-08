@@ -8,6 +8,8 @@ import DishPic from "./dish.jpg"
 
 const ReviewCustomer = () => {
 
+  const orderInfo = [{orderId: '1', delivery: true, deliveryID: '1',
+  deliveryName: 'Jie Wei'}]
   const dishes = [
     {dishID:'2',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
     {dishID:'1',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
@@ -34,27 +36,31 @@ const ReviewCustomer = () => {
       }
   </Row>
 
-  <Row className="feedback-input-container">
-    <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>
-    <div className="feedback-driver-tag-container">
-      <p className="feedback-driver-name-tag"> Driver's Name: </p>
-      <p className="feedback-driver-name"> Albert Felix </p>
-    </div>
-    <div className="feedback-type-tag-container">
-      <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
-      <select class="custom-select form-control" id="feedback-type-input" required>
-        <option value="">Choose</option>
-        <option value="complaint">Complaint</option>
-        <option value="compliment">Compliment</option>
-      </select>
-    </div>
-    <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
-  </Row>
+  { orderInfo[0].delivery
+    ? <Row className="feedback-input-container">
+      <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>
+      <div className="feedback-driver-tag-container">
+        <p className="feedback-driver-name-tag"> Driver's Name: </p>
+        <p className="feedback-driver-name"> Albert Felix </p>
+      </div>
+      <div className="feedback-type-tag-container">
+        <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
+        <select class="custom-select form-control" id="feedback-type-input" required>
+          <option value="">Choose</option>
+          <option value="complaint">Complaint</option>
+          <option value="compliment">Compliment</option>
+        </select>
+      </div>
+      <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
+    </Row>
+
+    : null
+  }
 
   <Row className="feedback-input-container">
     <p className="feedback-prompt-tag">How would you rate the chef's cooking?</p>
     <div className="feedback-chef-tag-container">
-      <p className="feedback-chef-name-tag"> Driver's Name: </p>
+      <p className="feedback-chef-name-tag"> Chef's Name: </p>
       <p className="feedback-chef-name"> Cristian Cuevas </p>
     </div>
     <div className="feedback-type-tag-container">
