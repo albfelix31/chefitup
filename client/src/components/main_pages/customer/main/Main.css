@@ -15,12 +15,12 @@
   margin-left: 0;
 }
 
-h5 {
+.popDishHeader {
+  
   margin: 0;
 }
-
-p {
-  margin: 0;
+.dish-name, .dish-chef, .dish-rating, .dish-restaurant {
+  margin-bottom: 0 !important;
 }
 
 .individual-dish {

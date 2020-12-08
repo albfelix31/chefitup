@@ -34,7 +34,8 @@
         color: #1877F2;
         font-weight: bold;
     }
-    h2 {
+    
+    .sign-text {
         margin-bottom: 30px;
     }
     

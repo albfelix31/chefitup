@@ -198,6 +198,8 @@ export default class Cases extends React.Component {
                   </tr>
                 ))}
               </tbody>
+
+              
             </Table>
           </div>
         </Row>

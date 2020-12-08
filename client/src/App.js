@@ -110,6 +110,8 @@ class App extends React.Component {
         return <NavManager/>
         case '/customer':
           return <NavCustomer/>
+      case '/discussion':
+        return <NavManager/>
 
 
       default:
