@@ -1,4 +1,5 @@
 import React,{useState}  from 'react';
+import {Link} from 'react-router-dom'
 import './WarningsCustomer.css'
 
 import {Container, Row, Col, Button} from 'react-bootstrap'
@@ -29,8 +30,8 @@ const WarningsCustomer =()=> {
             <strong>Comments: </strong>{warning.comments}<br/>
           </Col>
           <Col xs="3">
-            <Button className="btn-warning-customer" variant="primary" href='./DisputeCustomer'>
-                Dispute
+            <Button className="btn-warning-customer" variant="primary" component={Link} href={`./DisputeCustomer/${warning.orderNo}`}>
+              Dispute
             </Button>
           </Col>
         </Row>
