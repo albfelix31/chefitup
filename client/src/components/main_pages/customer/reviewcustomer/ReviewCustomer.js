@@ -22,12 +22,29 @@ const ReviewCustomer = () => {
 
   const [orderReview, setOrderReview] = useState({chefFeedback: '', chefFeedbackType: '', driverFeedback: '', driverFeedbackType: ''})
 
-  const [dishReview, setDishReview] = useState(null)
+
+  function getDishes(numDishes) {
+    var dishesRating = []
+    for (var i = 0; i < dishes.length; i++) {
+      dishesRating.push(0)
+    }
+    return dishesRating
+  }
+
+  const [dishReview, setDishReview] = useState(getDishes(dishes.length))
 
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
     setOrderReview({...orderReview,[name]:value})
+    console.log([name, value])
+  }
+
+  const setStarRating = (index, e) => {
+    const dish = index
+    const value = e.rating
+    setDishReview(...dishReview)
+    console.log(dishReview)
   }
 
   const handleSubmit = (e) => {
@@ -50,12 +67,12 @@ const ReviewCustomer = () => {
             <Image className="dish-img" src={dish.image}/>
             <h4>{dish.dishName}</h4>
             <p>Chef: {dish.chefName}</p>
-            <Rater total={5}  />
+            <Rater total={5}  name="starRating" onRate={(e) => setStarRating(index, e)}/>
           </Col>
         ))
       }
   </Row>
-
+  <p> {dishReview} </p>
   { orderInfo.delivery
     ? <Row className="feedback-input-container">
       <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>

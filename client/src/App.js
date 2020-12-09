@@ -58,7 +58,7 @@ class App extends React.Component {
     switch(path.toLowerCase()){
       case '/surfer':
         return <NavSurfer />
-     
+
       case '/checkout':
       case '/shipping':
       case '/reviewcustomer':
