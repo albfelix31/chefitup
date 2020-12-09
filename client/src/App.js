@@ -169,14 +169,14 @@ class App extends React.Component {
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
               <Route path="/Reservation" component={Reservation} />
-              <Route path="/ReviewCustomer" component={ReviewCustomer} />
+              <Route path="/ReviewCustomer/:orderNo" children={<ReviewCustomer/>} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
               <Route path="/WarningChef" component={WarningChef} />
               <Route path="/WarningDelivery" component={WarningDelivery} />
-              <Route path="/DisputeCustomer" component={DisputeCustomer} />
-              <Route path="/DisputeChef" component={DisputeChef} />
-              <Route path="/DisputeDelivery" component={DisputeDelivery} />
+              <Route path="/DisputeCustomer/:orderNo" children={<DisputeCustomer/>} />
+              <Route path="/DisputeChef/:orderNo" children={<DisputeChef/>} />
+              <Route path="/DisputeDelivery/:orderNo" children={<DisputeDelivery/>} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
