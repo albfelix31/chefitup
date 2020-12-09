@@ -107,7 +107,7 @@ export default class CurrentOrder extends React.Component {
 
                  
                   <Form.Group controlId="employeeGivenFeedback">
-                    <Form.Label>Expand feedback</Form.Label>
+                    <Form.Label>Describe your feedback</Form.Label>
                     <Form.Control as="textarea" rows={3} />
                   </Form.Group>
 
