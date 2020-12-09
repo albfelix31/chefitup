@@ -1,17 +1,29 @@
 import React,{useState}  from 'react';
+import {useParams} from 'react-router-dom'
 import './DisputeDelivery.css'
 
+import api from '../../../../API/api'
+import jwt_decode from "jwt-decode";
+import Cookies from 'universal-cookie';
 import {Container, Col, Form, Button} from 'react-bootstrap'
 
 const DisputeDelivery =()=> {
+    const {orderNo} = useParams()
     //Should come from warning props
-    const data={orderNo:'09080706'}
+    //const data={orderNo:'09080706'}
     const [dispute,setDispute] = useState({explanation:''})
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if(dispute.explanation){
-            //send data to api
+            // send data to api
+            const API = new api();
+            const cookies = new Cookies();
+            const disputeData = {userId:jwt_decode(cookies.get('token')).userId, orderNo:orderNo,explanation:dispute.explanation}
+            API.sendDispute(disputeData).then( error => {
+            console.log(error);
+            })
+            window.location.href='/WarningDelivery';
         }
     }
     const handleChange = (e) => {
@@ -21,7 +33,7 @@ const DisputeDelivery =()=> {
     }
 return (
     <Container className="container-dispute" fluid>
-        <h1 className="header-dispute">Dispute- <small className="text-muted"> Order # {data.orderNo}</small></h1>
+        <h1 className="header-dispute">Dispute- <small className="text-muted"> Order # {orderNo}</small></h1>
         <hr/>
         <Form>
             <Form.Group as={Col} controlId="formDisputeExplanation" >

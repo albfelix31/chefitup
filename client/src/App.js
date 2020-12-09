@@ -175,8 +175,8 @@ class App extends React.Component {
               <Route path="/WarningChef" component={WarningChef} />
               <Route path="/WarningDelivery" component={WarningDelivery} />
               <Route path="/DisputeCustomer/:orderNo" children={<DisputeCustomer/>} />
-              <Route path="/DisputeChef" component={DisputeChef} />
-              <Route path="/DisputeDelivery" component={DisputeDelivery} />
+              <Route path="/DisputeChef/:orderNo" children={<DisputeChef/>} />
+              <Route path="/DisputeDelivery/:orderNo" children={<DisputeDelivery/>} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Warningsemployee" component={WarningEmployee} />
               <Route path="/Discussion" component={Discussion} />
