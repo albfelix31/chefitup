@@ -97,13 +97,17 @@ export default class CurrentOrder extends React.Component {
                     <Form.Label>Customer Name: </Form.Label>
                     {/* ADD CUSTOMER NAME FROM API CALL  */}
                     <Form.Control readOnly placeholder="Cristian C" />
-                   <div id="stars"> Rating:  <Rater total={5}  /></div>
+                   <div id="stars"> Rating:  <select class="custom-select form-control" id="feedback-type-input" required>
+          <option value="">Choose</option>
+          <option value="complaint">Complaint</option>
+          <option value="compliment">Compliment</option>
+        </select></div>
                   </Form.Group>
 
 
                  
                   <Form.Group controlId="employeeGivenFeedback">
-                    <Form.Label>Expand feedback</Form.Label>
+                    <Form.Label>Describe your feedback</Form.Label>
                     <Form.Control as="textarea" rows={3} />
                   </Form.Group>
 
