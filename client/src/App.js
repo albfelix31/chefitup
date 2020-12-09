@@ -110,6 +110,8 @@ class App extends React.Component {
         return <NavManager/>
         case '/customer':
           return <NavCustomer/>
+      case '/discussion':
+        return <NavManager/>
 
 
       default:
@@ -167,7 +169,7 @@ class App extends React.Component {
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
               <Route path="/Reservation" component={Reservation} />
-              <Route path="/ReviewCustomer" component={ReviewCustomer} />
+              <Route path="/ReviewCustomer/:orderId" children={<ReviewCustomer/>} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
               <Route path="/WarningChef" component={WarningChef} />
