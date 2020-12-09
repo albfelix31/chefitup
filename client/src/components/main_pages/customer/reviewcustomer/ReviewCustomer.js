@@ -4,19 +4,39 @@ import './ReviewCustomer.css'
 import {Container, Row, Col,Image, FormControl, Button} from 'react-bootstrap'
 import Rater from 'react-rater'
 
+import api from '../../../API/api'
+
 import DishPic from "./dish.jpg"
 
 const ReviewCustomer = () => {
 
-  const orderInfo = [{orderId: '1', delivery: true, deliveryID: '1',
-  deliveryName: 'Jie Wei'}]
+  const orderInfo = {orderId: '1', chefId: '1', chefName: 'Cristian Cuevas', delivery: true, deliveryID: '1',
+  deliveryName: 'Jie Wei'}
   const dishes = [
     {dishID:'2',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
     {dishID:'1',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
     {dishID:'3',dishName:'Nugget',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic}
   ]
 
-  const [dishData,setDishData] = useState(dishes);
+  const [dishData, setDishData] = useState(dishes);
+
+  const [orderReview, setOrderReview] = useState({chefFeedback: '', chefFeedbackType: '', driverFeedback: '', driverFeedbackType: ''})
+
+  const [dishReview, setDishReview] = useState(null)
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setOrderReview({...orderReview,[name]:value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const API = new api();
+    const data = {...orderReview}
+    // backend code here
+    window.location.href='/Menu';
+  }
 
   return (
     <Container>
@@ -36,22 +56,22 @@ const ReviewCustomer = () => {
       }
   </Row>
 
-  { orderInfo[0].delivery
+  { orderInfo.delivery
     ? <Row className="feedback-input-container">
       <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>
       <div className="feedback-driver-tag-container">
         <p className="feedback-driver-name-tag"> Driver's Name: </p>
-        <p className="feedback-driver-name"> Albert Felix </p>
+        <p className="feedback-driver-name"> {orderInfo.deliveryName} </p>
       </div>
       <div className="feedback-type-tag-container">
         <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
-        <select class="custom-select form-control" id="feedback-type-input" required>
+        <select class="custom-select form-control" id="feedback-type-input" required name="driverFeedbackType" onChange={handleChange}>
           <option value="">Choose</option>
           <option value="complaint">Complaint</option>
           <option value="compliment">Compliment</option>
         </select>
       </div>
-      <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
+      <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description" name="driverFeedback" value={orderReview.driverFeedback} onChange={handleChange}/>
     </Row>
 
     : null
@@ -61,19 +81,19 @@ const ReviewCustomer = () => {
     <p className="feedback-prompt-tag">How would you rate the chef's cooking?</p>
     <div className="feedback-chef-tag-container">
       <p className="feedback-chef-name-tag"> Chef's Name: </p>
-      <p className="feedback-chef-name"> Cristian Cuevas </p>
+      <p className="feedback-chef-name"> {orderInfo.chefName} </p>
     </div>
     <div className="feedback-type-tag-container">
       <label for="feedback-type" className="feedback-type-tag">Feedback Type:</label>
-      <select class="custom-select form-control" id="feedback-type-input" required>
+      <select class="custom-select form-control" id="feedback-type-input" required name="chefFeedbackType" onChange={handleChange}>
         <option value="">Choose</option>
         <option value="complaint">Complaint</option>
         <option value="compliment">Compliment</option>
       </select>
     </div>
-    <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description"/>
+    <FormControl data-testid="chat" as="textarea" rows={5} placeholder="Describe your feedback" className="feedback-description" name="chefFeedback" value={orderReview.chefFeedback} onChange={handleChange}/>
   </Row>
-  <Button className="feedback-enter-submit-btn" href="./Menu"> Confirm </Button>
+  <Button className="feedback-enter-submit-btn" type="submit" onClick={handleSubmit}> Confirm </Button>
   </Container>
   );
 }
