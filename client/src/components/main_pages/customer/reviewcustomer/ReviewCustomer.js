@@ -24,9 +24,10 @@ const ReviewCustomer = () => {
 
 
   function getDishes(numDishes) {
-    var dishesRating = []
-    for (var i = 0; i < dishes.length; i++) {
-      dishesRating.push(0)
+    var dishesRating = {};
+    for(var i = 0; i < dishes.length; i++) {
+      var dishID = dishes[i].dishID
+      dishesRating[dishID] = '';
     }
     return dishesRating
   }
@@ -43,7 +44,7 @@ const ReviewCustomer = () => {
   const setStarRating = (index, e) => {
     const dish = index
     const value = e.rating
-    setDishReview(...dishReview)
+    setDishReview({...dishReview, [dish]:value})
     console.log(dishReview)
   }
 
@@ -67,12 +68,13 @@ const ReviewCustomer = () => {
             <Image className="dish-img" src={dish.image}/>
             <h4>{dish.dishName}</h4>
             <p>Chef: {dish.chefName}</p>
-            <Rater total={5}  name="starRating" onRate={(e) => setStarRating(index, e)}/>
+            <Rater total={5} rating = {1} name="starRating" onRate={(e) => setStarRating(index, e)}/>
+
+            <p> Hello! {dish.dishID} Yes {dishReview.[1]} </p>
           </Col>
         ))
       }
   </Row>
-  <p> {dishReview} </p>
   { orderInfo.delivery
     ? <Row className="feedback-input-container">
       <p className="feedback-prompt-tag">How would you rate the delivery driver?</p>
