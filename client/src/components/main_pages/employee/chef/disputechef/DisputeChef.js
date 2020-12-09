@@ -44,7 +44,7 @@ return (
             confirm
             </Button>
         </Form>
-    </Container>  
+    </Container>
     );
 }
 export default DisputeChef
