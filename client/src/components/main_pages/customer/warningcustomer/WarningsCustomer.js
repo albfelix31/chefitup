@@ -1,5 +1,6 @@
 import React,{useState,useEffect}  from 'react';
 import './WarningsCustomer.css'
+import {Link} from 'react-router-dom'
 
 import {Container, Row, Col, Button} from 'react-bootstrap'
 import jwt_decode from "jwt-decode";
@@ -51,7 +52,7 @@ const WarningsCustomer =()=> {
             <strong>Comments: </strong>{warning.comments}<br/>
           </Col>
           <Col xs="3">
-            <Button className="btn-warning-customer" variant="primary" href='./DisputeCustomer'>
+            <Button className="btn-warning-customer" variant="primary" component={Link} href={`./DisputeCustomer/${warning.orderNo}`} >
                 Dispute
             </Button>
           </Col>

@@ -169,7 +169,7 @@ class App extends React.Component {
               <Route path="/Payment" component={Payment} />
               <Route path="/Profile" component={Profile} />
               <Route path="/Reservation" component={Reservation} />
-              <Route path="/ReviewCustomer/:orderId" children={<ReviewCustomer/>} />
+              <Route path="/ReviewCustomer/:orderNo" children={<ReviewCustomer/>} />
               <Route path="/Shipping" component={Shipping} />
               <Route path="/WarningCustomer" component={WarningCustomer} />
               <Route path="/WarningChef" component={WarningChef} />
