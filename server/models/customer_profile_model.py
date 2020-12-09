@@ -68,7 +68,7 @@ class CustomerProfileModel:
         self.database.commit()
     
     def initProfile(self,userId,name,deposit):
-        self.dataCur.execute('INSERT INTO CustomerProfile(name,address,payment,balance,subscribe,approve,userId) VALUES (' +  "'" + str(name) + "'," + "'' , '', " +  "'" + str(deposit) + "'," +  " '0', '0'," +  "'" + str(userId) + "'" + ')')
+        self.dataCur.execute('INSERT INTO CustomerProfile(name,address,payment,balance,subscribe,approve,vip,userId) VALUES (' +  "'" + str(name) + "'," + "'' , '', " +  "'" + str(deposit) + "'," +  " '0', '0','0'," +  "'" + str(userId) + "'" + ')')
         self.database.commit()
 
     def getNotApprove(self):

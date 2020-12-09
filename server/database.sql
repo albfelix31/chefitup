@@ -45,6 +45,8 @@ CREATE TABLE Menu(
     description VARCHAR(255) NOT NULL,
     ingredients VARCHAR(255) NOT NULL,
     keywords VARCHAR(255) NOT NULL,
+    price VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
     profileId INT NOT NULL,
     FOREIGN KEY (profileId) REFERENCES EmployeeProfile(profileId)
 );
@@ -53,6 +55,18 @@ Create Table Rating(
     ratingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rating VARCHAR(255) NOT NULL,
     dishId INT NOT NULL,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(userID),
+    FOREIGN KEY (dishId) REFERENCES Menu(dishId)
+);
+
+Create Table Cart(
+    cartId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    price VARCHAR(255) NOT NULL,
+    quantity VARCHAR(255) NOT NULL,
+    dishId INT NOT NULL,
+    chefName VARCHAR(255) NOT NULL,
+    dishName VARCHAR(255) NOT NULL,
     userID INT NOT NULL,
     FOREIGN KEY (userID) REFERENCES User(userID),
     FOREIGN KEY (dishId) REFERENCES Menu(dishId)

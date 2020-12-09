@@ -60,19 +60,18 @@ const Menu = () =>{
         API.getMenu().then ( dishes => {
           for(let i = 0; i < dishes.length; i++){
             //Fetching rating for each dish
-            API.getRating(dishes[i]['dishId']).then ( rating => {
+            
               listDishes.push({
-                dishID: dishes[i]['dishId'],
+                dishId: dishes[i]['dishId'],
                 dishName: dishes[i]['dishName'],
                 ingredient: dishes[i]['ingredients'],
                 price: dishes[i]['price'],
                 category: dishes[i]['category'],
-                chefID: rating['chefId'],
-                chefName: rating['chefName'],
-                rating: rating['keywords'],
+                chefID: dishes[i]['profileId'],
+                chefName: dishes[i]['firstName'],
                 image: DishPic
               })
-            })
+           
           }
           setDishData(listDishes);
         })
@@ -86,19 +85,18 @@ const Menu = () =>{
     API.getTopDish().then ( dishes => {
       for(let i = 0; i < dishes.length; i++){
         //Fetching rating for each dish
-        API.getRating(dishes[i]['dishId']).then ( rating => {
+      
           listDishes.push({
-            dishID: dishes[i]['dishId'],
+            dishId: dishes[i]['dishId'],
             dishName: dishes[i]['dishName'],
             ingredient: dishes[i]['ingredients'],
             price: dishes[i]['price'],
             category: dishes[i]['category'],
-            chefID: rating['chefId'],
-            chefName: rating['chefName'],
-            rating: rating['keywords'],
+            chefID: dishes[i]['profileId'],
+            chefName: dishes[i]['firstName'] + " " + dishes[i]['lastName'] ,
             image: DishPic
           })
-        })
+     
       }
       setTopDishData(listDishes);
     }) 
@@ -106,14 +104,14 @@ const Menu = () =>{
 
   const openModal = dish => (e) => {
     e.preventDefault();
-    const dishID = dish.dishID
+    const dishId = dish.dishId
     const image = dish.image
-    const name = dish.dishName
+    const dishName = dish.dishName
     const price = dish.price
     const ingredient = dish.ingredient
     const chefId= dish.chefID
     const chefName= dish.chefName
-    setOpenDish({...openDish,dishId:dishID,name:name,price:price,chefId:chefId,chefName:chefName,ingredient:ingredient,image:image})
+    setOpenDish({...openDish,dishId:dishId,dishName:dishName,price:price,chefId:chefId,chefName:chefName,ingredient:ingredient,image:image})
     setIsOpen(true)
   };
   const closeModal = () => {
@@ -125,7 +123,7 @@ const Menu = () =>{
 
     const API = new api();
     const cookies = new Cookies();
-    const data = {userId:jwt_decode(cookies.get('token')).userId, dishId:openDish.dishID, dishName:openDish.name, price:openDish.price, chefId:openDish.chefID, chefName:openDish.chefName, image: openDish.image,quantity:quantity}
+    const data = {userId:jwt_decode(cookies.get('token')).userId, dishId:openDish.dishId, dishName:openDish.dishName, price:openDish.price, chefId:openDish.chefID, chefName:openDish.chefName, image: openDish.image,quantity:quantity}
     API.addToCart(data).then( error => {
       console.log(error);
     })

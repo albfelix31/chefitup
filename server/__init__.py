@@ -44,6 +44,9 @@ def create_app():
     from server.controllers import employee_profile_controller
     app.register_blueprint(employee_profile_controller.bp)
 
+    from server.controllers import cart_controller
+    app.register_blueprint(cart_controller.bp)
+
     return app
 
     

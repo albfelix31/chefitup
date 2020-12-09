@@ -73,6 +73,7 @@ def login():
             session['userId'] = user.getUserId()
             session['username'] = user.getUserName()
             session['email'] = user.getEmail()
+            session['type'] = user.getType()
             
             token = jwt.encode({'userId': user.getUserId(), 'username': user.getUserName(), 'email': user.getEmail(), 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=50)}, app.config['SECRET_KEY'])
             return json.dumps({'authenticated': True, 'token': token.decode('UTF-8'),'path': path, 'type': user.getType()})

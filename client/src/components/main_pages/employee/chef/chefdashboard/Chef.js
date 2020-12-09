@@ -53,6 +53,8 @@ export default class Chef extends React.Component {
           description: dishes[i]['description'],
           ingredients: dishes[i]['ingredients'],
           keywords: dishes[i]['keywords'],
+          price: dishes[i]['price'],
+          category: dishes[i]['category'],
           image: DishPic
 
         })
@@ -71,6 +73,8 @@ export default class Chef extends React.Component {
           description: "",
           ingredients: "",
           keywords: "",
+          price: "",
+          category: "",
           search: "",
           dishes: [],
           isOpen: false,
@@ -88,6 +92,8 @@ export default class Chef extends React.Component {
             description:  this.state.dishes[index]['description'],
             ingredients:  this.state.dishes[index]['ingredients'],
             keywords:  this.state.dishes[index]['keywords'],
+            price:  this.state.dishes[index]['price'],
+            category:  this.state.dishes[index]['category'],
           })
         }
     
@@ -154,7 +160,7 @@ export default class Chef extends React.Component {
     return (
     <Container className="container-chef" fluid>
 
-        <Modal show={this.state.isOpen} onHide={this.closeModal}>
+        <Modal className="chef-modal" show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>{this.state.n == 'add' ? "Add Dish" : "Edit Dish"}</Modal.Title>
           </Modal.Header>
@@ -185,6 +191,16 @@ export default class Chef extends React.Component {
                 <Form.Group controlId="formDishKeyWords">
                     <Form.Label>Key Words</Form.Label>
                     <Form.Control onChange={this.handleChange("keywords")} value={this.state.keywords} placeholder="keywords" />
+                </Form.Group>
+
+                <Form.Group controlId="formDishCategory">
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control onChange={this.handleChange("category")} value={this.state.category} placeholder="Category" />
+                </Form.Group>
+
+                <Form.Group controlId="formDishPrice">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control onChange={this.handleChange("price")} value={this.state.price} placeholder="Price" />
                 </Form.Group>
 
               </Form>
@@ -252,7 +268,13 @@ export default class Chef extends React.Component {
                         {"Dish name: " + list.dishName}
                       </Card.Title>
                       <Card.Text>
-                        {"Dish Rating" + list.rating}
+                        {"Dish Rating: " + list.rating}
+                      </Card.Text>
+                      <Card.Text>
+                        {"Dish Price: " + list.price}
+                      </Card.Text>
+                      <Card.Text>
+                        {"Dish Category: " + list.category}
                       </Card.Text>
                     </ListGroupItem>
                   </ListGroup>

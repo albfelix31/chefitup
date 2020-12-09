@@ -28,7 +28,7 @@ export default class NavManager extends React.Component {
     e.preventDefault();
     const cookies = new Cookies();
     cookies.remove('token');
-    window.location.href='/CustomerLogin';
+    window.location.href='/';
   }
 
   render(){ 

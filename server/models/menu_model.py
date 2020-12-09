@@ -12,6 +12,8 @@ class MenuModel:
         self.keywords = None
         self.profileId = profileId
         self.dishId = None
+        self.category = None
+        self.price = None
 
         if profileId is not None:
             self.dataCur.execute('SELECT * FROM Menu WHERE profileId = ' + "'" + str(profileId) + "'" )
@@ -22,7 +24,8 @@ class MenuModel:
                 self.ingredients = results['ingredients']
                 self.keywords = results['keywords']
                 self.dishId = results['dishId']
-
+                self.category = results['price']
+                self.price = results['category']
 
     def getDishId(self):
         return self.getDishId
@@ -51,12 +54,24 @@ class MenuModel:
     def getKeywords(self):
         return self.keywords
 
+    def setPrice(self,price):
+        self.price = price
+
+    def setCategory(self,category):
+        self.category = category
+
+    def getCategory(self):
+        return self.category
+
+    def getPrice(self):
+        return self.price
+
     def updateField(self,field,attribute):
         self.dataCur.execute('UPDATE Menu Set ' + field + ' = ' + "'" + attribute + "'" + "WHERE profileId = " + "'" + str(self.profileId) + "'")
         self.database.commit()
     
     def addDish(self,profileId):
-        self.dataCur.execute('INSERT INTO Menu(dishName,description,ingredients,keywords,profileId) VALUES (' +  "'" + str(self.dishName) + "'," "'" + str(self.description) + "'," + "'" + str(self.ingredients) + "'," + "'" + str(self.keywords) + "',"  + "'" + str(profileId) + "'" + ')')
+        self.dataCur.execute('INSERT INTO Menu(dishName,description,ingredients,keywords,price,category,profileId) VALUES (' +  "'" + str(self.dishName) + "'," "'" + str(self.description) + "'," + "'" + str(self.ingredients) + "'," + "'" + str(self.keywords) + "',"   + "'" + str(self.price) + "',"  + "'" + str(self.category) + "'," + "'" + str(profileId) + "'" + ')')
         self.database.commit()
 
     def removeDish(self,dishId):
@@ -72,5 +87,15 @@ class MenuModel:
 
     def showListing(self,profileId):
         self.dataCur.execute('SELECT * FROM Menu WHERE profileId = ' + "'" + str(profileId) + "'")
+        results = self.dataCur.fetchall()
+        return results
+
+    def showAll(self):
+        self.dataCur.execute('SELECT * FROM Menu NATURAL JOIN EmployeeProfile')
+        results = self.dataCur.fetchall()
+        return results
+
+    def topDishes(self):
+        self.dataCur.execute('SELECT * FROM EmployeeProfile NATURAL JOIN (SELECT * FROM Menu NATURAL JOIN Rating) A W')
         results = self.dataCur.fetchall()
         return results

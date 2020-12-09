@@ -87,3 +87,8 @@ class EmployeeProfileModel:
         self.dataCur.execute('DELETE FROM EmployeeProfile WHERE profileId = ' + "'" + str(profileId) + "'")
         self.dataCur.execute('DELETE FROM User WHERE userId = ' + "'" + str(userId) + "'")
         self.database.commit()
+
+    def getEmployeeProfile(self,profileId):
+        self.dataCur.execute('SELECT * FROM EmployeeProfile WHERE profileId = ' + "'" + str(profileId) + "'")
+        results = self.dataCur.fetchall()
+        return results

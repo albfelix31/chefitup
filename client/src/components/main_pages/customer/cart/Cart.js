@@ -35,16 +35,15 @@ const Cart = () => {
       const userID = jwt_decode(cookies.get('token')).userId;
       let cart = []
       //Fetching rating for each dish
-      API.getCart(userID).then ( data => {
+      API.getCart().then ( data => {
         for(let i = 0; i < data.length; i++){
           cart.push({
-            dishID: data['dishId'],
-            dishName: data['dishName'],
-            price: data['price'],
-            chefId: data['chfId'],
-            chefName: data['chefName'],
-            image: data['image'],
-            quantity: data['quantity']
+            dishID: data[i]['dishId'],
+            dishName: data[i]['dishName'],
+            price: data[i]['price'],
+            chefName: data[i]['chefName'],
+            image: data[i]['image'],
+            quantity: data[i]['quantity']
           })
         }
       })
@@ -126,7 +125,7 @@ const Cart = () => {
       API.setOrder(orderData).then( error => {
         console.log(error);
       })
-      window.location.href='/chekout';
+      window.location.href='/checkout';
     }
 
     return (

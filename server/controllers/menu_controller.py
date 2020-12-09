@@ -4,6 +4,7 @@ from random import getstate
 
 from server.models import user_model
 from server.models import menu_model
+from server.models import employee_profile_model
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -38,6 +39,12 @@ def updateDish():
         if req['keywords'] != menu.getKeywords():
             menu.updateField('keywords',req['keywords'])
 
+        if req['price'] != menu.getKeywords():
+            menu.updateField('price',req['price'])
+
+        if req['category'] != menu.getKeywords():
+            menu.updateField('category',req['category'])
+
         if req['newPassword']:
             user.updateField('password',req['newPassword'])
 
@@ -48,8 +55,10 @@ def updateDish():
 @bp.route('/getMenu',methods=['GET', 'POST'])
 def showChefMenu():
     menu = menu_model.MenuModel()
-    print(menu.showListing(session['userId']))
-    return json.dumps({'dishes': menu.showListing(session['profileId'])})
+    if session['type'] == 'c':
+        return json.dumps({'dishes': menu.showAll()})
+    else:
+        return json.dumps({'dishes': menu.showListing(session['profileId'])})
 
 @bp.route('/remove',methods=['GET', 'POST'])
 def removeDish():
@@ -80,6 +89,8 @@ def addDish():
             menu.setDescription(req['description'])
             menu.setIngredients(req['ingredients'])
             menu.setKeywords(req['keywords'])
+            menu.setPrice(req['price'])
+            menu.setCategory(req['category'])
             menu.addDish(session['profileId'])
            
             return json.dumps({'Added': True})

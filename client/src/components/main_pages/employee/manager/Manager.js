@@ -283,7 +283,7 @@ export default class Manager extends React.Component {
             <div className="btn-container">
               <Button className="btn-employee" onClick={this.openModal("add")} variant="primary"><Image className="add-sign" src={Add}/>Add Employee</Button>
               <Button className="btn-employee" variant="primary">
-                Total <Badge variant="light">5</Badge>
+                  Total <Badge variant="light">{this.state.employee.length}</Badge>
               </Button>
               </div>
           </Col>
