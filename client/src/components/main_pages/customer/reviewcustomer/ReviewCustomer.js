@@ -13,9 +13,9 @@ const ReviewCustomer = () => {
   const orderInfo = {orderId: '1', chefId: '1', chefName: 'Cristian Cuevas', delivery: true, deliveryID: '1',
   deliveryName: 'Jie Wei'}
   const dishes = [
-    {dishID:'2',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
-    {dishID:'1',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
-    {dishID:'3',dishName:'Nugget',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic}
+    {dishID:'a',dishName:'Chesee Burger',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'main',subcategory:'',chefID:'1',chefName:"Cristian Cuevas",rating:'4',image: DishPic},
+    {dishID:'b',dishName:'Coca Cola',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'drink',subcategory:'',chefID:'2',chefName:"Nahin Imtiaz",rating:'5',image: DishPic},
+    {dishID:'c',dishName:'Nugget',ingredient:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',price:'3.99',category:'appetizer',subcategory:'',chefID:'3',chefName:"Eddie Ozuna",rating:'5',image: DishPic}
   ]
 
   const [dishData, setDishData] = useState(dishes);
@@ -24,10 +24,10 @@ const ReviewCustomer = () => {
 
 
   function getDishes(numDishes) {
-    var dishesRating = {};
+    var dishesRating = {}
     for(var i = 0; i < dishes.length; i++) {
       var dishID = dishes[i].dishID
-      dishesRating[dishID] = '';
+      dishesRating[dishID] = 0;
     }
     return dishesRating
   }
@@ -41,8 +41,8 @@ const ReviewCustomer = () => {
     console.log([name, value])
   }
 
-  const setStarRating = (index, e) => {
-    const dish = index
+  const setStarRating = (id, e) => {
+    const dish = id
     const value = e.rating
     setDishReview({...dishReview, [dish]:value})
     console.log(dishReview)
@@ -51,11 +51,13 @@ const ReviewCustomer = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const API = new api();
-    const data = {...orderReview}
+    const orderData = {...orderReview}
+    const dishData = {...dishReview}
     // backend code here
     window.location.href='/Menu';
   }
 
+  const ratedDish = dishReview
   return (
     <Container>
     <h1 className="headerReview">Feedback</h1>
@@ -68,9 +70,7 @@ const ReviewCustomer = () => {
             <Image className="dish-img" src={dish.image}/>
             <h4>{dish.dishName}</h4>
             <p>Chef: {dish.chefName}</p>
-            <Rater total={5} rating = {1} name="starRating" onRate={(e) => setStarRating(index, e)}/>
-
-            <p> Hello! {dish.dishID} Yes {dishReview.[1]} </p>
+            <Rater total={5} name="starRating" onRating={(e) => setStarRating(dish.dishID, e)}/>
           </Col>
         ))
       }
