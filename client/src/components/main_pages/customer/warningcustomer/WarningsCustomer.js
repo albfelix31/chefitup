@@ -26,7 +26,6 @@ const WarningsCustomer =()=> {
       for(let i = 0; i < data.length; i++){
         warnings.push({
           orderNo: warning['orderNo'],
-          reason: warning['reason'],
           complainant: warning['complainant'],
           comments: warning['comments']
         })
@@ -47,7 +46,6 @@ const WarningsCustomer =()=> {
           </Col>
           <Col xs="8">
             <strong>Order # </strong>{warning.orderNo}<br/>
-            <strong>Reason: </strong>{warning.reason}<br/>
             <strong>Complainant: </strong>{warning.complainant}<br/>
             <strong>Comments: </strong>{warning.comments}<br/>
           </Col>
