@@ -20,41 +20,51 @@ from server.controllers.token import token_required
 bp = Blueprint('customerprofile', __name__, url_prefix='/customerprofile')
 
 # Boiler Plate Test Code
+
+
 @bp.route('/update', methods=['GET', 'POST'])
 def updateProfile():
-    customerProfle = customer_profile_model.CustomerProfileModel(session['userId'])
+    customerProfle = customer_profile_model.CustomerProfileModel(
+        session['userId'])
     user = user_model.UserModel(session['userId'])
     req = request.json
     if md5(req['Password'].encode('utf-8')).hexdigest() == user.getPassword():
         if req['name'] != customerProfle.getName():
-            customerProfle.updateField('firstName',req['firstName'])
+            customerProfle.updateField('firstName', req['firstName'])
+
+        if req['email']:
+            user.updateField('email', req['email'])
 
         if req['address'] != customerProfle.getAddress():
-            customerProfle.updateField('phoneNumber',req['phoneNumber'])
+            customerProfle.updateField('phoneNumber', req['phoneNumber'])
 
         if req['payment'] != customerProfle.getPayment():
-            customerProfle.updateField('street',req['address'])
+            customerProfle.updateField('street', req['address'])
 
         if req['balance'] != customerProfle.getBalance():
-            customerProfle.updateField('city',req['city'])
+            customerProfle.updateField('city', req['city'])
 
         if req['subscribe'] != customerProfle.getSubscribe():
-            customerProfle.updateField('state',req['state'])
+            customerProfle.updateField('state', req['state'])
 
         if req['newPassword']:
-            user.updateField('password',req['newPassword'])
+            user.updateField('password', req['newPassword'])
 
         return json.dumps({'error': 'Updated'})
 
     return json.dumps({'error': 'Current Password is Incorrect'})
 
-@bp.route('/getProfile',methods=['GET', 'POST'])
+
+@bp.route('/getProfile', methods=['GET', 'POST'])
 def getProfile():
-    customerProfle = customer_profile_model.CustomerProfileModel(session['userId'])
-    profile = {'name': customerProfle.getName(),'address': customerProfle.getAddress(), 'payment':customerProfle.getPayment(), 'balance': customerProfle.getBalance(), 'subscribe': customerProfle.getSubscribe()}
+    customerProfle = customer_profile_model.CustomerProfileModel(
+        session['userId'])
+    profile = {'name': customerProfle.getName(), 'address': customerProfle.getAddress(), 'payment': customerProfle.getPayment(
+    ), 'balance': customerProfle.getBalance(), 'subscribe': customerProfle.getSubscribe()}
     return json.dumps({'profile': profile})
 
-@bp.route('/checkApprove',methods=['GET', 'POST'])
+
+@bp.route('/checkApprove', methods=['GET', 'POST'])
 def getNotApprove():
     customerProfle = customer_profile_model.CustomerProfileModel()
     customers = customerProfle.getNotApprove()
@@ -65,19 +75,20 @@ def getNotApprove():
         customers[i]['userId'] = user.getUserId()
     return json.dumps({'customers': customers})
 
-@bp.route('/approve',methods=['GET', 'POST'])
+
+@bp.route('/approve', methods=['GET', 'POST'])
 def approve():
     customerProfle = customer_profile_model.CustomerProfileModel()
     req = request.json
     if req['approve'] == 1:
         customerProfle.setProfileId(req['profileId'])
-        customerProfle.updateField("approve","1")
+        customerProfle.updateField("approve", "1")
     else:
-        customerProfle.removeCustomer(req['profileId'],req['userId'])
+        customerProfle.removeCustomer(req['profileId'], req['userId'])
     return json.dumps({'status': "done"})
 
 
-@bp.route('/getCustomer',methods=['GET', 'POST'])
+@bp.route('/getCustomer', methods=['GET', 'POST'])
 def getCustomer():
     customerProfle = customer_profile_model.CustomerProfileModel()
     customers = customerProfle.getCustomer()
@@ -88,4 +99,3 @@ def getCustomer():
         customers[i]['userId'] = user.getUserId()
         customers[i]['registrationDate'] = user.getRegistrationDate()
     return json.dumps({'customers': customers})
-

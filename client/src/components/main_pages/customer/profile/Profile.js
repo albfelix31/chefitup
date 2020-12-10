@@ -22,7 +22,7 @@ const Profile = () => {
     const userID = jwt_decode(cookies.get('token')).userId;
     let profile = {}
     //Fetching rating for each dish
-    API.getProfile(userID).then ( data => {
+    API.getProfile().then ( data => {
       profile = {
         name: data['name'],
         email: data['email'],

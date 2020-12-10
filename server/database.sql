@@ -72,5 +72,16 @@ Create Table Cart(
     FOREIGN KEY (dishId) REFERENCES Menu(dishId)
 );
 
+Create Table Reservation(
+    reservationId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(255) NOT NULL,
+    date VARCHAR(255) NOT NULL,
+    time INT NOT NULL,
+    guest VARCHAR(255) NOT NULL,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(userID)
+);
+
 
 INSERT INTO User(userName,password,email,type,registrationDate) VALUES ('eddie',MD5('123'),'eddie@gmail.com','m',NOW())

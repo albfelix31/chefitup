@@ -51,7 +51,23 @@ export default class API {
     }
   }
 
-async updateDish(data){
+  async addReservation(data){
+    const response = await fetch('/Reservation/add', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+        body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    if (response_1['Added']) {
+      window.location.href = '/Menu';
+    } else {
+      return response_1['error'];
+    }
+  }
+
+  async updateDish(data){
     const response = await fetch('/Menu/update', {
       method: 'POST',
       headers: {
@@ -63,7 +79,19 @@ async updateDish(data){
     return response_1['error'];
   }
 
-async getMenu(){
+  async editProfile(data){
+    const response = await fetch('/customerprofile/update', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const response_1 = await response.json();
+    return response_1['error'];
+  }
+
+  async getMenu(){
     const response = await fetch('/Menu/getMenu', {
       method: 'POST',
       headers: {
@@ -74,7 +102,7 @@ async getMenu(){
     return response_1['dishes']
   }
 
-async removeDish(data){
+  async removeDish(data){
     const response = await fetch('/Menu/remove', {
       method: 'POST',
       headers: {
@@ -90,7 +118,7 @@ async removeDish(data){
     }
   }
 
-async getNotApprove(){
+  async getNotApprove(){
     const response = await fetch('/customerprofile/checkApprove', {
       method: 'POST',
       headers: {
@@ -226,5 +254,15 @@ async getNotApprove(){
    
   }
   
+  async getProfile(){
+    const response = await fetch('/customerprofile/getProfile', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['profile']
+  }
 }
 
