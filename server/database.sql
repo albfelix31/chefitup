@@ -95,4 +95,12 @@ Create Table Warning(
     FOREIGN KEY (complainantID) REFERENCES User(userID)
 );
 
+Create Table Dispute(
+    disputeId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    orderNo INT NOT NULL,
+    explanation VARCHAR(255) NOT NULL,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(userID)
+);
+
 INSERT INTO User(userName,password,email,type,registrationDate) VALUES ('eddie',MD5('123'),'eddie@gmail.com','m',NOW())

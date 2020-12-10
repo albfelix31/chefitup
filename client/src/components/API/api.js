@@ -137,6 +137,29 @@ export default class API {
     return response_1['warning']
   }
 
+  async sendDispute(data){
+    const response = await fetch('/Dispute/sendDispute', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    return response_1['dispute']
+  }
+
+  async getDispute(){
+    const response = await fetch('/Dispute/getDispute', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['dispute']
+  }
+
   async removeDish(data){
     const response = await fetch('/Menu/remove', {
       method: 'POST',

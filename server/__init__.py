@@ -51,4 +51,10 @@ def create_app():
     from server.controllers import reservation_controller
     app.register_blueprint(reservation_controller.bp)
 
+    from server.controllers import warning_controller
+    app.register_blueprint(warning_controller.bp)
+
+    from server.controllers import dispute_controller
+    app.register_blueprint(dispute_controller.bp)
+
     return app
