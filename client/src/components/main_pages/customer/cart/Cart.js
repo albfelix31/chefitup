@@ -44,7 +44,7 @@ const Cart = () => {
             dishName: data[i]['dishName'],
             price: data[i]['price'],
             chefName: data[i]['chefName'],
-            image: data[i]['image'],
+            image: Dish,
             quantity: data[i]['quantity']
           })
         }
@@ -60,19 +60,18 @@ const Cart = () => {
       API.getTopDish().then ( dishes => {
         for(let i = 0; i < dishes.length; i++){
           //Fetching rating for each dish
-          API.getRating(dishes[i]['dishId']).then ( rating => {
+        
             listDishes.push({
-              dishID: dishes[i]['dishId'],
+              dishId: dishes[i]['dishId'],
               dishName: dishes[i]['dishName'],
               ingredient: dishes[i]['ingredients'],
               price: dishes[i]['price'],
               category: dishes[i]['category'],
-              chefID: rating['chefId'],
-              chefName: rating['chefName'],
-              rating: rating['keywords'],
+              chefID: dishes[i]['profileId'],
+              chefName: dishes[i]['firstName'] + " " + dishes[i]['lastName'] ,
               image: Dish
             })
-          })
+       
         }
         setRecentCart(listDishes);
       }) 

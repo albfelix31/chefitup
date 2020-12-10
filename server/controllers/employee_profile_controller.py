@@ -20,39 +20,42 @@ from server.controllers.token import token_required
 bp = Blueprint('employeeProfile', __name__, url_prefix='/employeeProfile')
 
 # Boiler Plate Test Code
+
+
 @bp.route('/update', methods=['GET', 'POST'])
 def updateProfile():
-    employeeProfile = employee_profile_model.EmployeeProfileModel(session['userId'])
+    employeeProfile = employee_profile_model.EmployeeProfileModel(
+        session['userId'])
     user = user_model.UserModel(session['userId'])
     req = request.json
     if md5(req['Password'].encode('utf-8')).hexdigest() == user.getPassword():
         if req['firstName'] != employeeProfile.getFirstName():
-            employeeProfile.updateField('firstName',req['firstName'])
+            employeeProfile.updateField('firstName', req['firstName'])
 
         if req['lastName'] != employeeProfile.getLastName():
-            employeeProfile.updateField('lastName',req['lastName'])
+            employeeProfile.updateField('lastName', req['lastName'])
 
         if req['employeeId'] != employeeProfile.getEmployeeId():
-            employeeProfile.updateField('employeeId',req['employeeId'])
+            employeeProfile.updateField('employeeId', req['employeeId'])
 
         if req['phone'] != employeeProfile.getPhoneNumber():
-            employeeProfile.updateField('phone',req['phone'])
+            employeeProfile.updateField('phone', req['phone'])
 
         if req['position'] != employeeProfile.getPosition():
-            employeeProfile.updateField('position',req['position'])
+            employeeProfile.updateField('position', req['position'])
 
-        
         if req['salary'] != employeeProfile.getSalary():
-            employeeProfile.updateField('salary',req['salary'])
+            employeeProfile.updateField('salary', req['salary'])
 
         if req['newPassword']:
-            user.updateField('password',req['newPassword'])
+            user.updateField('password', req['newPassword'])
 
         return json.dumps({'error': 'Updated'})
 
     return json.dumps({'error': 'Current Password is Incorrect'})
 
-@bp.route('/getEmployee',methods=['GET', 'POST'])
+
+@bp.route('/getEmployee', methods=['GET', 'POST'])
 def getEmployee():
     employeeProfile = employee_profile_model.EmployeeProfileModel()
     employeeProfile = employeeProfile.getEmployee()
@@ -65,7 +68,7 @@ def getEmployee():
     return json.dumps({'employees': employeeProfile})
 
 
-@bp.route('/add',methods=['GET', 'POST'])
+@bp.route('/add', methods=['GET', 'POST'])
 def addEmployee():
     error = None
     if request.method == 'POST':
@@ -100,15 +103,17 @@ def addEmployee():
 
     return json.dumps({'Added': False, 'error': error})
 
-@bp.route('/remove',methods=['GET', 'POST'])
+
+@bp.route('/remove', methods=['GET', 'POST'])
 def removeDish():
     error = None
     if request.method == 'POST':
         req = request.json
-      
+
         if error is None:
-            employeeProfile = employee_profile_model.EmployeeProfileModel(req['profileId'])
-            employeeProfile.removeEmployee(req['profileId'],req['userId'])
+            employeeProfile = employee_profile_model.EmployeeProfileModel(
+                req['profileId'])
+            employeeProfile.removeEmployee(req['profileId'], req['userId'])
             return json.dumps({'Remove': True})
 
     return json.dumps({'Remove': False, 'error': error})

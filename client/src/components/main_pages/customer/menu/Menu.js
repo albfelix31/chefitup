@@ -68,7 +68,7 @@ const Menu = () =>{
                 price: dishes[i]['price'],
                 category: dishes[i]['category'],
                 chefID: dishes[i]['profileId'],
-                chefName: dishes[i]['firstName'],
+                chefName: dishes[i]['firstName'] + " " + dishes[i]['lastName'] ,
                 image: DishPic
               })
            
