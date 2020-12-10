@@ -49,7 +49,7 @@ const Profile = () => {
         console.log(error);
       })
     }
-    window.location.href='/Menu';
+    window.location.href='/Profile';
   }
   
   const openModal = (e) => {

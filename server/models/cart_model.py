@@ -18,9 +18,9 @@ class CartModel:
             self.dataCur.execute('SELECT * FROM Cart WHERE userId = ' + "'" + str(userId) + "'" )
             results = self.dataCur.fetchone()
             if results:
-                self.dishName = results['cartId']
-                self.description = results['price']
-                self.ingredients = results['quantity']
+                self.cartId = results['cartId']
+                self.price = results['price']
+                self.quantity = results['quantity']
                 self.dishId = results['dishId']
                 self.dishName = results['dishName']
                 self.chefName = results['chefName']

@@ -28,31 +28,28 @@ def updateProfile():
         session['userId'])
     user = user_model.UserModel(session['userId'])
     req = request.json
-    if md5(req['Password'].encode('utf-8')).hexdigest() == user.getPassword():
-        if req['name'] != customerProfle.getName():
-            customerProfle.updateField('firstName', req['firstName'])
+   
+    if req['name'] != customerProfle.getName():
+        customerProfle.updateField('firstName', req['firstName'])
 
-        if req['email']:
-            user.updateField('email', req['email'])
+    if req['email']:
+        user.updateField('email', req['email'])
 
-        if req['address'] != customerProfle.getAddress():
-            customerProfle.updateField('phoneNumber', req['phoneNumber'])
+    if req['address'] != customerProfle.getAddress():
+        customerProfle.updateField('phoneNumber', req['phoneNumber'])
 
-        if req['payment'] != customerProfle.getPayment():
-            customerProfle.updateField('street', req['address'])
+    if req['payment'] != customerProfle.getPayment():
+        customerProfle.updateField('street', req['address'])
 
-        if req['balance'] != customerProfle.getBalance():
-            customerProfle.updateField('city', req['city'])
+    if req['balance'] != customerProfle.getBalance():
+        customerProfle.updateField('city', req['city'])
 
-        if req['subscribe'] != customerProfle.getSubscribe():
-            customerProfle.updateField('state', req['state'])
+    if req['subscribe'] != customerProfle.getSubscribe():
+        customerProfle.updateField('state', req['state'])
 
-        if req['newPassword']:
-            user.updateField('password', req['newPassword'])
+    return json.dumps({'error': 'Updated'})
 
-        return json.dumps({'error': 'Updated'})
 
-    return json.dumps({'error': 'Current Password is Incorrect'})
 
 
 @bp.route('/getProfile', methods=['GET', 'POST'])
