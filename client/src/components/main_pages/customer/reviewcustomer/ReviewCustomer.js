@@ -120,7 +120,8 @@ const ReviewCustomer = () => {
             orderNo:orderNo,
             complainant:jwt_decode(cookies.get('token')).username,
             complainantId:jwt_decode(cookies.get('token')).userId,
-            comments:orderReview.chefFeedback
+            comments:orderReview.chefFeedback,
+            userId:orderInfo.items[i].chefId
           }
           API.sendWarningChef(orderInfo.items[i].chefId,warningData).then( error => {
             console.log(error);
@@ -133,9 +134,10 @@ const ReviewCustomer = () => {
           orderNo:orderNo,
           complainant:jwt_decode(cookies.get('token')).username,
           complainantId:jwt_decode(cookies.get('token')).userId,
-          comments:orderReview.driverFeedback
+          comments:orderReview.driverFeedback,
+          userId:orderInfo.deliveryId
         }
-        API.sendWarningDelivery(setOrderInfo.deliveryId,warningData).then( error => {
+        API.sendWarningDelivery(orderInfo.deliveryId,warningData).then( error => {
           console.log(error);
         })
       }

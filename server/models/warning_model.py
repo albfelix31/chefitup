@@ -9,6 +9,7 @@ class WarningModel:
         self.warningId = None
         self.orderNo = None
         self.complainant = None
+        self.complainatId = None
         self.comments = None
         self.userId = userId
 
@@ -18,6 +19,7 @@ class WarningModel:
             results = self.dataCur.fetchone()
             if results:
                 self.complainant = results['complainant']
+                self.complainantId = results['complainantId']
                 self.comments = results['comments']
                 self.orderNo = results['orderNo']
 
@@ -26,6 +28,9 @@ class WarningModel:
 
     def setComplainant(self, complainant):
         self.complainant = complainant
+
+    def setComplainantId(self, complainantId):
+        self.complainantId = complainantId
 
     def setComments(self, comments):
         self.comments = comments
@@ -40,13 +45,13 @@ class WarningModel:
         return results
 
     def sendWarningDelivery(self):
-        self.dataCur.execute('INSERT INTO Warning (orderNo,complainant,comments,time,guest,userID) VALUES (' + "'" + str(self.orderNo) + "'," "'" + str(self.complainant) +
-                             "'," + "'" + str(self.comments) + "'," + "'" + str(self.userId) + "'" + ')')
+        self.dataCur.execute('INSERT INTO Warning (orderNo,complainant,complainantId,comments,time,guest,userID) VALUES (' + "'" + str(self.orderNo) + "'," "'" + str(self.complainant) +
+                             "'," + "'" + str(self.complainantId) + "'," + "'" + str(self.comments) + "'," + "'" + str(self.userId) + "'" + ')')
         self.database.commit()
 
     def sendWarningChef(self):
-        self.dataCur.execute('INSERT INTO Warning (orderNo,complainant,comments,time,guest,userID) VALUES (' + "'" + str(self.orderNo) + "'," "'" + str(self.complainant) +
-                             "'," + "'" + str(self.comments) + "'," + "'" + str(self.userId) + "'" + ')')
+        self.dataCur.execute('INSERT INTO Warning (orderNo,complainant,complainantId,comments,time,guest,userID) VALUES (' + "'" + str(self.orderNo) + "'," "'" + str(self.complainant) +
+                             "'," + "'" + str(self.complainantId) + "'," + "'" + str(self.comments) + "'," + "'" + str(self.userId) + "'" + ')')
         self.database.commit()
 
     def isExist(self, userId):

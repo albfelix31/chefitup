@@ -38,8 +38,9 @@ def sendWarningChef():
         if error is None:
             warning.setOrderNo(req["orderNo"])
             warning.setComplainant(req['complainant'])
+            warning.setComplainantId(req['complainantId'])
             warning.setComments(req['comments'])
-            warning.setUserId(session['userId'])
+            warning.setUserId(req['userId'])
             warning.sendWarningChef()
 
     return json.dumps({'Added': True})
@@ -55,8 +56,9 @@ def sendWarningDelivery():
         if error is None:
             warning.setOrderNo(req["orderNo"])
             warning.setComplainant(req['complainant'])
+            warning.setComplainantId(req['complainantId'])
             warning.setComments(req['comments'])
-            warning.setUserId(session['userId'])
+            warning.setUserId(req['userId'])
             warning.sendWarningChef()
 
     return json.dumps({'Added': True})
