@@ -197,7 +197,7 @@ export default class API {
   }
 
   async getTopDish(){
-    const response = await fetch('/customerprofile/getCustomer', {
+    const response = await fetch('/Menu/getTopMenu', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

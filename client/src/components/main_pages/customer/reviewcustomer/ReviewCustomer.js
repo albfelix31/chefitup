@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import './ReviewCustomer.css'
 
 import {Container, Row, Col,Image, FormControl, Button} from 'react-bootstrap'
+import Dish from '../../../../public/FoodSample.jpg';
 import Rater from 'react-rater'
 import api from '../../../API/api'
 import jwt_decode from "jwt-decode";
@@ -46,7 +47,7 @@ const ReviewCustomer = () => {
               dishName: orders.items[i]['dishName'],
               chefId: chef['chefId'],
               chefName: chef['chefName'],
-              image: orders.items[i]['image']
+              image: Dish
             })
           })
         }

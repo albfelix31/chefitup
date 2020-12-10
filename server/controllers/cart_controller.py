@@ -21,15 +21,14 @@ from server.controllers.token import token_required
 bp = Blueprint('Cart', __name__, url_prefix='/Cart')
 
 
-@bp.route('/getCart',methods=['GET', 'POST'])
+@bp.route('/getCart', methods=['GET', 'POST'])
 def getCart():
     cart = cart_model.CartModel()
     cart.setUserId(session['userId'])
     return json.dumps({'cart': cart.getCart()})
- 
 
 
-@bp.route('/add',methods=['GET', 'POST'])
+@bp.route('/add', methods=['GET', 'POST'])
 def addDish():
     error = None
     if request.method == 'POST':
@@ -38,8 +37,8 @@ def addDish():
 
         if cart.isExist(req['dishId']):
             cart.setUserId(session['userId'])
-            cart.updateField('quantity',req["quantity"])
-            cart.updateField('price',req["price"])
+            cart.updateField('quantity', req["quantity"])
+            cart.updateField('price', req["price"])
         else:
             if error is None:
                 cart.setPrice(req["price"])
@@ -49,6 +48,5 @@ def addDish():
                 cart.setChefName(req['chefName'])
                 cart.setDishname(req['dishName'])
                 cart.addItem()
-            
-    return json.dumps({'Added': True})
 
+    return json.dumps({'Added': True})

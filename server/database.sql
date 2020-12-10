@@ -47,6 +47,7 @@ CREATE TABLE Menu(
     keywords VARCHAR(255) NOT NULL,
     price VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
+    image LONGBLOB,
     profileId INT NOT NULL,
     FOREIGN KEY (profileId) REFERENCES EmployeeProfile(profileId)
 );

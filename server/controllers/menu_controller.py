@@ -21,6 +21,8 @@ from server.controllers.token import token_required
 bp = Blueprint('Menu', __name__, url_prefix='/Menu')
 
 # Boiler Plate Test Code
+
+
 @bp.route('/update', methods=['GET', 'POST'])
 def updateDish():
     menu = menu_model.MenuModel(session['profileId'])
@@ -28,31 +30,35 @@ def updateDish():
     req = request.json
     if md5(req['Password'].encode('utf-8')).hexdigest() == user.getPassword():
         if req['dishName'] != menu.getDishName():
-            menu.updateField('dishName',req['dishName'])
+            menu.updateField('dishName', req['dishName'])
 
         if req['description'] != menu.getDescription():
-            menu.updateField('description',req['description'])
+            menu.updateField('description', req['description'])
 
         if req['ingredients'] != menu.getDescription():
-            menu.updateField('ingredients',req['ingredients'])
+            menu.updateField('ingredients', req['ingredients'])
 
         if req['keywords'] != menu.getKeywords():
-            menu.updateField('keywords',req['keywords'])
+            menu.updateField('keywords', req['keywords'])
 
         if req['price'] != menu.getKeywords():
-            menu.updateField('price',req['price'])
+            menu.updateField('price', req['price'])
 
         if req['category'] != menu.getKeywords():
-            menu.updateField('category',req['category'])
+            menu.updateField('category', req['category'])
+
+        if req['image'] != menu.getImage():
+            menu.updateField('image', req['image'])
 
         if req['newPassword']:
-            user.updateField('password',req['newPassword'])
+            user.updateField('password', req['newPassword'])
 
         return json.dumps({'error': 'Updated'})
 
     return json.dumps({'error': 'Current Password is Incorrect'})
 
-@bp.route('/getMenu',methods=['GET', 'POST'])
+
+@bp.route('/getMenu', methods=['GET', 'POST'])
 def showChefMenu():
     menu = menu_model.MenuModel()
     if session['type'] == 'c':
@@ -60,12 +66,19 @@ def showChefMenu():
     else:
         return json.dumps({'dishes': menu.showListing(session['profileId'])})
 
-@bp.route('/remove',methods=['GET', 'POST'])
+
+@bp.route('/getTopDish', methods=['GET', 'POST'])
+def showTopMenu():
+    menu = menu_model.MenuModel()
+    return json.dumps({'dishes': menu.showTopMenu()})
+
+
+@bp.route('/remove', methods=['GET', 'POST'])
 def removeDish():
     error = None
     if request.method == 'POST':
         req = request.json
-      
+
         if error is None:
             menu = menu_model.MenuModel(session['profileId'])
             menu.removeDish(req['dishId'])
@@ -73,7 +86,8 @@ def removeDish():
 
     return json.dumps({'Remove': False, 'error': error})
 
-@bp.route('/add',methods=['GET', 'POST'])
+
+@bp.route('/add', methods=['GET', 'POST'])
 def addDish():
     error = None
     if request.method == 'POST':
@@ -82,7 +96,7 @@ def addDish():
 
         if menu.isExist(menu.getDishName):
             error = 'dish already exist'
-      
+
         if error is None:
             print(session['profileId'])
             menu.setDishName(req["dishName"])
@@ -91,8 +105,9 @@ def addDish():
             menu.setKeywords(req['keywords'])
             menu.setPrice(req['price'])
             menu.setCategory(req['category'])
+            menu.setImage(req['Image'])
             menu.addDish(session['profileId'])
-           
+
             return json.dumps({'Added': True})
 
     return json.dumps({'Added': False, 'error': error})
