@@ -84,5 +84,13 @@ Create Table Reservation(
     FOREIGN KEY (userID) REFERENCES User(userID)
 );
 
+Create Table Warning(
+    warningId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    orderNo INT NOT NULL,
+    complainant VARCHAR(255) NOT NULL,
+    comments VARCHAR(255) NOT NULL,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(userID)
+);
 
 INSERT INTO User(userName,password,email,type,registrationDate) VALUES ('eddie',MD5('123'),'eddie@gmail.com','m',NOW())

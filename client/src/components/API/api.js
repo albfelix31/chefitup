@@ -102,6 +102,41 @@ export default class API {
     return response_1['dishes']
   }
 
+  async getWarning(){
+    const response = await fetch('/Warning/getWarning', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      });
+    const response_1 = await response.json();
+    return response_1['warning']
+  }
+
+  async sendWarningChef(data){
+    const response = await fetch('/Warning/sendWarningChef', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    return response_1['warning']
+  }
+
+  async sendWarningDelivery(data){
+    const response = await fetch('/Warning/sendWarningDelivery', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      });
+    const response_1 = await response.json();
+    return response_1['warning']
+  }
+
   async removeDish(data){
     const response = await fetch('/Menu/remove', {
       method: 'POST',
