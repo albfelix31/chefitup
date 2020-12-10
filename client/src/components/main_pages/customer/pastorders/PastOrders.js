@@ -30,7 +30,7 @@ const PastOrders = () => {
           orderNo: orders['orderNo'],
           orderDate: orders['orderDate'],
           total: orders['total'],
-          items: orders['items']
+          items: Dish
         })
       }
     })

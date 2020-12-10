@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import './ReviewCustomer.css'
 
 import {Container, Row, Col,Image, FormControl, Button} from 'react-bootstrap'
+import Dish from '../../../../public/FoodSample.jpg';
 import Rater from 'react-rater'
 import api from '../../../API/api'
 import jwt_decode from "jwt-decode";
@@ -46,7 +47,7 @@ const ReviewCustomer = () => {
               dishName: orders.items[i]['dishName'],
               chefId: chef['chefId'],
               chefName: chef['chefName'],
-              image: orders.items[i]['image']
+              image: Dish
             })
           })
         }
@@ -119,7 +120,8 @@ const ReviewCustomer = () => {
             orderNo:orderNo,
             complainant:jwt_decode(cookies.get('token')).username,
             complainantId:jwt_decode(cookies.get('token')).userId,
-            comments:orderReview.chefFeedback
+            comments:orderReview.chefFeedback,
+            userId:orderInfo.items[i].chefId
           }
           API.sendWarningChef(orderInfo.items[i].chefId,warningData).then( error => {
             console.log(error);
@@ -132,9 +134,10 @@ const ReviewCustomer = () => {
           orderNo:orderNo,
           complainant:jwt_decode(cookies.get('token')).username,
           complainantId:jwt_decode(cookies.get('token')).userId,
-          comments:orderReview.driverFeedback
+          comments:orderReview.driverFeedback,
+          userId:orderInfo.deliveryId
         }
-        API.sendWarningDelivery(setOrderInfo.deliveryId,warningData).then( error => {
+        API.sendWarningDelivery(orderInfo.deliveryId,warningData).then( error => {
           console.log(error);
         })
       }

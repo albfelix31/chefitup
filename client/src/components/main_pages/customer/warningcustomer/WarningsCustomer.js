@@ -22,7 +22,7 @@ const WarningsCustomer =()=> {
     const userID = jwt_decode(cookies.get('token')).userId;
     let warnings = []
     //Fetching warnings data
-    API.getWarning(userID).then ( warning => {
+    API.getWarning().then ( warning => {
       for(let i = 0; i < data.length; i++){
         warnings.push({
           orderNo: warning['orderNo'],
