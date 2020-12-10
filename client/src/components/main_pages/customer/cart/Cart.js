@@ -34,9 +34,11 @@ const Cart = () => {
       const cookies = new Cookies();
       const userID = jwt_decode(cookies.get('token')).userId;
       let cart = []
+      let total = 0
       //Fetching rating for each dish
       API.getCart().then ( data => {
         for(let i = 0; i < data.length; i++){
+          total += parseInt(data[i]['price'])
           cart.push({
             dishID: data[i]['dishId'],
             dishName: data[i]['dishName'],
@@ -46,6 +48,7 @@ const Cart = () => {
             quantity: data[i]['quantity']
           })
         }
+        setTotalPrice(total)
       })
       setCart(cart);
     },[]);

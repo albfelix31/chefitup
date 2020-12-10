@@ -42,13 +42,13 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(profile.name && profile.email && profile.address && profile.payment && profile.balance){
+   
       const API = new api();
       const data = {...profile}
       API.editProfile(data).then( error => {
         console.log(error);
       })
-    }
+    
     window.location.href='/Profile';
   }
   
