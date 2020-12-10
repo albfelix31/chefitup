@@ -33,7 +33,7 @@ def updateProfile():
             customerProfle.updateField('firstName', req['firstName'])
 
         if req['email']:
-            user.updateField('email', req['emailm'])
+            user.updateField('email', req['email'])
 
         if req['address'] != customerProfle.getAddress():
             customerProfle.updateField('phoneNumber', req['phoneNumber'])
