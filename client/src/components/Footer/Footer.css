@@ -1,17 +1,5 @@
 .footer {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #009821;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  background-color: #0069B6;
   color: white !important;
-  text-align: left;
-}
-
-.footer-box {
-  border: 1px solid white;
-  padding-top: 8px;
-  margin-left: 2px;
-  margin-right: 2px;
+  text-align: center;
 }
